@@ -1,0 +1,5 @@
+<svg class="mobile-back" viewBox="0 0 320 480">
+	<path class="start" d="M8,480H0V0H8A973,973,0,0,1,8,480Z" data-dclone="M8,480H0V0H8A973,973,0,0,1,8,480Z" />
+	<path class="step_2" d="M320,480H0V0H320A3973,3973,0,0,0,320,480Z"/>
+	<path class="end" d="M320,480H0V0H320V480Z"/>
+</svg>

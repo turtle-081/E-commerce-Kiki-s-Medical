@@ -1,0 +1,11 @@
+<svg class="sidebar-toggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 13.75">
+	<g class="normal">
+		<path class="top line" d="M18,.5H0V0H18Z"/>
+		<path class="bottom line" d="M18,13.75H0v-.5H18Z"/>
+		<path class="small line" d="M18,7.12H4v-.5H18Z"/>
+	</g>
+	<g class="cross">
+		<path class="top line" data-name="top" d="M15.54.69,2.81,13.42l-.35-.35L15.19.33Z"/>
+		<path class="bottom line" data-name="bottom" d="M15.19,13.42,2.46.69,2.81.33,15.54,13.06Z"/>
+	</g>
+</svg>

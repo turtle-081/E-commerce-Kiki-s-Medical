@@ -1,0 +1,5000 @@
+# WordPress Blank Pot
+# Copyright (C) 2014 ...
+# This file is distributed under the GNU General Public License v2 or later.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Enovathemes Addons Pot v1.0.0\n"
+"POT-Creation-Date: 2022-02-14 16:37+0400\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Enovathemes Team <enovathemesthemes@gmail.com>\n"
+"Language-Team: Enovathemes <support@enovathemes.com>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Reproject-Msgid-Bugs-To: Translator Name <translations@example.com>\n"
+"X-Textdomain-Support: yesX-Generator: Poedit 1.6.4\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;esc_html_e;esc_html_x:1,2c;esc_html__;esc_attr_e;"
+"esc_attr_x:1,2c;esc_attr__;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_x:1,2c;_n:1,2;"
+"_n_noop:1,2;__ngettext:1,2;__ngettext_noop:1,2;_c,_nc:4c,1,2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: enovathemes-addons.php:71 enovathemes-addons.php:132 enovathemes-addons.php:148
+#: enovathemes-addons.php:163 enovathemes-addons.php:178
+msgid "No products found"
+msgstr ""
+
+#: enovathemes-addons.php:81 enovathemes-addons.php:96
+msgid "Something was wrong, please try later or contact site administrator"
+msgstr ""
+
+#: enovathemes-addons.php:97
+msgid "products found"
+msgstr ""
+
+#: enovathemes-addons.php:100
+msgid "Product already added"
+msgstr ""
+
+#: enovathemes-addons.php:101
+msgid "No more"
+msgstr ""
+
+#: enovathemes-addons.php:129 enovathemes-addons.php:145
+msgid "Added to wishlist"
+msgstr ""
+
+#: enovathemes-addons.php:130 enovathemes-addons.php:146
+msgid "In wishlist"
+msgstr ""
+
+#: enovathemes-addons.php:131 enovathemes-addons.php:147
+msgid "Something went wrong, could not add to wishlist"
+msgstr ""
+
+#: enovathemes-addons.php:133 enovathemes-addons.php:149
+msgid "Remove the item from wishlist?"
+msgstr ""
+
+#: enovathemes-addons.php:160 enovathemes-addons.php:175
+msgid "Added to compare"
+msgstr ""
+
+#: enovathemes-addons.php:161 enovathemes-addons.php:176
+msgid "In compare"
+msgstr ""
+
+#: enovathemes-addons.php:162 enovathemes-addons.php:177
+msgid "Something went wrong, could not add to compare"
+msgstr ""
+
+#: enovathemes-addons.php:164 enovathemes-addons.php:179
+msgid "Remove the item"
+msgstr ""
+
+#: enovathemes-addons.php:449
+msgid "No custom header is found, make sure you create a one"
+msgstr ""
+
+#: enovathemes-addons.php:516
+msgid "No headers."
+msgstr ""
+
+#: enovathemes-addons.php:552 enovathemes-addons.php:2295
+msgid "Home"
+msgstr ""
+
+#: enovathemes-addons.php:559
+msgid "Page title here"
+msgstr ""
+
+#: enovathemes-addons.php:560
+msgid "Page subtitle here"
+msgstr ""
+
+#: enovathemes-addons.php:583
+msgid "No custom title section is found, make sure you create a one"
+msgstr ""
+
+#: enovathemes-addons.php:632
+msgid "No title_sections."
+msgstr ""
+
+#: enovathemes-addons.php:653
+msgid "No custom footer is found, make sure you create a one"
+msgstr ""
+
+#: enovathemes-addons.php:745
+msgid "No footers."
+msgstr ""
+
+#: enovathemes-addons.php:1067
+msgid "Responsive visibility options"
+msgstr ""
+
+#: enovathemes-addons.php:1070 enovathemes-addons.php:1144
+msgid "Screen width"
+msgstr ""
+
+#: enovathemes-addons.php:1071
+msgid "Hide?"
+msgstr ""
+
+#: enovathemes-addons.php:1074
+msgid "max-width 374px"
+msgstr ""
+
+#: enovathemes-addons.php:1078
+msgid "min-width 375px"
+msgstr ""
+
+#: enovathemes-addons.php:1082
+msgid "max-width 767px"
+msgstr ""
+
+#: enovathemes-addons.php:1086
+msgid "min-width 768px"
+msgstr ""
+
+#: enovathemes-addons.php:1090
+msgid "min-width 768px and max-width 1023px"
+msgstr ""
+
+#: enovathemes-addons.php:1094
+msgid "min-width 1024px"
+msgstr ""
+
+#: enovathemes-addons.php:1098
+msgid "min-width 1024px and max-width 1279px"
+msgstr ""
+
+#: enovathemes-addons.php:1102
+msgid "min-width 1280px"
+msgstr ""
+
+#: enovathemes-addons.php:1106
+msgid "min-width 1280px and max-width 1599px"
+msgstr ""
+
+#: enovathemes-addons.php:1110
+msgid "min-width 1600px"
+msgstr ""
+
+#: enovathemes-addons.php:1132
+#: optionpanel/inc/fields/typography/class-redux-typography.php:447
+#: optionpanel/inc/fields/typography/class-redux-typography.php:483
+#: optionpanel/inc/fields/typography/class-redux-typography.php:509
+#: optionpanel/inc/fields/typography/class-redux-typography.php:538
+msgid "inherit"
+msgstr ""
+
+#: enovathemes-addons.php:1141
+msgid ""
+"Responsive padding is advanced option designed to take controll over left/right "
+"padding"
+msgstr ""
+
+#: enovathemes-addons.php:1145
+msgid "Padding left"
+msgstr ""
+
+#: enovathemes-addons.php:1146
+msgid "Padding right"
+msgstr ""
+
+#: enovathemes-addons.php:1149
+msgid "Max 374 width"
+msgstr ""
+
+#: enovathemes-addons.php:1154
+msgid "Min 375 Max 767 width"
+msgstr ""
+
+#: enovathemes-addons.php:1159
+msgid "Min 768 Max 1023 width"
+msgstr ""
+
+#: enovathemes-addons.php:1164
+msgid "Min 1024 Max 1279 width"
+msgstr ""
+
+#: enovathemes-addons.php:1169
+msgid "Min 1280 Max 1599 width"
+msgstr ""
+
+#: enovathemes-addons.php:1174
+msgid "Min 1600 Max 1919 width"
+msgstr ""
+
+#: enovathemes-addons.php:1189 enovathemes-addons.php:1205
+msgid "Use only numbers without any string. Default unit is px"
+msgstr ""
+
+#: enovathemes-addons.php:1195 enovathemes-addons.php:1211
+msgid "Element"
+msgstr ""
+
+#: enovathemes-addons.php:1221 includes/cmb2.php:543 includes/cmb2.php:591
+#: includes/cmb2.php:631 includes/cmb2.php:670
+#: includes/cmb2/includes/CMB2_Field.php:1476
+#: includes/cmb2/includes/CMB2_Field.php:1480 optionpanel/config.php:728
+#: optionpanel/config.php:779 optionpanel/config.php:856 optionpanel/config.php:927
+#: optionpanel/config.php:1064
+#: optionpanel/inc/fields/border/class-redux-border.php:173
+msgid "None"
+msgstr ""
+
+#: enovathemes-addons.php:1225
+msgid "Attention Seekers"
+msgstr ""
+
+#: enovathemes-addons.php:1228
+msgid "bounce"
+msgstr ""
+
+#: enovathemes-addons.php:1232
+msgid "flash"
+msgstr ""
+
+#: enovathemes-addons.php:1236
+msgid "pulse"
+msgstr ""
+
+#: enovathemes-addons.php:1240
+msgid "rubberBand"
+msgstr ""
+
+#: enovathemes-addons.php:1244
+msgid "shake"
+msgstr ""
+
+#: enovathemes-addons.php:1248
+msgid "swing"
+msgstr ""
+
+#: enovathemes-addons.php:1252
+msgid "tada"
+msgstr ""
+
+#: enovathemes-addons.php:1256
+msgid "wobble"
+msgstr ""
+
+#: enovathemes-addons.php:1263
+msgid "Bouncing Entrances"
+msgstr ""
+
+#: enovathemes-addons.php:1266
+msgid "bounceIn"
+msgstr ""
+
+#: enovathemes-addons.php:1270
+msgid "bounceInDown"
+msgstr ""
+
+#: enovathemes-addons.php:1274
+msgid "bounceInLeft"
+msgstr ""
+
+#: enovathemes-addons.php:1278
+msgid "bounceInRight"
+msgstr ""
+
+#: enovathemes-addons.php:1282
+msgid "bounceInUp"
+msgstr ""
+
+#: enovathemes-addons.php:1289
+msgid "Bouncing Exits"
+msgstr ""
+
+#: enovathemes-addons.php:1292
+msgid "bounceOut"
+msgstr ""
+
+#: enovathemes-addons.php:1296
+msgid "bounceOutDown"
+msgstr ""
+
+#: enovathemes-addons.php:1300
+msgid "bounceOutLeft"
+msgstr ""
+
+#: enovathemes-addons.php:1304
+msgid "bounceOutRight"
+msgstr ""
+
+#: enovathemes-addons.php:1308
+msgid "bounceOutUp"
+msgstr ""
+
+#: enovathemes-addons.php:1315
+msgid "Fading Entrances"
+msgstr ""
+
+#: enovathemes-addons.php:1318
+msgid "fadeIn"
+msgstr ""
+
+#: enovathemes-addons.php:1322
+msgid "fadeInDown"
+msgstr ""
+
+#: enovathemes-addons.php:1326
+msgid "fadeInDownBig"
+msgstr ""
+
+#: enovathemes-addons.php:1330
+msgid "fadeInLeft"
+msgstr ""
+
+#: enovathemes-addons.php:1334
+msgid "fadeInLeftBig"
+msgstr ""
+
+#: enovathemes-addons.php:1338
+msgid "fadeInRight"
+msgstr ""
+
+#: enovathemes-addons.php:1342
+msgid "fadeInRightBig"
+msgstr ""
+
+#: enovathemes-addons.php:1346
+msgid "fadeInUp"
+msgstr ""
+
+#: enovathemes-addons.php:1350
+msgid "fadeInUpBig"
+msgstr ""
+
+#: enovathemes-addons.php:1357
+msgid "Fading Exits"
+msgstr ""
+
+#: enovathemes-addons.php:1359
+msgid "fadeOut"
+msgstr ""
+
+#: enovathemes-addons.php:1363
+msgid "fadeOutDown"
+msgstr ""
+
+#: enovathemes-addons.php:1367
+msgid "fadeOutDownBig"
+msgstr ""
+
+#: enovathemes-addons.php:1371
+msgid "fadeOutLeft"
+msgstr ""
+
+#: enovathemes-addons.php:1375
+msgid "fadeOutLeftBig"
+msgstr ""
+
+#: enovathemes-addons.php:1379
+msgid "fadeOutRight"
+msgstr ""
+
+#: enovathemes-addons.php:1383
+msgid "fadeOutRightBig"
+msgstr ""
+
+#: enovathemes-addons.php:1387
+msgid "fadeOutUp"
+msgstr ""
+
+#: enovathemes-addons.php:1391
+msgid "fadeOutUpBig"
+msgstr ""
+
+#: enovathemes-addons.php:1398
+msgid "Flippers"
+msgstr ""
+
+#: enovathemes-addons.php:1400
+msgid "flip"
+msgstr ""
+
+#: enovathemes-addons.php:1404
+msgid "flipInX"
+msgstr ""
+
+#: enovathemes-addons.php:1408
+msgid "flipInY"
+msgstr ""
+
+#: enovathemes-addons.php:1412
+msgid "flipOutX"
+msgstr ""
+
+#: enovathemes-addons.php:1416
+msgid "flipOutY"
+msgstr ""
+
+#: enovathemes-addons.php:1423
+msgid "Lightspeed"
+msgstr ""
+
+#: enovathemes-addons.php:1425
+msgid "lightSpeedIn"
+msgstr ""
+
+#: enovathemes-addons.php:1429
+msgid "lightSpeedOut"
+msgstr ""
+
+#: enovathemes-addons.php:1436
+msgid "Rotating Entrances"
+msgstr ""
+
+#: enovathemes-addons.php:1438
+msgid "rotateIn"
+msgstr ""
+
+#: enovathemes-addons.php:1442
+msgid "rotateInDownLeft"
+msgstr ""
+
+#: enovathemes-addons.php:1446
+msgid "rotateInDownRight"
+msgstr ""
+
+#: enovathemes-addons.php:1450
+msgid "rotateInUpLeft"
+msgstr ""
+
+#: enovathemes-addons.php:1454
+msgid "rotateInUpRight"
+msgstr ""
+
+#: enovathemes-addons.php:1461
+msgid "Rotating Exits"
+msgstr ""
+
+#: enovathemes-addons.php:1463
+msgid "rotateOut"
+msgstr ""
+
+#: enovathemes-addons.php:1467
+msgid "rotateOutDownLeft"
+msgstr ""
+
+#: enovathemes-addons.php:1471
+msgid "rotateOutDownRight"
+msgstr ""
+
+#: enovathemes-addons.php:1475
+msgid "rotateOutUpLeft"
+msgstr ""
+
+#: enovathemes-addons.php:1479
+msgid "rotateOutUpRight"
+msgstr ""
+
+#: enovathemes-addons.php:1486
+msgid "Specials"
+msgstr ""
+
+#: enovathemes-addons.php:1488
+msgid "hinge"
+msgstr ""
+
+#: enovathemes-addons.php:1492
+msgid "rollIn"
+msgstr ""
+
+#: enovathemes-addons.php:1496
+msgid "rollOut"
+msgstr ""
+
+#: enovathemes-addons.php:1503
+msgid "Zoom Entrances"
+msgstr ""
+
+#: enovathemes-addons.php:1505
+msgid "zoomIn"
+msgstr ""
+
+#: enovathemes-addons.php:1509
+msgid "zoomInDown"
+msgstr ""
+
+#: enovathemes-addons.php:1513
+msgid "zoomInLeft"
+msgstr ""
+
+#: enovathemes-addons.php:1517
+msgid "zoomInRight"
+msgstr ""
+
+#: enovathemes-addons.php:1521
+msgid "zoomInUp"
+msgstr ""
+
+#: enovathemes-addons.php:1528
+msgid "Zoom Exits"
+msgstr ""
+
+#: enovathemes-addons.php:1530
+msgid "zoomOut"
+msgstr ""
+
+#: enovathemes-addons.php:1534
+msgid "zoomOutDown"
+msgstr ""
+
+#: enovathemes-addons.php:1538
+msgid "zoomOutLeft"
+msgstr ""
+
+#: enovathemes-addons.php:1542
+msgid "zoomOutRight"
+msgstr ""
+
+#: enovathemes-addons.php:1546
+msgid "zoomOutUp"
+msgstr ""
+
+#: enovathemes-addons.php:1553
+msgid "Slide Entrances"
+msgstr ""
+
+#: enovathemes-addons.php:1555
+msgid "slideInDown"
+msgstr ""
+
+#: enovathemes-addons.php:1559
+msgid "slideInLeft"
+msgstr ""
+
+#: enovathemes-addons.php:1563
+msgid "slideInRight"
+msgstr ""
+
+#: enovathemes-addons.php:1567
+msgid "slideInUp"
+msgstr ""
+
+#: enovathemes-addons.php:1574
+msgid "Slide Exits"
+msgstr ""
+
+#: enovathemes-addons.php:1576
+msgid "slideOutDown"
+msgstr ""
+
+#: enovathemes-addons.php:1580
+msgid "slideOutLeft"
+msgstr ""
+
+#: enovathemes-addons.php:1584
+msgid "slideOutRight"
+msgstr ""
+
+#: enovathemes-addons.php:1588
+msgid "slideOutUp"
+msgstr ""
+
+#: enovathemes-addons.php:1595
+msgid "Defaults"
+msgstr ""
+
+#: enovathemes-addons.php:1597
+msgid "Top to bottom"
+msgstr ""
+
+#: enovathemes-addons.php:1601
+msgid "Bottom to top"
+msgstr ""
+
+#: enovathemes-addons.php:1605
+msgid "Left to right"
+msgstr ""
+
+#: enovathemes-addons.php:1609
+msgid "Right to left"
+msgstr ""
+
+#: enovathemes-addons.php:1613
+msgid "Appear from center"
+msgstr ""
+
+#: enovathemes-addons.php:1636 enovathemes-addons.php:1640
+#: enovathemes-addons.php:1641 enovathemes-addons.php:4526
+#: enovathemes-addons.php:4548 enovathemes-addons.php:4873
+#: shortcodes/shortcodes.php:6859 widgets/widget-product-filter.php:206
+#: widgets/widget-product-filter.php:207 widgets/widget-product-search.php:78
+msgid "Category"
+msgstr ""
+
+#: enovathemes-addons.php:1638 widgets/widget-product-filter.php:204
+msgid "Available filter options"
+msgstr ""
+
+#: enovathemes-addons.php:1652 widgets/widget-product-filter.php:225
+msgid "Drop here filter attributes"
+msgstr ""
+
+#: enovathemes-addons.php:1820
+msgid "Unable to communicate with Google fonts."
+msgstr ""
+
+#: enovathemes-addons.php:1824
+msgid "Google fonts did not return a 200."
+msgstr ""
+
+#: enovathemes-addons.php:1830 enovathemes-addons.php:1836
+#: enovathemes-addons.php:1840
+msgid "Google fonts has returned invalid data."
+msgstr ""
+
+#: enovathemes-addons.php:1864
+msgid "Google fonts did not return any fonts."
+msgstr ""
+
+#: enovathemes-addons.php:1960
+msgid "Server Error. Not data is found"
+msgstr ""
+
+#: enovathemes-addons.php:1975 enovathemes-addons.php:1994
+msgid "Flickr did not find any images."
+msgstr ""
+
+#: enovathemes-addons.php:2059
+msgid ""
+"No Mailchimp API key is found. Go to theme options >> general >> Mailchimp API "
+"key"
+msgstr ""
+
+#: enovathemes-addons.php:2074 enovathemes-addons.php:2087
+msgid "Mailchimp has returned invalid data."
+msgstr ""
+
+#: enovathemes-addons.php:2103
+msgid "Mailchimp did not return any list."
+msgstr ""
+
+#: enovathemes-addons.php:2118
+msgid "Sorry, your nonce did not verify."
+msgstr ""
+
+#: enovathemes-addons.php:2155 shortcodes/shortcodes.php:1110
+msgid "Share on Facebook"
+msgstr ""
+
+#: enovathemes-addons.php:2156 shortcodes/shortcodes.php:1111
+msgid "Tweet this!"
+msgstr ""
+
+#: enovathemes-addons.php:2157 shortcodes/shortcodes.php:1112
+msgid "Share on Pinterest"
+msgstr ""
+
+#: enovathemes-addons.php:2158 shortcodes/shortcodes.php:1113
+msgid "Share on LinkedIn"
+msgstr ""
+
+#: enovathemes-addons.php:2159 shortcodes/shortcodes.php:1114
+msgid "Share on Whatsapp"
+msgstr ""
+
+#: enovathemes-addons.php:2160 shortcodes/shortcodes.php:1115
+msgid "Share on Viber"
+msgstr ""
+
+#: enovathemes-addons.php:2161 shortcodes/shortcodes.php:1116
+msgid "Share on Telegram"
+msgstr ""
+
+#: enovathemes-addons.php:2239
+msgid "No icons."
+msgstr ""
+
+#: enovathemes-addons.php:2300
+#, php-format
+msgid "Category \"%s\""
+msgstr ""
+
+#: enovathemes-addons.php:2302
+#, php-format
+msgid "Posts tagged \"%s\""
+msgstr ""
+
+#: enovathemes-addons.php:2303
+#, php-format
+msgid "Articles posted by %s"
+msgstr ""
+
+#: enovathemes-addons.php:2304
+msgid "Error 404"
+msgstr ""
+
+#: enovathemes-addons.php:2305
+#, php-format
+msgid "Search results for \"%s\" Query"
+msgstr ""
+
+#: enovathemes-addons.php:2306 enovathemes-addons.php:3733 includes/cmb2.php:854
+#: shortcodes/shortcodes.php:3647
+msgid "Wishlist"
+msgstr ""
+
+#: enovathemes-addons.php:2308 optionpanel/config.php:744
+msgid "Blog"
+msgstr ""
+
+#: enovathemes-addons.php:2309 optionpanel/config.php:892
+msgid "Shop"
+msgstr ""
+
+#: enovathemes-addons.php:2660
+msgid "Page"
+msgstr ""
+
+#: enovathemes-addons.php:3109 enovathemes-addons.php:3177
+msgid "No categories."
+msgstr ""
+
+#: enovathemes-addons.php:3272
+msgid "No banners."
+msgstr ""
+
+#: enovathemes-addons.php:3336
+msgid "No megamenu."
+msgstr ""
+
+#: enovathemes-addons.php:3621
+msgid "Out of stock"
+msgstr ""
+
+#: enovathemes-addons.php:3624
+msgid "On backorder"
+msgstr ""
+
+#: enovathemes-addons.php:3627
+msgid "In stock"
+msgstr ""
+
+#: enovathemes-addons.php:3674
+msgid "SKU:"
+msgstr ""
+
+#: enovathemes-addons.php:3701
+msgid "No results"
+msgstr ""
+
+#: enovathemes-addons.php:3872 enovathemes-addons.php:4066
+msgid "Remove item"
+msgstr ""
+
+#: enovathemes-addons.php:4005 enovathemes-addons.php:4088
+msgid "More details"
+msgstr ""
+
+#: enovathemes-addons.php:4013 enovathemes-addons.php:4025
+msgid "n/a"
+msgstr ""
+
+#: enovathemes-addons.php:4087
+msgid "Product title"
+msgstr ""
+
+#: enovathemes-addons.php:4092 enovathemes-addons.php:4502
+#: enovathemes-addons.php:4944 widgets/widget-product-filter.php:214
+#: widgets/widget-product-filter.php:215
+msgid "Rating"
+msgstr ""
+
+#: enovathemes-addons.php:4093 enovathemes-addons.php:4460
+#: enovathemes-addons.php:4978 widgets/widget-product-filter.php:210
+#: widgets/widget-product-filter.php:211
+msgid "Price"
+msgstr ""
+
+#: enovathemes-addons.php:4322
+msgid "No filter."
+msgstr ""
+
+#: enovathemes-addons.php:4460
+msgid "Any price"
+msgstr ""
+
+#: enovathemes-addons.php:4496
+msgid "Rating:"
+msgstr ""
+
+#: enovathemes-addons.php:4502
+msgid "Any rating"
+msgstr ""
+
+#: enovathemes-addons.php:4536
+msgid "Shop by Categories"
+msgstr ""
+
+#: enovathemes-addons.php:4538 enovathemes-addons.php:4547
+#: enovathemes-addons.php:4733 enovathemes-addons.php:4751
+#: enovathemes-addons.php:4756 includes/cmb2/includes/CMB2_JS.php:177
+#: includes/cmb2/includes/CMB2_JS.php:222
+msgid "Clear"
+msgstr ""
+
+#: enovathemes-addons.php:4778
+msgid "Reset"
+msgstr ""
+
+#: enovathemes-addons.php:4778
+msgid "Share search results"
+msgstr ""
+
+#: enovathemes-addons.php:4778
+msgid "Share"
+msgstr ""
+
+#: enovathemes-addons.php:4990
+msgid "Keyword"
+msgstr ""
+
+#: enovathemes-addons.php:5178
+msgid "Showing the single result"
+msgstr ""
+
+#: enovathemes-addons.php:5181
+#, php-format
+msgid "Showing all %d result"
+msgid_plural "Showing all %d results"
+msgstr[0] ""
+msgstr[1] ""
+
+#: enovathemes-addons.php:5197
+#, php-format
+msgctxt "with first and last result"
+msgid "Showing %1$d&ndash;%2$d of %3$d result"
+msgid_plural "Showing %1$d&ndash;%2$d of %3$d results"
+msgstr[0] ""
+msgstr[1] ""
+
+#: enovathemes-addons.php:5236
+msgid "No products found matching the filter criteria."
+msgstr ""
+
+#: enovathemes-addons.php:5460
+msgid "No posts."
+msgstr ""
+
+#: enovathemes-addons.php:5648
+msgid "No products."
+msgstr ""
+
+#: includes/banner.php:6 includes/banner.php:18
+msgid "Banners"
+msgstr ""
+
+#: includes/banner.php:7 widgets/widget-banner.php:16 widgets/widget-banner.php:68
+msgid "Banner"
+msgstr ""
+
+#: includes/banner.php:8 includes/footer.php:8 includes/header.php:8
+#: includes/megamenu.php:8 includes/title.php:8
+msgid "Add new"
+msgstr ""
+
+#: includes/banner.php:9
+msgid "Add new banner"
+msgstr ""
+
+#: includes/banner.php:10
+msgid "Edit banner"
+msgstr ""
+
+#: includes/banner.php:11
+msgid "New banner"
+msgstr ""
+
+#: includes/banner.php:12
+msgid "All banners"
+msgstr ""
+
+#: includes/banner.php:13
+msgid "View banner"
+msgstr ""
+
+#: includes/banner.php:14
+msgid "Search banner"
+msgstr ""
+
+#: includes/banner.php:15
+msgid "No banner found"
+msgstr ""
+
+#: includes/banner.php:16
+msgid "No banner found in trash"
+msgstr ""
+
+#: includes/cmb2.php:20 includes/cmb2.php:54
+msgid "Footer options"
+msgstr ""
+
+#: includes/cmb2.php:28
+msgid "Load footer asynchronous?"
+msgstr ""
+
+#: includes/cmb2.php:33
+msgid "False"
+msgstr ""
+
+#: includes/cmb2.php:34
+msgid "True"
+msgstr ""
+
+#: includes/cmb2.php:40
+msgid "Footer placeholder height in px (input only integer value)"
+msgstr ""
+
+#: includes/cmb2.php:46
+msgid "Footer placeholder color"
+msgstr ""
+
+#: includes/cmb2.php:62 includes/cmb2.php:218 includes/cmb2.php:282
+#: includes/cmb2.php:474 includes/cmb2.php:498 includes/cmb2.php:522
+#: includes/cmb2.php:757 includes/cmb2.php:860
+msgid "Element css"
+msgstr ""
+
+#: includes/cmb2.php:68 includes/cmb2.php:224 includes/cmb2.php:288
+#: includes/cmb2.php:480 includes/cmb2.php:504 includes/cmb2.php:528
+#: includes/cmb2.php:763 includes/cmb2.php:872
+msgid "Element font"
+msgstr ""
+
+#: includes/cmb2.php:74
+msgid "Sticky?"
+msgstr ""
+
+#: includes/cmb2.php:80 includes/cmb2.php:336
+msgid "Custom form styling"
+msgstr ""
+
+#: includes/cmb2.php:81
+msgid "If you use form elements in the footer you can configure form styles here"
+msgstr ""
+
+#: includes/cmb2.php:87 includes/cmb2.php:343
+msgid "Field text color"
+msgstr ""
+
+#: includes/cmb2.php:95 includes/cmb2.php:351
+msgid "Field text color focus"
+msgstr ""
+
+#: includes/cmb2.php:103 includes/cmb2.php:359
+msgid "Field background color"
+msgstr ""
+
+#: includes/cmb2.php:111 includes/cmb2.php:367
+msgid "Field background color focus"
+msgstr ""
+
+#: includes/cmb2.php:119 includes/cmb2.php:375
+msgid "Field border color"
+msgstr ""
+
+#: includes/cmb2.php:127 includes/cmb2.php:383
+msgid "Field border color focus"
+msgstr ""
+
+#: includes/cmb2.php:135 includes/cmb2.php:391
+msgid "Button text color"
+msgstr ""
+
+#: includes/cmb2.php:143 includes/cmb2.php:399
+msgid "Button text color hover"
+msgstr ""
+
+#: includes/cmb2.php:151 includes/cmb2.php:407
+msgid "Button background color"
+msgstr ""
+
+#: includes/cmb2.php:159 includes/cmb2.php:415
+msgid "Button background color hover"
+msgstr ""
+
+#: includes/cmb2.php:167 includes/cmb2.php:423
+msgid "Custom widget styling"
+msgstr ""
+
+#: includes/cmb2.php:168
+msgid "If you use widgets in the footer you can configure widgets styles here"
+msgstr ""
+
+#: includes/cmb2.php:174 includes/cmb2.php:430
+msgid "Widget title color"
+msgstr ""
+
+#: includes/cmb2.php:182 includes/cmb2.php:438
+msgid "Widget text color"
+msgstr ""
+
+#: includes/cmb2.php:190 includes/cmb2.php:446
+msgid "Widget link color"
+msgstr ""
+
+#: includes/cmb2.php:198 includes/cmb2.php:454
+msgid "Widget link color hover"
+msgstr ""
+
+#: includes/cmb2.php:210
+msgid "Header options"
+msgstr ""
+
+#: includes/cmb2.php:230
+msgid "Header type"
+msgstr ""
+
+#: includes/cmb2.php:235 includes/header.php:102
+msgid "Desktop"
+msgstr ""
+
+#: includes/cmb2.php:236 includes/header.php:93
+msgid "Mobile"
+msgstr ""
+
+#: includes/cmb2.php:237
+msgid "Sidebar"
+msgstr ""
+
+#: includes/cmb2.php:243
+#: optionpanel/inc/fields/background/class-redux-background.php:121
+#: optionpanel/inc/fields/color/class-redux-color.php:76
+#: optionpanel/inc/fields/color_gradient/class-redux-color-gradient.php:132
+msgid "Transparent"
+msgstr ""
+
+#: includes/cmb2.php:250
+msgid "Sticky"
+msgstr ""
+
+#: includes/cmb2.php:257
+#: optionpanel/inc/fields/box_shadow/class-redux-box-shadow.php:92
+msgid "Shadow"
+msgstr ""
+
+#: includes/cmb2.php:263
+msgid "Shadow on sticky"
+msgstr ""
+
+#: includes/cmb2.php:274
+msgid "Megamenu options"
+msgstr ""
+
+#: includes/cmb2.php:294
+msgid "Megamenu width"
+msgstr ""
+
+#: includes/cmb2.php:314
+msgid "Megamenu position"
+msgstr ""
+
+#: includes/cmb2.php:327
+msgid "Megamenu horizontal offset in px"
+msgstr ""
+
+#: includes/cmb2.php:328
+msgid "Enter negative or positive integer value without any string"
+msgstr ""
+
+#: includes/cmb2.php:337
+msgid "If you use form elements in the megamenu you can configure form styles here"
+msgstr ""
+
+#: includes/cmb2.php:424
+msgid "If you use widgets in the megamenu you can configure widgets styles here"
+msgstr ""
+
+#: includes/cmb2.php:466
+msgid "Banner options"
+msgstr ""
+
+#: includes/cmb2.php:490 includes/cmb2.php:657 includes/cmb2.php:891
+#: includes/title.php:6 includes/title.php:7 includes/title.php:18
+msgid "Title section"
+msgstr ""
+
+#: includes/cmb2.php:514
+msgid "Page options"
+msgstr ""
+
+#: includes/cmb2.php:534 optionpanel/inc/classes/class-redux-field.php:39
+msgid "Subtitle"
+msgstr ""
+
+#: includes/cmb2.php:544 includes/cmb2.php:592 includes/cmb2.php:632
+#: includes/cmb2/includes/CMB2_JS.php:178 optionpanel/config.php:729
+#: optionpanel/inc/classes/class-redux-field.php:43
+#: optionpanel/inc/classes/class-redux-page-render.php:993
+msgid "Default"
+msgstr ""
+
+#: includes/cmb2.php:545 includes/cmb2.php:593 includes/cmb2.php:630
+#: optionpanel/config.php:730
+#: optionpanel/inc/fields/background/class-redux-background.php:136
+#: optionpanel/inc/fields/background/class-redux-background.php:151
+#: optionpanel/inc/fields/background/class-redux-background.php:169
+#: optionpanel/inc/fields/background/class-redux-background.php:187
+#: optionpanel/inc/fields/background/class-redux-background.php:206
+msgid "Inherit"
+msgstr ""
+
+#: includes/cmb2.php:570 optionpanel/config.php:221
+msgid "Mobile header"
+msgstr ""
+
+#: includes/cmb2.php:579 optionpanel/config.php:207
+msgid "Desktop header"
+msgstr ""
+
+#: includes/cmb2.php:618 optionpanel/config.php:180
+msgid "Footer"
+msgstr ""
+
+#: includes/cmb2.php:663
+msgid ""
+"If you want to display slider instead of title section, set the title section to "
+"\"None\" and choose slider below. Note that slider has higher priority, i.e. if "
+"slider is active the title section is inactive."
+msgstr ""
+
+#: includes/cmb2.php:686 widgets/widget-product-filter.php:174
+msgid "Slider"
+msgstr ""
+
+#: includes/cmb2.php:692
+msgid ""
+"Make sure the Revolution slider plugin is installed and active and at least one "
+"slider is created."
+msgstr ""
+
+#: includes/cmb2.php:696
+msgid "One page"
+msgstr ""
+
+#: includes/cmb2.php:705
+msgid "Background options"
+msgstr ""
+
+#: includes/cmb2.php:706
+msgid "Add custom background color, image or video"
+msgstr ""
+
+#: includes/cmb2.php:712
+msgid "Background color"
+msgstr ""
+
+#: includes/cmb2.php:721
+msgid "Background image"
+msgstr ""
+
+#: includes/cmb2.php:735
+msgid "MP4 video background"
+msgstr ""
+
+#: includes/cmb2.php:736 includes/cmb2.php:825
+msgid "Upload an MP4 video file or enter an URL."
+msgstr ""
+
+#: includes/cmb2.php:749
+msgid "Post options"
+msgstr ""
+
+#: includes/cmb2.php:769
+msgid "Disable featured image on single post page?"
+msgstr ""
+
+#: includes/cmb2.php:770
+msgid "If active, your image will not be visible in single post page"
+msgstr ""
+
+#: includes/cmb2.php:776
+msgid "Link url"
+msgstr ""
+
+#: includes/cmb2.php:783
+msgid "Status author"
+msgstr ""
+
+#: includes/cmb2.php:790
+msgid "Quote author"
+msgstr ""
+
+#: includes/cmb2.php:797
+msgid "Format gallery"
+msgstr ""
+
+#: includes/cmb2.php:806
+msgid "MP3 audio file"
+msgstr ""
+
+#: includes/cmb2.php:807
+msgid "Upload an MP3 audio file or enter an URL."
+msgstr ""
+
+#: includes/cmb2.php:817
+msgid "Audio embed"
+msgstr ""
+
+#: includes/cmb2.php:824
+msgid "MP4 video file"
+msgstr ""
+
+#: includes/cmb2.php:835
+msgid "Video embed"
+msgstr ""
+
+#: includes/cmb2.php:846
+msgid "Products options"
+msgstr ""
+
+#: includes/cmb2.php:866
+msgid "Element css responsive"
+msgstr ""
+
+#: includes/cmb2.php:882
+msgid "Products category options"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:115
+msgid "Test Metabox"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:148 includes/cmb2/example-functions.php:492
+msgid "Test Text"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:149 includes/cmb2/example-functions.php:162
+#: includes/cmb2/example-functions.php:175 includes/cmb2/example-functions.php:182
+#: includes/cmb2/example-functions.php:195 includes/cmb2/example-functions.php:203
+#: includes/cmb2/example-functions.php:212 includes/cmb2/example-functions.php:220
+#: includes/cmb2/example-functions.php:235 includes/cmb2/example-functions.php:243
+#: includes/cmb2/example-functions.php:251 includes/cmb2/example-functions.php:268
+#: includes/cmb2/example-functions.php:277 includes/cmb2/example-functions.php:293
+#: includes/cmb2/example-functions.php:300 includes/cmb2/example-functions.php:307
+#: includes/cmb2/example-functions.php:332 includes/cmb2/example-functions.php:345
+#: includes/cmb2/example-functions.php:358 includes/cmb2/example-functions.php:370
+#: includes/cmb2/example-functions.php:384 includes/cmb2/example-functions.php:392
+#: includes/cmb2/example-functions.php:401 includes/cmb2/example-functions.php:408
+#: includes/cmb2/example-functions.php:422 includes/cmb2/example-functions.php:493
+#: includes/cmb2/example-functions.php:583 includes/cmb2/example-functions.php:591
+#: includes/cmb2/example-functions.php:598 includes/cmb2/example-functions.php:605
+#: includes/cmb2/example-functions.php:612 includes/cmb2/example-functions.php:619
+#: includes/cmb2/example-functions.php:626 includes/cmb2/example-functions.php:652
+#: includes/cmb2/example-functions.php:660 includes/cmb2/example-functions.php:667
+#: includes/cmb2/example-functions.php:717
+msgid "field description (optional)"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:161
+msgid "Test Text Small"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:174
+msgid "Test Text Medium"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:181
+msgid "Read-only Disabled Field"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:185
+msgid "Hey there, I'm a read-only field"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:194
+msgid "Custom Rendered Field"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:202
+msgid "Website URL"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:211
+msgid "Test Text Email"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:219
+msgid "Test Time"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:227 includes/cmb2/example-functions.php:228
+msgid "Time zone"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:234
+msgid "Test Date Picker"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:242
+msgid "Test Date Picker (UNIX timestamp)"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:250
+msgid "Test Date/Time Picker Combo (UNIX timestamp)"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:267
+msgid "Test Money"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:276
+msgid "Test Color Picker"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:292
+msgid "Test Text Area"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:299
+msgid "Test Text Area Small"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:306
+msgid "Test Text Area for Code"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:324
+msgid "Test Title Weeeee"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:325
+msgid "This is a title description"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:331
+msgid "Test Select"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:337 includes/cmb2/example-functions.php:350
+#: includes/cmb2/example-functions.php:362
+msgid "Option One"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:338 includes/cmb2/example-functions.php:351
+#: includes/cmb2/example-functions.php:363
+msgid "Option Two"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:339 includes/cmb2/example-functions.php:352
+#: includes/cmb2/example-functions.php:364
+msgid "Option Three"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:344
+msgid "Test Radio inline"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:357
+msgid "Test Radio"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:369
+msgid "Test Taxonomy Radio"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:383
+msgid "Test Taxonomy Select"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:391
+msgid "Test Taxonomy Multi Checkbox"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:400
+msgid "Test Checkbox"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:407
+msgid "Test Multi Checkbox"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:413
+msgid "Check One"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:414
+msgid "Check Two"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:415
+msgid "Check Three"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:421
+msgid "Test wysiwyg"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:431
+msgid "Test Image"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:432
+msgid "Upload an image or enter a URL."
+msgstr ""
+
+#: includes/cmb2/example-functions.php:438
+msgid "Multiple Files"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:439
+msgid "Upload or add multiple images/attachments."
+msgstr ""
+
+#: includes/cmb2/example-functions.php:446
+msgid "oEmbed"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:449
+#, php-format
+msgid "Enter a youtube, twitter, or instagram URL. Supports services listed at %s."
+msgstr ""
+
+#: includes/cmb2/example-functions.php:481
+msgid "About Page Metabox"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:511
+msgid "Repeating Field Group"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:519
+msgid "Generates reusable form entries"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:521
+msgid "Entry {#}"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:522
+msgid "Add Another Entry"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:523
+msgid "Remove Entry"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:537
+msgid "Entry Title"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:544
+#: optionpanel/inc/classes/class-redux-field.php:40
+#: optionpanel/inc/fields/slides/class-redux-slides.php:140
+#: optionpanel/inc/fields/slides/class-redux-slides.php:276
+msgid "Description"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:545
+msgid "Write a short description for this entry"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:551
+msgid "Entry Image"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:557
+msgid "Image Caption"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:575
+msgid "User Profile Metabox"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:582 includes/cmb2/example-functions.php:651
+msgid "Extra Info"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:590
+msgid "Avatar"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:597
+msgid "Facebook URL"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:604
+msgid "Twitter URL"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:611
+msgid "Google+ URL"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:618
+msgid "Linkedin URL"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:625
+msgid "User Field"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:644
+msgid "Category Metabox"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:659
+msgid "Term Image"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:666
+msgid "Arbitrary Term Field"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:685
+msgid "Theme Options"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:716
+msgid "Site Background Color"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:753
+#, php-format
+msgid "%s &mdash; Updated!"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:785
+msgid "REST Test Box"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:794
+msgid "REST Test Text"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:795
+msgid "Will show in the REST API for this box and for pages."
+msgstr ""
+
+#: includes/cmb2/example-functions.php:801
+msgid "REST Editable Test Text"
+msgstr ""
+
+#: includes/cmb2/example-functions.php:802
+msgid "Will show in REST API \"editable\" contexts only (`POST` requests)."
+msgstr ""
+
+#: includes/cmb2/includes/CMB2.php:199
+msgid "Metabox configuration is required to have an ID parameter."
+msgstr ""
+
+#: includes/cmb2/includes/CMB2.php:618
+msgid "Click to toggle"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_Ajax.php:75
+msgid "Please Try Again"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_Ajax.php:181
+msgid "Remove Embed"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_Ajax.php:189
+#: includes/cmb2/includes/helper-functions.php:107
+#, php-format
+msgid "No oEmbed Results Found for %1$s. View more info at %2$s."
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_Base.php:423
+#, php-format
+msgid ""
+"The \"%1$s\" field parameter has been deprecated in favor of the \"%2$s\" "
+"parameter."
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_Base.php:427
+#, php-format
+msgid ""
+"Using the \"%1$s\" field parameter as a callback has been deprecated in favor of "
+"the \"%2$s\" parameter."
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_Base.php:457
+#, php-format
+msgid ""
+"%1$s was called with a parameter that is <strong>deprecated</strong> since "
+"version %2$s! %3$s"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_Base.php:459
+#, php-format
+msgid ""
+"%1$s was called with a parameter that is <strong>deprecated</strong> since "
+"version %2$s with no alternative available."
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_Base.php:492
+#: includes/cmb2/includes/CMB2_Hookup_Base.php:102
+#: includes/cmb2/includes/CMB2_Options.php:247
+#: includes/cmb2/includes/CMB2_Options_Hookup.php:369
+#: includes/cmb2/includes/types/CMB2_Type_Base.php:173
+#, php-format
+msgid "Invalid %1$s property: %2$s"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_Base.php:510
+#: includes/cmb2/includes/types/CMB2_Type_Base.php:157
+#, php-format
+msgid "Invalid %1$s method: %2$s"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_Field.php:1443
+msgid "Add Group"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_Field.php:1444
+msgid "Remove Group"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_Field.php:1594
+msgid "Sorry, this field does not have a cmb_id specified."
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_Field_Display.php:453
+#: includes/cmb2/includes/CMB2_JS.php:242
+#: includes/cmb2/includes/types/CMB2_Type_File_Base.php:90
+msgid "File:"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_Hookup.php:188
+msgid ""
+"Term Metadata is a WordPress 4.4+ feature. Please upgrade your WordPress install."
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_Hookup.php:192
+msgid "Term metaboxes configuration requires a \"taxonomies\" parameter."
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_Hookup.php:560
+#, php-format
+msgid "Toggle panel: %s"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_Hookup_Base.php:44
+#, php-format
+msgid "%1$s should be implemented by the extended class."
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_JS.php:179
+#: optionpanel/inc/fields/color_rgba/class-redux-color-rgba.php:45
+msgid "Select Color"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_JS.php:180
+msgid "Current Color"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_JS.php:212
+msgctxt "Valid formatDate string for jquery-ui datepicker"
+msgid "mm/dd/yy"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_JS.php:213
+msgid "Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_JS.php:214
+msgid "Su, Mo, Tu, We, Th, Fr, Sa"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_JS.php:215
+msgid "Sun, Mon, Tue, Wed, Thu, Fri, Sat"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_JS.php:216
+msgid ""
+"January, February, March, April, May, June, July, August, September, October, "
+"November, December"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_JS.php:217
+msgid "Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_JS.php:218
+msgid "Next"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_JS.php:219
+msgid "Prev"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_JS.php:220
+msgid "Today"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_JS.php:221 includes/cmb2/includes/CMB2_JS.php:231
+msgid "Done"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_JS.php:225
+msgid "Choose Time"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_JS.php:226
+msgid "Time"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_JS.php:227
+msgid "Hour"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_JS.php:228
+msgid "Minute"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_JS.php:229
+msgid "Second"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_JS.php:230
+msgid "Now"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_JS.php:232
+msgctxt ""
+"Valid formatting string, as per http://trentrichardson.com/examples/timepicker/"
+msgid "hh:mm TT"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_JS.php:238
+msgid "Use this file"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_JS.php:239
+msgid "Use these files"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_JS.php:240
+#: includes/cmb2/includes/types/CMB2_Type_File_Base.php:75
+msgid "Remove Image"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_JS.php:241 includes/cmb2/includes/CMB2_Types.php:408
+#: includes/cmb2/includes/types/CMB2_Type_File_Base.php:95
+#: optionpanel/inc/fields/background/class-redux-background.php:339
+#: optionpanel/inc/fields/media/class-redux-media.php:249
+#: optionpanel/inc/fields/multi_text/class-redux-multi-text.php:60
+#: optionpanel/inc/fields/multi_text/class-redux-multi-text.php:77
+#: optionpanel/inc/fields/multi_text/class-redux-multi-text.php:99
+#: optionpanel/inc/fields/slides/class-redux-slides.php:116
+#: optionpanel/inc/fields/slides/class-redux-slides.php:251
+#: widgets/widget-product-filter.php:162 widgets/widget-product-filter.php:184
+msgid "Remove"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_JS.php:243
+#: includes/cmb2/includes/types/CMB2_Type_File_Base.php:93
+msgid "Download"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_JS.php:244
+msgid "Select / Deselect All"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_Options_Hookup.php:139
+msgid "Nothing to update."
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_Options_Hookup.php:143
+msgid "Settings updated."
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_Types.php:226
+msgid "Custom CMB2 field type classes must extend CMB2_Type_Base."
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_Types.php:344
+msgid "Add Row"
+msgstr ""
+
+#: includes/cmb2/includes/CMB2_Types.php:408
+msgid "Remove Row"
+msgstr ""
+
+#: includes/cmb2/includes/helper-functions.php:308
+msgid "Save"
+msgstr ""
+
+#: includes/cmb2/includes/rest-api/CMB2_REST_Controller.php:257
+msgid "This box does not have read permissions."
+msgstr ""
+
+#: includes/cmb2/includes/rest-api/CMB2_REST_Controller.php:277
+msgid "This box does not have write permissions."
+msgstr ""
+
+#: includes/cmb2/includes/rest-api/CMB2_REST_Controller.php:300
+msgid ""
+"No box found by that id. A box needs to be registered with the \"show_in_rest\" "
+"parameter configured."
+msgstr ""
+
+#: includes/cmb2/includes/rest-api/CMB2_REST_Controller.php:378
+msgid "A human-readable description of the object."
+msgstr ""
+
+#: includes/cmb2/includes/rest-api/CMB2_REST_Controller.php:385
+msgid "The id for the object."
+msgstr ""
+
+#: includes/cmb2/includes/rest-api/CMB2_REST_Controller.php:392
+msgid "The title for the object."
+msgstr ""
+
+#: includes/cmb2/includes/rest-api/CMB2_REST_Controller_Boxes.php:51
+msgid "Includes the registered fields for the box in the response."
+msgstr ""
+
+#: includes/cmb2/includes/rest-api/CMB2_REST_Controller_Boxes.php:72
+msgid ""
+"Includes the fully rendered attributes, 'form_open', 'form_close', as well as "
+"the enqueued 'js_dependencies' script handles, and 'css_dependencies' stylesheet "
+"handles."
+msgstr ""
+
+#: includes/cmb2/includes/rest-api/CMB2_REST_Controller_Boxes.php:122
+msgid "No boxes found."
+msgstr ""
+
+#: includes/cmb2/includes/rest-api/CMB2_REST_Controller_Fields.php:27
+msgid "Includes the box object which the fields are registered to in the response."
+msgstr ""
+
+#: includes/cmb2/includes/rest-api/CMB2_REST_Controller_Fields.php:30
+msgid ""
+"When the '_rendered' argument is passed, the renderable field attributes will be "
+"returned fully rendered. By default, the names of the callback handers for the "
+"renderable attributes will be returned."
+msgstr ""
+
+#: includes/cmb2/includes/rest-api/CMB2_REST_Controller_Fields.php:33
+#: includes/cmb2/includes/rest-api/CMB2_REST_Controller_Fields.php:36
+msgid ""
+"To view or modify the field's value, the 'object_id' and 'object_type' arguments "
+"are required."
+msgstr ""
+
+#: includes/cmb2/includes/rest-api/CMB2_REST_Controller_Fields.php:236
+msgid "CMB2 Field value cannot be updated without the value parameter specified."
+msgstr ""
+
+#: includes/cmb2/includes/rest-api/CMB2_REST_Controller_Fields.php:297
+msgid ""
+"CMB2 Field value cannot be modified without the object_id and object_type "
+"parameters specified."
+msgstr ""
+
+#: includes/cmb2/includes/rest-api/CMB2_REST_Controller_Fields.php:312
+#: includes/cmb2/includes/rest-api/CMB2_REST_Controller_Fields.php:341
+msgid "No field found by that id."
+msgstr ""
+
+#: includes/cmb2/includes/rest-api/CMB2_REST_Controller_Fields.php:415
+#, php-format
+msgid "Value Error for %s"
+msgstr ""
+
+#: includes/cmb2/includes/shim/WP_REST_Controller.php:25
+#, php-format
+msgid "Method '%s' must be overridden."
+msgstr ""
+
+#: includes/cmb2/includes/shim/WP_REST_Controller.php:35
+#: includes/cmb2/includes/shim/WP_REST_Controller.php:47
+#: includes/cmb2/includes/shim/WP_REST_Controller.php:59
+#: includes/cmb2/includes/shim/WP_REST_Controller.php:71
+#: includes/cmb2/includes/shim/WP_REST_Controller.php:83
+#: includes/cmb2/includes/shim/WP_REST_Controller.php:95
+#: includes/cmb2/includes/shim/WP_REST_Controller.php:107
+#: includes/cmb2/includes/shim/WP_REST_Controller.php:119
+#: includes/cmb2/includes/shim/WP_REST_Controller.php:131
+#: includes/cmb2/includes/shim/WP_REST_Controller.php:143
+#: includes/cmb2/includes/shim/WP_REST_Controller.php:155
+#: includes/cmb2/includes/shim/WP_REST_Controller.php:168
+#, php-format
+msgid "Method '%s' not implemented. Must be overridden in subclass."
+msgstr ""
+
+#: includes/cmb2/includes/shim/WP_REST_Controller.php:273
+msgid "Current page of the collection."
+msgstr ""
+
+#: includes/cmb2/includes/shim/WP_REST_Controller.php:281
+msgid "Maximum number of items to be returned in result set."
+msgstr ""
+
+#: includes/cmb2/includes/shim/WP_REST_Controller.php:290
+msgid "Limit results to those matching a string."
+msgstr ""
+
+#: includes/cmb2/includes/shim/WP_REST_Controller.php:308
+msgid ""
+"Scope under which the request is made; determines fields present in response."
+msgstr ""
+
+#: includes/cmb2/includes/types/CMB2_Type_Counter_Base.php:50
+msgid "Words left"
+msgstr ""
+
+#: includes/cmb2/includes/types/CMB2_Type_Counter_Base.php:51
+msgid "Words"
+msgstr ""
+
+#: includes/cmb2/includes/types/CMB2_Type_Counter_Base.php:56
+msgid "Characters left"
+msgstr ""
+
+#: includes/cmb2/includes/types/CMB2_Type_Counter_Base.php:57
+msgid "Characters"
+msgstr ""
+
+#: includes/cmb2/includes/types/CMB2_Type_Counter_Base.php:62
+msgid "Your text may be truncated."
+msgstr ""
+
+#: includes/cmb2/includes/types/CMB2_Type_File.php:76
+msgid "Add or Upload File"
+msgstr ""
+
+#: includes/cmb2/includes/types/CMB2_Type_File_List.php:41
+msgid "Add or Upload Files"
+msgstr ""
+
+#: includes/cmb2/includes/types/CMB2_Type_Taxonomy_Base.php:115
+msgid "No terms"
+msgstr ""
+
+#: includes/footer.php:6 includes/footer.php:7 includes/footer.php:18
+msgid "Footers"
+msgstr ""
+
+#: includes/footer.php:9
+msgid "Add new footer"
+msgstr ""
+
+#: includes/footer.php:10
+msgid "Edit footer"
+msgstr ""
+
+#: includes/footer.php:11
+msgid "New footer"
+msgstr ""
+
+#: includes/footer.php:12
+msgid "All footers"
+msgstr ""
+
+#: includes/footer.php:13
+msgid "View footer"
+msgstr ""
+
+#: includes/footer.php:14
+msgid "Search footer"
+msgstr ""
+
+#: includes/footer.php:15
+msgid "No footer found"
+msgstr ""
+
+#: includes/footer.php:16
+msgid "No footer found in trash"
+msgstr ""
+
+#: includes/footer.php:47 includes/header.php:47
+#: optionpanel/inc/classes/class-redux-field.php:38
+#: optionpanel/inc/extensions/repeater/repeater/class-redux-repeater.php:142
+#: optionpanel/inc/fields/slides/class-redux-slides.php:128
+#: optionpanel/inc/fields/slides/class-redux-slides.php:263
+msgid "Title"
+msgstr ""
+
+#: includes/footer.php:48
+msgid "Active footer"
+msgstr ""
+
+#: includes/footer.php:63
+#: optionpanel/inc/fields/link_color/class-redux-link-color.php:131
+msgid "Active"
+msgstr ""
+
+#: includes/header.php:6 includes/header.php:7 includes/header.php:18
+msgid "Headers"
+msgstr ""
+
+#: includes/header.php:9
+msgid "Add new header"
+msgstr ""
+
+#: includes/header.php:10
+msgid "Edit header"
+msgstr ""
+
+#: includes/header.php:11
+msgid "New header"
+msgstr ""
+
+#: includes/header.php:12
+msgid "All headers"
+msgstr ""
+
+#: includes/header.php:13
+msgid "View header"
+msgstr ""
+
+#: includes/header.php:14
+msgid "Search header"
+msgstr ""
+
+#: includes/header.php:15
+msgid "No header found"
+msgstr ""
+
+#: includes/header.php:16
+msgid "No header found in trash"
+msgstr ""
+
+#: includes/header.php:48
+#: optionpanel/inc/lib/gradient-filters/class-redux-gradient-filters.php:47
+msgid "Type"
+msgstr ""
+
+#: includes/header.php:49
+msgid "Visibility"
+msgstr ""
+
+#: includes/header.php:70
+msgid "This header is set as site main desktop header"
+msgstr ""
+
+#: includes/header.php:86
+msgid "This header is set as site main mobile header"
+msgstr ""
+
+#: includes/header.php:88
+msgid "active"
+msgstr ""
+
+#: includes/header.php:96
+msgid "Tablet portrait"
+msgstr ""
+
+#: includes/header.php:99
+msgid "Tablet landscape"
+msgstr ""
+
+#: includes/megamenu.php:6 includes/megamenu.php:7 includes/megamenu.php:18
+msgid "Megamenu"
+msgstr ""
+
+#: includes/megamenu.php:9
+msgid "Add new megamenu"
+msgstr ""
+
+#: includes/megamenu.php:10
+msgid "Edit megamenu"
+msgstr ""
+
+#: includes/megamenu.php:11
+msgid "New megamenu"
+msgstr ""
+
+#: includes/megamenu.php:12
+#: optionpanel/inc/fields/border/class-redux-border.php:106
+#: optionpanel/inc/fields/spacing/class-redux-spacing.php:165
+#: widgets/widget-product-filter.php:156 widgets/widget-product-filter.php:159
+msgid "All"
+msgstr ""
+
+#: includes/megamenu.php:13
+msgid "View megamenu"
+msgstr ""
+
+#: includes/megamenu.php:14
+msgid "Search megamenu"
+msgstr ""
+
+#: includes/megamenu.php:15
+msgid "No megamenu found"
+msgstr ""
+
+#: includes/megamenu.php:16
+msgid "No megamenu found in trash"
+msgstr ""
+
+#: includes/title.php:9
+msgid "Add new title section"
+msgstr ""
+
+#: includes/title.php:10
+msgid "Edit title section"
+msgstr ""
+
+#: includes/title.php:11
+msgid "New title section"
+msgstr ""
+
+#: includes/title.php:12
+msgid "All title sections"
+msgstr ""
+
+#: includes/title.php:13
+msgid "View title section"
+msgstr ""
+
+#: includes/title.php:14
+msgid "Search title section"
+msgstr ""
+
+#: includes/title.php:15
+msgid "No title section found"
+msgstr ""
+
+#: includes/title.php:16
+msgid "No title section found in trash"
+msgstr ""
+
+#: optionpanel/class-redux-core.php:400
+msgid "The Redux upload directory"
+msgstr ""
+
+#: optionpanel/class-redux-core.php:406
+msgid "Redux Framework"
+msgstr ""
+
+#: optionpanel/class-redux-core.php:407
+msgid "Debug information specific to Redux Framework."
+msgstr ""
+
+#: optionpanel/class-redux-core.php:410 optionpanel/inc/welcome/views/about.php:25
+#: optionpanel/inc/welcome/views/about.php:149
+#: optionpanel/inc/welcome/views/templates.php:23
+msgid "Version"
+msgstr ""
+
+#: optionpanel/class-redux-core.php:414
+msgid "Installation"
+msgstr ""
+
+#: optionpanel/class-redux-core.php:418
+msgid "Data directory"
+msgstr ""
+
+#: optionpanel/class-redux-core.php:422
+msgid "Browser"
+msgstr ""
+
+#: optionpanel/class-redux-core.php:455
+#, php-format
+msgid "Redux Instance: %s"
+msgstr ""
+
+#: optionpanel/class-redux-core.php:457
+#, php-format
+msgid "Debug information for the %s Redux instance."
+msgstr ""
+
+#: optionpanel/config.php:16 optionpanel/config.php:17
+msgid "Theme settings"
+msgstr ""
+
+#: optionpanel/config.php:62
+msgid "General"
+msgstr ""
+
+#: optionpanel/config.php:63
+msgid "sec_general"
+msgstr ""
+
+#: optionpanel/config.php:70
+msgid "Disable gutenberg"
+msgstr ""
+
+#: optionpanel/config.php:71
+msgid ""
+"By default WordPress comes with new block editor \"Gutenberg\". If you want "
+"classic editor or Visual Composer, make sure this option is active"
+msgstr ""
+
+#: optionpanel/config.php:77
+msgid "Choose post types to disable Gutenberg"
+msgstr ""
+
+#: optionpanel/config.php:79
+msgid "Posts"
+msgstr ""
+
+#: optionpanel/config.php:80
+msgid "Pages"
+msgstr ""
+
+#: optionpanel/config.php:81
+msgid "Products"
+msgstr ""
+
+#: optionpanel/config.php:82
+msgid "Widgets"
+msgstr ""
+
+#: optionpanel/config.php:96
+msgid "Turn off default styling"
+msgstr ""
+
+#: optionpanel/config.php:102
+msgid "Load combined js plugins file"
+msgstr ""
+
+#: optionpanel/config.php:108
+msgid "Cache custom queries?"
+msgstr ""
+
+#: optionpanel/config.php:109
+msgid ""
+"Enable this option to speed up ajax requests and if you use caching plugins, "
+"such as WP Total Cache"
+msgstr ""
+
+#: optionpanel/config.php:116
+msgid "Colors"
+msgstr ""
+
+#: optionpanel/config.php:121
+msgid "Main color"
+msgstr ""
+
+#: optionpanel/config.php:128
+msgid "Area color"
+msgstr ""
+
+#: optionpanel/config.php:136
+msgid "Layout settings"
+msgstr ""
+
+#: optionpanel/config.php:141
+msgid "Layout"
+msgstr ""
+
+#: optionpanel/config.php:142
+msgid ""
+"Boxed layout allows you to display the whole website in the box. (works on "
+"screens larger than 1200px wide). Make sure your navigation is not sidebar"
+msgstr ""
+
+#: optionpanel/config.php:144
+msgid "Wide"
+msgstr ""
+
+#: optionpanel/config.php:145
+msgid "Boxed"
+msgstr ""
+
+#: optionpanel/config.php:153
+msgid "Site background settings"
+msgstr ""
+
+#: optionpanel/config.php:159
+msgid "Site background options"
+msgstr ""
+
+#: optionpanel/config.php:166
+msgid "Footer settings"
+msgstr ""
+
+#: optionpanel/config.php:173 optionpanel/config.php:200 optionpanel/config.php:241
+msgid "Important! If you do not see any option, first you must"
+msgstr ""
+
+#: optionpanel/config.php:173
+msgid "create a footer"
+msgstr ""
+
+#: optionpanel/config.php:186
+msgid "WPML footer per language"
+msgstr ""
+
+#: optionpanel/config.php:187
+msgid ""
+"Specify footer for each language with the following format language code:footer "
+"id, separate multiple by | (example: en:7846|de:54568)"
+msgstr ""
+
+#: optionpanel/config.php:193
+msgid "Header settings"
+msgstr ""
+
+#: optionpanel/config.php:200
+msgid "create a header"
+msgstr ""
+
+#: optionpanel/config.php:213
+msgid "WPML desktop header per language"
+msgstr ""
+
+#: optionpanel/config.php:214
+msgid ""
+"Specify desktop header for each language with the following format language code:"
+"header id, separate multiple by | (example: en:7846|de:54568)"
+msgstr ""
+
+#: optionpanel/config.php:227
+msgid "WPML mobile header per language"
+msgstr ""
+
+#: optionpanel/config.php:228
+msgid ""
+"Specify mobile header for each language with the following format language code:"
+"header id, separate multiple by | (example: en:7846|de:54568)"
+msgstr ""
+
+#: optionpanel/config.php:234
+msgid "Page title section settings"
+msgstr ""
+
+#: optionpanel/config.php:241
+msgid "create a title section"
+msgstr ""
+
+#: optionpanel/config.php:248
+msgid "Page title section"
+msgstr ""
+
+#: optionpanel/config.php:254
+msgid "WPML title section per language"
+msgstr ""
+
+#: optionpanel/config.php:255
+msgid ""
+"Specify title section for each language with the following format language code:"
+"title section id, separate multiple by | (example: en:7846|de:54568)"
+msgstr ""
+
+#: optionpanel/config.php:262
+msgid "404 error page custom content"
+msgstr ""
+
+#: optionpanel/config.php:268
+msgid "One page navigation settings"
+msgstr ""
+
+#: optionpanel/config.php:273
+msgid "One page menu filter"
+msgstr ""
+
+#: optionpanel/config.php:274
+msgid ""
+"Exclude links from one page menu by entering comma-separated menu items' ids"
+msgstr ""
+
+#: optionpanel/config.php:280
+msgid "API settings"
+msgstr ""
+
+#: optionpanel/config.php:285
+msgid "Mailchimp API key"
+msgstr ""
+
+#: optionpanel/config.php:286
+msgid ""
+"If you are not sure how to retrieve this, follow this link from MailChimp "
+"Knowledge Base to retrieve your account's API key"
+msgstr ""
+
+#: optionpanel/config.php:286 optionpanel/config.php:292
+msgid "Retrieve your account's API key"
+msgstr ""
+
+#: optionpanel/config.php:291
+msgid "Flickr API Key"
+msgstr ""
+
+#: optionpanel/config.php:292
+msgid ""
+"If you are not sure how to retrieve this, follow this link from Flickr Knowledge "
+"Base to retrieve your account's API key"
+msgstr ""
+
+#: optionpanel/config.php:297
+msgid "Disable theme styles for Smash Balloon Instagram Feed plugin"
+msgstr ""
+
+#: optionpanel/config.php:298
+msgid ""
+"If you want to use pro version features of Smash Balloon Instagram Feed plugin, "
+"activate this setting, it will disable theme styles."
+msgstr ""
+
+#: optionpanel/config.php:304
+msgid "Move to top arrow"
+msgstr ""
+
+#: optionpanel/config.php:305
+msgid "Toggle this option if you want to have move to top arrow"
+msgstr ""
+
+#: optionpanel/config.php:315
+msgid "CSS"
+msgstr ""
+
+#: optionpanel/config.php:325
+msgid "Custom CSS Styles"
+msgstr ""
+
+#: optionpanel/config.php:326
+msgid "Enter custom css code here."
+msgstr ""
+
+#: optionpanel/config.php:333
+msgid "(max-width: 374px)"
+msgstr ""
+
+#: optionpanel/config.php:340
+msgid "(min-width: 375px)"
+msgstr ""
+
+#: optionpanel/config.php:347
+msgid "(min-width: 375px) and (max-width: 767px)"
+msgstr ""
+
+#: optionpanel/config.php:354
+msgid "(max-width: 767px)"
+msgstr ""
+
+#: optionpanel/config.php:361
+msgid "(min-width: 768px)"
+msgstr ""
+
+#: optionpanel/config.php:368
+msgid "(min-width: 768px) and (max-width: 1023px)"
+msgstr ""
+
+#: optionpanel/config.php:375
+msgid "(max-width: 1023px)"
+msgstr ""
+
+#: optionpanel/config.php:382
+msgid "(min-width: 1024px)"
+msgstr ""
+
+#: optionpanel/config.php:389
+msgid "(min-width: 1024px) and (max-width: 1279px)"
+msgstr ""
+
+#: optionpanel/config.php:396
+msgid "(max-width: 1279px)"
+msgstr ""
+
+#: optionpanel/config.php:403
+msgid "(min-width: 1280px)"
+msgstr ""
+
+#: optionpanel/config.php:410
+msgid "(min-width: 1280px) and (max-width: 1599px)"
+msgstr ""
+
+#: optionpanel/config.php:417
+msgid "(min-width: 1600px) and (max-width: 1919px)"
+msgstr ""
+
+#: optionpanel/config.php:426
+msgid "Typography"
+msgstr ""
+
+#: optionpanel/config.php:433
+msgid "Main typography"
+msgstr ""
+
+#: optionpanel/config.php:458
+msgid "Headings typography"
+msgstr ""
+
+#: optionpanel/config.php:483
+msgid "H1 typography"
+msgstr ""
+
+#: optionpanel/config.php:506
+msgid "H2 typography"
+msgstr ""
+
+#: optionpanel/config.php:529
+msgid "H3 typography"
+msgstr ""
+
+#: optionpanel/config.php:552
+msgid "H4 typography"
+msgstr ""
+
+#: optionpanel/config.php:575
+msgid "H5 typography"
+msgstr ""
+
+#: optionpanel/config.php:598
+msgid "H6 typography"
+msgstr ""
+
+#: optionpanel/config.php:624
+msgid "Forms"
+msgstr ""
+
+#: optionpanel/config.php:631
+msgid "Forms fields text colors"
+msgstr ""
+
+#: optionpanel/config.php:642
+msgid "Forms fields background colors"
+msgstr ""
+
+#: optionpanel/config.php:653
+msgid "Forms fields border colors"
+msgstr ""
+
+#: optionpanel/config.php:664
+msgid "Button typography"
+msgstr ""
+
+#: optionpanel/config.php:691
+msgid "Button background colors"
+msgstr ""
+
+#: optionpanel/config.php:702
+msgid "Button text colors"
+msgstr ""
+
+#: optionpanel/config.php:751 optionpanel/config.php:899
+msgid "Choose title section"
+msgstr ""
+
+#: optionpanel/config.php:758
+msgid "Choose title section for single post pages"
+msgstr ""
+
+#: optionpanel/config.php:765
+msgid "Blog title"
+msgstr ""
+
+#: optionpanel/config.php:771
+msgid "Blog subtitle"
+msgstr ""
+
+#: optionpanel/config.php:777
+msgid "Blog sidebar position"
+msgstr ""
+
+#: optionpanel/config.php:780 optionpanel/config.php:857 optionpanel/config.php:928
+#: optionpanel/config.php:1065
+#: optionpanel/inc/fields/border/class-redux-border.php:159
+#: optionpanel/inc/fields/spacing/class-redux-spacing.php:271
+msgid "Left"
+msgstr ""
+
+#: optionpanel/config.php:781 optionpanel/config.php:858 optionpanel/config.php:929
+#: optionpanel/config.php:1066
+#: optionpanel/inc/fields/border/class-redux-border.php:135
+#: optionpanel/inc/fields/spacing/class-redux-spacing.php:239
+msgid "Right"
+msgstr ""
+
+#: optionpanel/config.php:788
+msgid "Blog navigation"
+msgstr ""
+
+#: optionpanel/config.php:790 optionpanel/config.php:954
+msgid "Pagination"
+msgstr ""
+
+#: optionpanel/config.php:791 optionpanel/config.php:955
+msgid "Load more"
+msgstr ""
+
+#: optionpanel/config.php:792 optionpanel/config.php:956
+msgid "Infinite load"
+msgstr ""
+
+#: optionpanel/config.php:799
+msgid "Blog post layout"
+msgstr ""
+
+#: optionpanel/config.php:804 optionpanel/config.php:805 optionpanel/config.php:966
+msgid "Grid"
+msgstr ""
+
+#: optionpanel/config.php:809 optionpanel/config.php:810
+msgid "Masonry"
+msgstr ""
+
+#: optionpanel/config.php:814 optionpanel/config.php:815 optionpanel/config.php:965
+#: widgets/widget-product-filter.php:170 widgets/widget-product-filter.php:190
+msgid "List"
+msgstr ""
+
+#: optionpanel/config.php:819 optionpanel/config.php:820
+msgid "Full"
+msgstr ""
+
+#: optionpanel/config.php:829 optionpanel/config.php:1000
+msgid "Use original image size (no cropping)"
+msgstr ""
+
+#: optionpanel/config.php:836
+msgid "Blog post title excerpt length"
+msgstr ""
+
+#: optionpanel/config.php:845
+msgid "Blog post excerpt length"
+msgstr ""
+
+#: optionpanel/config.php:854
+msgid "Blog single post sidebar position"
+msgstr ""
+
+#: optionpanel/config.php:865
+msgid "Blog single post social share"
+msgstr ""
+
+#: optionpanel/config.php:871
+msgid "Blog single post related posts"
+msgstr ""
+
+#: optionpanel/config.php:877
+msgid "Related posts by"
+msgstr ""
+
+#: optionpanel/config.php:879
+msgid "Categories"
+msgstr ""
+
+#: optionpanel/config.php:880
+msgid "Tags"
+msgstr ""
+
+#: optionpanel/config.php:906
+msgid "Choose title section for single product pages"
+msgstr ""
+
+#: optionpanel/config.php:913
+msgid "Shop title"
+msgstr ""
+
+#: optionpanel/config.php:919
+msgid "Shop subtitle"
+msgstr ""
+
+#: optionpanel/config.php:925
+msgid "Shop sidebar position"
+msgstr ""
+
+#: optionpanel/config.php:936
+msgid "Activate sidebar on toggle"
+msgstr ""
+
+#: optionpanel/config.php:942
+msgid "Products per page"
+msgstr ""
+
+#: optionpanel/config.php:951 optionpanel/config.php:952
+msgid "Shop navigation"
+msgstr ""
+
+#: optionpanel/config.php:963
+msgid "Product layout"
+msgstr ""
+
+#: optionpanel/config.php:973
+msgid "Product title excerpt length"
+msgstr ""
+
+#: optionpanel/config.php:982
+msgid "Product title minimum height"
+msgstr ""
+
+#: optionpanel/config.php:991
+msgid "Product title maximum height"
+msgstr ""
+
+#: optionpanel/config.php:1006
+msgid "Sale color"
+msgstr ""
+
+#: optionpanel/config.php:1013
+msgid "Discount color"
+msgstr ""
+
+#: optionpanel/config.php:1020
+msgid "Product quick view"
+msgstr ""
+
+#: optionpanel/config.php:1026
+msgid "Product wishlist"
+msgstr ""
+
+#: optionpanel/config.php:1032
+msgid "Product compare"
+msgstr ""
+
+#: optionpanel/config.php:1038
+msgid "Product quick question form"
+msgstr ""
+
+#: optionpanel/config.php:1044
+msgid "Product quick question form ID"
+msgstr ""
+
+#: optionpanel/config.php:1050
+msgid "Wishlist page url"
+msgstr ""
+
+#: optionpanel/config.php:1056
+msgid "Compare page url"
+msgstr ""
+
+#: optionpanel/config.php:1062
+msgid "Single product sidebar position"
+msgstr ""
+
+#: optionpanel/config.php:1073
+msgid "Single product thumbnails"
+msgstr ""
+
+#: optionpanel/config.php:1075
+msgid "Horizonal thumbnails"
+msgstr ""
+
+#: optionpanel/config.php:1076
+msgid "Vertical thumbnails"
+msgstr ""
+
+#: optionpanel/config.php:1083
+msgid "Single product details layout"
+msgstr ""
+
+#: optionpanel/config.php:1085
+msgid "Tabs"
+msgstr ""
+
+#: optionpanel/config.php:1086
+msgid "Blocks"
+msgstr ""
+
+#: optionpanel/config.php:1093
+msgid "Social share"
+msgstr ""
+
+#: optionpanel/framework.php:398 optionpanel/framework.php:407
+msgid "Cheatin&#8217; eh?"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-admin-notices.php:136
+msgid "Dismiss"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-ajax-save.php:42
+#: optionpanel/inc/classes/class-redux-ajax-select2.php:38
+msgid "Invalid security credential.  Please reload the page and try again."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-ajax-save.php:52
+#: optionpanel/inc/classes/class-redux-ajax-select2.php:42
+msgid "Invalid user capability.  Please reload the page and try again."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-ajax-save.php:114
+msgid "Your panel has no fields. Nothing to save."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-api.php:143
+msgid "Warning, Premature Initialization"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-api.php:146
+#, php-format
+msgid "was run before the %s hook and was delayed to avoid errors."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-api.php:368
+msgid "Redux Framework is not installed. Please install it."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-api.php:734
+msgid "Unable to create a section due to missing id and title."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-api.php:752
+#: optionpanel/inc/extensions/metaboxes/class-redux-metaboxes-api.php:431
+msgid ""
+"Unable to create a section due an empty section array or the section variable "
+"passed was not an array."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-args.php:134
+msgid "Regular 400"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-args.php:138
+msgid "Regular 400 Italic"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-args.php:142
+msgid "Bold 700"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-args.php:146
+msgid "Bold 700 Italic"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-args.php:269
+#, php-format
+msgid ""
+"Enjoyed %1$s? Please leave us a %2$s rating. We really appreciate your support!"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-args.php:270
+#: optionpanel/inc/classes/class-redux-enable-gutenberg.php:503
+#: optionpanel/inc/classes/class-redux-user-feedback.php:319
+#: optionpanel/inc/welcome/class-redux-welcome.php:113
+msgid "Redux"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-args.php:277
+#: optionpanel/inc/classes/class-redux-args.php:281
+#: optionpanel/inc/extensions/metaboxes/class-redux-extension-metaboxes.php:986
+msgid "Options"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-args.php:343
+msgid "Redux Framework Notice"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-args.php:344
+msgid "There are references to the Redux Framework support site in your config's "
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-args.php:345
+#: optionpanel/inc/classes/class-redux-args.php:362
+msgid ""
+"argument.  This is sample data.  Please change or remove this data before "
+"shipping your product."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-args.php:360
+msgid "Redux Framework Notice:"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-args.php:361
+msgid "There are references to the Redux Framework support site in your config's"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-cdn.php:127
+msgid ""
+"Please wait a few minutes, then try refreshing the page. Unable to load some "
+"remotely hosted scripts."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-cdn.php:130
+#, php-format
+msgid ""
+"If you are developing offline, please download and install the %s plugin/"
+"extension to bypass our CDN and avoid this warning"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-cdn.php:134
+msgid "Redux Framework Warning"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-cdn.php:134
+#, php-format
+msgid "%s CDN unavailable.  Some controls may not render properly."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-cdn.php:182
+#, php-format
+msgid ""
+"The %1$s (or extension) is either not installed or not activated and thus, some "
+"controls may not render properly.  Please ensure that it is installed and %2$s"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-cdn.php:182
+msgid "activated."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-connection-banner.php:136
+msgid "Security check failed."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-connection-banner.php:251
+msgid "Loading..."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-connection-banner.php:280
+#, php-format
+msgid ""
+"Register <strong>%1$s</strong> to enable automatic Google Font updates service. "
+"Plus unlock all free block templates in the Redux template library."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-connection-banner.php:285
+#: optionpanel/inc/fields/typography/class-redux-typography.php:742
+msgid "learn more"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-connection-banner.php:292
+msgid "Register Now"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-connection-banner.php:293
+#: optionpanel/inc/classes/class-redux-connection-banner.php:405
+msgid "No thanks"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-connection-banner.php:337
+msgid ""
+"You’re almost done. Register for our service to unlock even more tools to help "
+"you build better sites faster in WordPress."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-connection-banner.php:343
+msgid "Dismiss this notice"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-connection-banner.php:358
+msgid "Visit our website to learn more!"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-connection-banner.php:370
+msgid ""
+"Redux helps you to take your site to the next level with tools that greatly "
+"enhance your WordPress experience."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-connection-banner.php:380
+msgid "Build better sites faster with Redux"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-connection-banner.php:384
+msgid ""
+"The Redux block library service, powered by Extendify, allows you to build any "
+"site you want in minutes with a click of a button. With over 1,000+ templates, "
+"Redux helps you build sites fast!"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-connection-banner.php:393
+msgid ""
+"No registration is required to use Redux as you always have. By registering for "
+"our service you gain access to Google Font updates as well as access to all free "
+"templates in our block template library."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-connection-banner.php:405
+#: optionpanel/inc/classes/class-redux-enable-gutenberg.php:342
+msgid "No Thanks"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-connection-banner.php:409
+#: optionpanel/inc/classes/class-redux-connection-banner.php:456
+#: optionpanel/inc/fields/typography/class-redux-typography.php:741
+msgid "Register"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-connection-banner.php:443
+msgid "Redux Logo"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-connection-banner.php:448
+msgid ""
+"Activate essential WordPress security and performance tools by setting up Redux"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-connection-banner.php:465
+msgid "Security & Backups"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-connection-banner.php:472
+msgid ""
+"Redux protects you against brute force attacks and unauthorized logins. Basic "
+"protection is always free, while premium plans add unlimited backups of your "
+"whole site, spam protection, malware scanning, and automated fixes."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-connection-banner.php:485
+msgid "Built-in Performance"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-connection-banner.php:492
+msgid ""
+"Activate site accelerator tools and watch your page load times decrease—we'll "
+"optimize your images and serve them from our own powerful global network of "
+"servers, and speed up your mobile site to reduce bandwidth usage."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-connection-banner.php:507
+msgctxt "a link that closes the modal window that offers to connect Redux"
+msgid "Not now, thank you."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-connection-banner.php:531
+msgid ""
+"<strong>Redux is activated!</strong> Each site on your network must be connected "
+"individually by an admin on that site."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-connection-banner.php:553
+#, php-format
+msgid ""
+"By clicking the <strong>Register</strong> button, you agree to our <a href=\"%1$s"
+"\" target=\"_blank\">terms of service</a>, to create an account, and to share "
+"details of your usage metrics with Redux.io.  We may also occasionally send you "
+"emails with product updates, special offers, or other marketing content."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-enable-gutenberg.php:168
+msgid "Gutenberg is currently disabled!"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-enable-gutenberg.php:176
+msgid "Hmm, it seems something else is disabling Gutenberg..."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-enable-gutenberg.php:179
+msgid "Your theme author has disabled Gutenberg!"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-enable-gutenberg.php:182
+msgid "Looks like something has disabled Gutenberg?"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-enable-gutenberg.php:187
+#: optionpanel/inc/classes/class-redux-enable-gutenberg.php:193
+msgid "Enable Gutenberg"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-enable-gutenberg.php:191
+msgid "Your theme"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-enable-gutenberg.php:211
+msgid "Disable Plugin"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-enable-gutenberg.php:214
+msgid "Disable Plugins"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-enable-gutenberg.php:333
+msgid "Redux WordPress Plugin"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-enqueue.php:611
+#: optionpanel/inc/extensions/customizer/class-redux-extension-customizer.php:695
+msgid "You have changes that are not saved. Would you like to save them now?"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-enqueue.php:627
+#: optionpanel/inc/extensions/customizer/class-redux-extension-customizer.php:696
+msgid "Are you sure? Resetting will lose all custom values."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-enqueue.php:643
+msgid "Are you sure? Resetting will lose all custom values in this section."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-enqueue.php:659
+#: optionpanel/inc/extensions/customizer/class-redux-extension-customizer.php:697
+msgid ""
+"Your current options will be replaced with the values of this preset. Would you "
+"like to proceed?"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-enqueue.php:675
+msgid ""
+"Your current options will be replaced with the values of this import. Would you "
+"like to proceed?"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-enqueue.php:689
+msgid "Please Wait"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-enqueue.php:702
+msgid "There was an error saving. Here is the result of your action:"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-enqueue.php:706
+msgid "There was a problem with your action. Please try again or reload the page."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-extension-abstract.php:221
+#, php-format
+msgid "The %1$s extension requires Redux Framework version %2$s or higher."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-extension-abstract.php:221
+msgid "You are currently running Redux Framework version "
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-extension-abstract.php:221
+msgid ""
+"This field will not render in your option panel, and features of this extension "
+"will not be available until the latest version of Redux Framework has been "
+"installed."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-extensions.php:94
+#, php-format
+msgid "The `%s` extension was not located properly"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-field.php:37
+msgid "Field ID"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-field.php:41
+msgid "Class"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-field.php:42
+msgid "Compiler"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-field.php:44
+msgid "Disabled"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-field.php:45
+msgid "Hint"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-field.php:46
+msgid "Permissions"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-field.php:47
+msgid "Required"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-filesystem.php:142
+#: optionpanel/inc/classes/class-redux-filesystem.php:436
+msgid "File Permission Issues"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-filesystem.php:142
+#: optionpanel/inc/classes/class-redux-filesystem.php:436
+#, php-format
+msgid ""
+"We were unable to modify required files. Please ensure that %1$s has the proper "
+"read-write permissions, or modify your wp-config.php file to contain your FTP "
+"login credentials as %2$s."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-filesystem.php:142
+#: optionpanel/inc/classes/class-redux-filesystem.php:436
+msgid "outlined here"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-functions.php:515
+msgid "Support hash could not be generated. Please try again later."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-health.php:52
+msgid "Security token"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-health.php:87
+msgid "Data transmit"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-helpers.php:1216
+msgid "version"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-helpers.php:1216
+msgid "is out of date. The core version is"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-page-render.php:174
+msgid "Enable"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-page-render.php:179
+msgid "Disable"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-page-render.php:186
+msgid "moving the mouse over"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-page-render.php:188
+msgid "clicking"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-page-render.php:193
+#, php-format
+msgid ""
+"Hints are tooltips that popup when %1$s the hint icon, offering addition "
+"information about the field in which they appear.  They can be %2$s by using the "
+"link below."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-page-render.php:198
+msgid "Hints"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-page-render.php:214
+msgid "Hint Tooltip Preferences"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-page-render.php:517
+#, php-format
+msgid "Field %1$s could not be displayed. Field type %2$s was not found."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-panel.php:86
+msgid "Warning- This options panel will not work properly without javascript!"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-panel.php:104
+msgid "Submit Support Information?"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-panel.php:106
+#, php-format
+msgid ""
+"Redux will send the debug information found on the %s and your Redux config to "
+"our secure server.  Are you ready to proceed?"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-panel.php:106
+msgid "WordPress Site Health screen"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-panel.php:166
+#: optionpanel/inc/extensions/metaboxes/class-redux-extension-metaboxes.php:1205
+msgid "Settings Imported!"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-panel.php:187
+msgid "All Defaults Restored!"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-panel.php:208
+msgid "Section Defaults Restored!"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-panel.php:229
+msgid "Settings Saved!"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-panel.php:256
+#: optionpanel/inc/extensions/metaboxes/class-redux-extension-metaboxes.php:1209
+msgid "Settings have changed, you should save them!"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-panel.php:270
+#: optionpanel/inc/extensions/metaboxes/class-redux-extension-metaboxes.php:1213
+#: optionpanel/inc/extensions/metaboxes/class-redux-extension-metaboxes.php:1519
+msgid "error(s) were found!"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-panel.php:285
+#: optionpanel/inc/extensions/metaboxes/class-redux-extension-metaboxes.php:1217
+msgid "warning(s) were found!"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-panel.php:405
+msgid ""
+"Your panel has bundled copies of Redux Framework template files that are "
+"outdated!"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-panel.php:405
+msgid "Please update them now as functionality issues could arise."
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-rest-api-builder.php:68
+#: optionpanel/inc/classes/class-redux-rest-api-builder.php:83
+msgid "The field type"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-user-feedback.php:99
+#, php-format
+msgid "%s years"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-user-feedback.php:101
+msgid "a year"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-user-feedback.php:108
+#, php-format
+msgid "%s weeks"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-user-feedback.php:110
+msgid "a week"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-user-feedback.php:117
+#, php-format
+msgid "%s days"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-user-feedback.php:119
+msgid "a day"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-user-feedback.php:126
+#, php-format
+msgid "%s hours"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-user-feedback.php:128
+msgid "an hour"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-user-feedback.php:135
+#, php-format
+msgid "%s minutes"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-user-feedback.php:137
+msgid "a minute"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-user-feedback.php:144
+#, php-format
+msgid "%s seconds"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-user-feedback.php:146
+msgid "a second"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-user-feedback.php:278
+#, php-format
+msgid "%s WordPress Plugin"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-user-feedback.php:282
+#, php-format
+msgid "Are you enjoying %s?"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-user-feedback.php:285
+#, php-format
+msgid ""
+"You have been using %1$s for %2$s now. Would you mind leaving a review to let us "
+"know know what you think? We'd really appreciate it!"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-user-feedback.php:289
+msgid "Leave a Review"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-user-feedback.php:290
+msgid "No thanks / I already have"
+msgstr ""
+
+#: optionpanel/inc/classes/class-redux-wordpress-data.php:358
+msgid "[unassigned]"
+msgstr ""
+
+#: optionpanel/inc/extensions/customizer/class-redux-extension-customizer.php:721
+msgid "You have changes that are not saved.  Would you like to save them now?"
+msgstr ""
+
+#: optionpanel/inc/extensions/customizer/class-redux-extension-customizer.php:722
+msgid "Are you sure?  Resetting will lose all custom values."
+msgstr ""
+
+#: optionpanel/inc/extensions/customizer/class-redux-extension-customizer.php:723
+msgid ""
+"Your current options will be replaced with the values of this preset.  Would you "
+"like to proceed?"
+msgstr ""
+
+#: optionpanel/inc/extensions/customizer/inc/class-redux-customizer-panel.php:97
+msgid "Press return or enter to open this panel"
+msgstr ""
+
+#: optionpanel/inc/extensions/customizer/inc/class-redux-customizer-panel.php:126
+#: optionpanel/inc/extensions/customizer/inc/class-redux-customizer-panel.php:167
+msgid "You are customizing"
+msgstr ""
+
+#: optionpanel/inc/extensions/customizer/inc/class-redux-customizer-panel.php:163
+#: optionpanel/inc/extensions/customizer/inc/class-redux-customizer-section.php:147
+msgid "Back"
+msgstr ""
+
+#: optionpanel/inc/extensions/customizer/inc/class-redux-customizer-panel.php:174
+msgid "Help"
+msgstr ""
+
+#: optionpanel/inc/extensions/customizer/inc/class-redux-customizer-section.php:91
+msgid "Press return or enter to expand"
+msgstr ""
+
+#: optionpanel/inc/extensions/customizer/inc/class-redux-customizer-section.php:140
+msgid "Press return or enter to open"
+msgstr ""
+
+#: optionpanel/inc/extensions/import_export/class-redux-extension-import-export.php:84
+msgid "Import / Export"
+msgstr ""
+
+#: optionpanel/inc/extensions/import_export/import_export/class-redux-import-export.php:77
+msgid "Import Options"
+msgstr ""
+
+#: optionpanel/inc/extensions/import_export/import_export/class-redux-import-export.php:83
+msgid "Import from Clipboard"
+msgstr ""
+
+#: optionpanel/inc/extensions/import_export/import_export/class-redux-import-export.php:89
+msgid "Upload file"
+msgstr ""
+
+#: optionpanel/inc/extensions/import_export/import_export/class-redux-import-export.php:96
+msgid "Paste your clipboard data here."
+msgstr ""
+
+#: optionpanel/inc/extensions/import_export/import_export/class-redux-import-export.php:109
+msgid "Import"
+msgstr ""
+
+#: optionpanel/inc/extensions/import_export/import_export/class-redux-import-export.php:112
+msgid ""
+"WARNING! This will overwrite all existing option values, please proceed with "
+"caution!"
+msgstr ""
+
+#: optionpanel/inc/extensions/import_export/import_export/class-redux-import-export.php:120
+msgid "Export Options"
+msgstr ""
+
+#: optionpanel/inc/extensions/import_export/import_export/class-redux-import-export.php:124
+msgid ""
+"Here you can copy/download your current option settings. Keep this safe as you "
+"can use it as a backup should anything go wrong, or you can use it to restore "
+"your settings on this site (or any other site)."
+msgstr ""
+
+#: optionpanel/inc/extensions/import_export/import_export/class-redux-import-export.php:131
+#: optionpanel/inc/extensions/import_export/import_export/class-redux-import-export.php:133
+msgid "Copy to Clipboard"
+msgstr ""
+
+#: optionpanel/inc/extensions/import_export/import_export/class-redux-import-export.php:132
+msgid "Copied!"
+msgstr ""
+
+#: optionpanel/inc/extensions/import_export/import_export/class-redux-import-export.php:136
+msgid "Export File"
+msgstr ""
+
+#: optionpanel/inc/extensions/import_export/import_export/class-redux-import-export.php:168
+msgid "Your panel has unchanged values, would you like to save them now?"
+msgstr ""
+
+#: optionpanel/inc/extensions/metaboxes/class-redux-extension-metaboxes.php:1222
+#: optionpanel/templates/panel/header-stickybar.tpl.php:16
+msgid "Expand"
+msgstr ""
+
+#: optionpanel/inc/extensions/metaboxes/class-redux-extension-metaboxes.php:1525
+msgid "warnings(s) were found!"
+msgstr ""
+
+#: optionpanel/inc/extensions/metaboxes/class-redux-metaboxes-api.php:611
+msgid ""
+"Unable to create a box due an empty box array or the box variable passed was not "
+"an array."
+msgstr ""
+
+#: optionpanel/inc/extensions/options_object/class-redux-extension-options-object.php:72
+#: optionpanel/inc/extensions/options_object/options_object/class-redux-options-object.php:100
+msgid "Options Object"
+msgstr ""
+
+#: optionpanel/inc/extensions/options_object/options_object/class-redux-options-object.php:106
+msgid "Show Object in Javascript Console Object"
+msgstr ""
+
+#: optionpanel/inc/extensions/repeater/repeater/class-redux-repeater.php:162
+#: optionpanel/inc/extensions/repeater/repeater/class-redux-repeater.php:214
+#: optionpanel/inc/extensions/repeater/repeater/class-redux-repeater.php:388
+#: optionpanel/inc/fields/slides/class-redux-slides.php:215
+#: optionpanel/inc/fields/slides/class-redux-slides.php:351
+msgid "Delete"
+msgstr ""
+
+#: optionpanel/inc/extensions/repeater/repeater/class-redux-repeater.php:237
+msgid "Add"
+msgstr ""
+
+#: optionpanel/inc/extensions/search/class-redux-extension-search.php:101
+msgid "Search for field(s)"
+msgstr ""
+
+#: optionpanel/inc/fields/background/class-redux-background.php:132
+msgid "No Repeat"
+msgstr ""
+
+#: optionpanel/inc/fields/background/class-redux-background.php:133
+msgid "Repeat All"
+msgstr ""
+
+#: optionpanel/inc/fields/background/class-redux-background.php:134
+msgid "Repeat Horizontally"
+msgstr ""
+
+#: optionpanel/inc/fields/background/class-redux-background.php:135
+msgid "Repeat Vertically"
+msgstr ""
+
+#: optionpanel/inc/fields/background/class-redux-background.php:139
+msgid "Background Repeat"
+msgstr ""
+
+#: optionpanel/inc/fields/background/class-redux-background.php:152
+#: optionpanel/inc/fields/background/class-redux-background.php:170
+msgid "Border Box"
+msgstr ""
+
+#: optionpanel/inc/fields/background/class-redux-background.php:153
+#: optionpanel/inc/fields/background/class-redux-background.php:171
+msgid "Content Box"
+msgstr ""
+
+#: optionpanel/inc/fields/background/class-redux-background.php:154
+#: optionpanel/inc/fields/background/class-redux-background.php:172
+msgid "Padding Box"
+msgstr ""
+
+#: optionpanel/inc/fields/background/class-redux-background.php:157
+msgid "Background Clip"
+msgstr ""
+
+#: optionpanel/inc/fields/background/class-redux-background.php:175
+msgid "Background Origin"
+msgstr ""
+
+#: optionpanel/inc/fields/background/class-redux-background.php:188
+msgid "Cover"
+msgstr ""
+
+#: optionpanel/inc/fields/background/class-redux-background.php:189
+msgid "Contain"
+msgstr ""
+
+#: optionpanel/inc/fields/background/class-redux-background.php:192
+msgid "Background Size"
+msgstr ""
+
+#: optionpanel/inc/fields/background/class-redux-background.php:204
+msgid "Fixed"
+msgstr ""
+
+#: optionpanel/inc/fields/background/class-redux-background.php:205
+msgid "Scroll"
+msgstr ""
+
+#: optionpanel/inc/fields/background/class-redux-background.php:209
+msgid "Background Attachment"
+msgstr ""
+
+#: optionpanel/inc/fields/background/class-redux-background.php:221
+msgid "Left Top"
+msgstr ""
+
+#: optionpanel/inc/fields/background/class-redux-background.php:222
+msgid "Left center"
+msgstr ""
+
+#: optionpanel/inc/fields/background/class-redux-background.php:223
+msgid "Left Bottom"
+msgstr ""
+
+#: optionpanel/inc/fields/background/class-redux-background.php:224
+msgid "Center Top"
+msgstr ""
+
+#: optionpanel/inc/fields/background/class-redux-background.php:225
+msgid "Center Center"
+msgstr ""
+
+#: optionpanel/inc/fields/background/class-redux-background.php:226
+msgid "Center Bottom"
+msgstr ""
+
+#: optionpanel/inc/fields/background/class-redux-background.php:227
+msgid "Right Top"
+msgstr ""
+
+#: optionpanel/inc/fields/background/class-redux-background.php:228
+msgid "Right center"
+msgstr ""
+
+#: optionpanel/inc/fields/background/class-redux-background.php:229
+msgid "Right Bottom"
+msgstr ""
+
+#: optionpanel/inc/fields/background/class-redux-background.php:232
+msgid "Background Position"
+msgstr ""
+
+#: optionpanel/inc/fields/background/class-redux-background.php:287
+#: optionpanel/inc/fields/media/class-redux-media.php:89
+msgid "No media selected"
+msgstr ""
+
+#: optionpanel/inc/fields/background/class-redux-background.php:332
+#: optionpanel/inc/fields/media/class-redux-media.php:242
+#: optionpanel/inc/fields/slides/class-redux-slides.php:105
+#: optionpanel/inc/fields/slides/class-redux-slides.php:249
+msgid "Upload"
+msgstr ""
+
+#: optionpanel/inc/fields/border/class-redux-border.php:123
+#: optionpanel/inc/fields/spacing/class-redux-spacing.php:223
+#: optionpanel/inc/fields/typography/class-redux-typography.php:644
+msgid "Top"
+msgstr ""
+
+#: optionpanel/inc/fields/border/class-redux-border.php:147
+#: optionpanel/inc/fields/spacing/class-redux-spacing.php:255
+#: optionpanel/inc/fields/typography/class-redux-typography.php:656
+msgid "Bottom"
+msgstr ""
+
+#: optionpanel/inc/fields/border/class-redux-border.php:169
+msgid "Solid"
+msgstr ""
+
+#: optionpanel/inc/fields/border/class-redux-border.php:170
+msgid "Dashed"
+msgstr ""
+
+#: optionpanel/inc/fields/border/class-redux-border.php:171
+msgid "Dotted"
+msgstr ""
+
+#: optionpanel/inc/fields/border/class-redux-border.php:172
+msgid "Double"
+msgstr ""
+
+#: optionpanel/inc/fields/border/class-redux-border.php:176
+msgid "Border style"
+msgstr ""
+
+#: optionpanel/inc/fields/box_shadow/class-redux-box-shadow.php:111
+msgid "Horizontal Length "
+msgstr ""
+
+#: optionpanel/inc/fields/box_shadow/class-redux-box-shadow.php:120
+msgid "Horizontal Length"
+msgstr ""
+
+#: optionpanel/inc/fields/box_shadow/class-redux-box-shadow.php:135
+msgid "Vertical Length "
+msgstr ""
+
+#: optionpanel/inc/fields/box_shadow/class-redux-box-shadow.php:144
+msgid "Vertical Length"
+msgstr ""
+
+#: optionpanel/inc/fields/box_shadow/class-redux-box-shadow.php:159
+msgid "Blur Radius "
+msgstr ""
+
+#: optionpanel/inc/fields/box_shadow/class-redux-box-shadow.php:168
+msgid "Blur Radius"
+msgstr ""
+
+#: optionpanel/inc/fields/box_shadow/class-redux-box-shadow.php:183
+msgid "Spread "
+msgstr ""
+
+#: optionpanel/inc/fields/box_shadow/class-redux-box-shadow.php:192
+msgid "Spread"
+msgstr ""
+
+#: optionpanel/inc/fields/color_rgba/class-redux-color-rgba.php:42
+msgid "Choose"
+msgstr ""
+
+#: optionpanel/inc/fields/color_rgba/class-redux-color-rgba.php:43
+msgid "Cancel"
+msgstr ""
+
+#: optionpanel/inc/fields/dimensions/class-redux-dimensions.php:144
+msgid "Width"
+msgstr ""
+
+#: optionpanel/inc/fields/dimensions/class-redux-dimensions.php:173
+#: optionpanel/inc/fields/typography/class-redux-typography.php:580
+msgid "Height"
+msgstr ""
+
+#: optionpanel/inc/fields/dimensions/class-redux-dimensions.php:194
+#: optionpanel/inc/fields/dimensions/class-redux-dimensions.php:198
+#: optionpanel/inc/fields/dimensions/class-redux-dimensions.php:200
+#: optionpanel/inc/fields/spacing/class-redux-spacing.php:282
+#: optionpanel/inc/fields/spacing/class-redux-spacing.php:283
+msgid "Units"
+msgstr ""
+
+#: optionpanel/inc/fields/gallery/class-redux-gallery.php:48
+msgid "Add/Edit Gallery"
+msgstr ""
+
+#: optionpanel/inc/fields/gallery/class-redux-gallery.php:49
+msgid "Clear Gallery"
+msgstr ""
+
+#: optionpanel/inc/fields/link_color/class-redux-link-color.php:65
+msgid "Regular"
+msgstr ""
+
+#: optionpanel/inc/fields/link_color/class-redux-link-color.php:87
+msgid "Hover"
+msgstr ""
+
+#: optionpanel/inc/fields/link_color/class-redux-link-color.php:109
+msgid "Visited"
+msgstr ""
+
+#: optionpanel/inc/fields/link_color/class-redux-link-color.php:153
+msgid "Focus"
+msgstr ""
+
+#: optionpanel/inc/fields/multi_text/class-redux-multi-text.php:28
+msgid "Add More"
+msgstr ""
+
+#: optionpanel/inc/fields/password/class-redux-password.php:53
+#: widgets/widget-login.php:38
+msgid "Password"
+msgstr ""
+
+#: optionpanel/inc/fields/password/class-redux-password.php:54
+#: widgets/widget-login.php:37
+msgid "Username"
+msgstr ""
+
+#: optionpanel/inc/fields/select/class-redux-select.php:106
+#: optionpanel/inc/fields/select_image/class-redux-select-image.php:26
+msgid "Select an item"
+msgstr ""
+
+#: optionpanel/inc/fields/select/class-redux-select.php:183
+#: optionpanel/inc/fields/select_image/class-redux-select-image.php:145
+msgid "No items of this type were found."
+msgstr ""
+
+#: optionpanel/inc/fields/slides/class-redux-slides.php:32
+msgid "Slide"
+msgstr ""
+
+#: optionpanel/inc/fields/slides/class-redux-slides.php:48
+#: optionpanel/inc/fields/slides/class-redux-slides.php:233
+#, php-format
+msgid "New %s"
+msgstr ""
+
+#: optionpanel/inc/fields/slides/class-redux-slides.php:152
+#: optionpanel/inc/fields/slides/class-redux-slides.php:288
+msgid "URL"
+msgstr ""
+
+#: optionpanel/inc/fields/slides/class-redux-slides.php:363
+#, php-format
+msgid "Add %s"
+msgstr ""
+
+#: optionpanel/inc/fields/switch/class-redux-switch.php:37
+msgid "On"
+msgstr ""
+
+#: optionpanel/inc/fields/switch/class-redux-switch.php:40
+msgid "Off"
+msgstr ""
+
+#: optionpanel/inc/fields/text/class-redux-text.php:27
+msgid ""
+"The Text field accepts any form of text and optionally validates the text before "
+"saving the value."
+msgstr ""
+
+#: optionpanel/inc/fields/text/class-redux-text.php:29
+msgid "Display a qTip div when active on the text field."
+msgstr ""
+
+#: optionpanel/inc/fields/text/class-redux-text.php:30
+msgid "Placeholder text."
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:311
+msgid "Font Family"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:313
+msgid "Font family"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:352
+#: optionpanel/inc/fields/typography/class-redux-typography.php:354
+msgid "Backup Font Family"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:373
+#: optionpanel/inc/fields/typography/class-redux-typography.php:393
+msgid "Font style"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:374
+msgid "Font Weight &amp; Style"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:391
+msgid "Style"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:406
+msgid "Font subsets"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:414
+msgid "Font Subsets"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:417
+msgid "Subsets"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:419
+msgid "Font script"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:433
+#: optionpanel/inc/fields/typography/class-redux-typography.php:434
+#: optionpanel/inc/fields/typography/class-redux-typography.php:436
+#: optionpanel/inc/fields/typography/class-redux-typography.php:438
+msgid "Text Align"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:448
+msgid "left"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:449
+msgid "right"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:450
+msgid "center"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:451
+msgid "justify"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:452
+#: optionpanel/inc/fields/typography/class-redux-typography.php:482
+msgid "initial"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:464
+#: optionpanel/inc/fields/typography/class-redux-typography.php:465
+#: optionpanel/inc/fields/typography/class-redux-typography.php:467
+#: optionpanel/inc/fields/typography/class-redux-typography.php:469
+msgid "Text Transform"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:478
+#: optionpanel/inc/fields/typography/class-redux-typography.php:537
+msgid "none"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:479
+msgid "capitalize"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:480
+msgid "uppercase"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:481
+msgid "lowercase"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:495
+#: optionpanel/inc/fields/typography/class-redux-typography.php:496
+#: optionpanel/inc/fields/typography/class-redux-typography.php:498
+#: optionpanel/inc/fields/typography/class-redux-typography.php:500
+msgid "Font Variant"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:510
+msgid "normal"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:511
+msgid "small-caps"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:523
+#: optionpanel/inc/fields/typography/class-redux-typography.php:524
+#: optionpanel/inc/fields/typography/class-redux-typography.php:526
+#: optionpanel/inc/fields/typography/class-redux-typography.php:528
+msgid "Text Decoration"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:539
+msgid "underline"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:540
+msgid "overline"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:541
+msgid "line-through"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:542
+msgid "blink"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:555
+#: optionpanel/inc/fields/typography/class-redux-typography.php:560
+msgid "Font Size"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:561
+msgid "Size"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:574
+#: optionpanel/inc/fields/typography/class-redux-typography.php:579
+msgid "Line Height"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:594
+#: optionpanel/inc/fields/typography/class-redux-typography.php:599
+#: optionpanel/inc/fields/typography/class-redux-typography.php:600
+msgid "Word Spacing"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:614
+#: optionpanel/inc/fields/typography/class-redux-typography.php:619
+#: optionpanel/inc/fields/typography/class-redux-typography.php:620
+msgid "Letter Spacing"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:642
+#: optionpanel/inc/fields/typography/class-redux-typography.php:644
+msgid "Margin Top"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:654
+#: optionpanel/inc/fields/typography/class-redux-typography.php:656
+msgid "Margin Bottom"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:678
+msgid "Font Color"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:685
+msgid "Font color"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:739
+msgid ""
+"Your Google Fonts are out of date. In order to update them you must register for "
+"Redux to enable updates."
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:741
+msgid "to enable font updates"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:746
+msgid "Automated updates"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:746
+msgid "one-time update"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:759
+msgid "Shadow Color"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:764
+msgid "Shadow color"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:776
+#: optionpanel/inc/fields/typography/class-redux-typography.php:785
+msgid "Horizontal"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:793
+#: optionpanel/inc/fields/typography/class-redux-typography.php:802
+msgid "Vertical"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:810
+#: optionpanel/inc/fields/typography/class-redux-typography.php:819
+msgid "Blur"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:859
+msgid "Downloading Google Fonts..."
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:861
+#, php-format
+msgid "Update Failed|msg. %1$s"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:861
+msgid "Retry?"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:863
+#, php-format
+msgid "Updated! %1$s to start using your updated fonts."
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:863
+msgid "Reload the page"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:1291
+msgid "Standard Fonts"
+msgstr ""
+
+#: optionpanel/inc/fields/typography/class-redux-typography.php:1374
+msgid "Google Webfonts"
+msgstr ""
+
+#: optionpanel/inc/lib/gradient-filters/class-redux-gradient-filters.php:44
+msgid "Gradient Type "
+msgstr ""
+
+#: optionpanel/inc/lib/gradient-filters/class-redux-gradient-filters.php:53
+msgid "linear"
+msgstr ""
+
+#: optionpanel/inc/lib/gradient-filters/class-redux-gradient-filters.php:54
+msgid "radial"
+msgstr ""
+
+#: optionpanel/inc/lib/gradient-filters/class-redux-gradient-filters.php:82
+msgid "From Reach "
+msgstr ""
+
+#: optionpanel/inc/lib/gradient-filters/class-redux-gradient-filters.php:91
+msgid "From Reach"
+msgstr ""
+
+#: optionpanel/inc/lib/gradient-filters/class-redux-gradient-filters.php:105
+#: optionpanel/inc/lib/gradient-filters/class-redux-gradient-filters.php:114
+msgid "To Reach"
+msgstr ""
+
+#: optionpanel/inc/lib/gradient-filters/class-redux-gradient-filters.php:135
+#: optionpanel/inc/lib/gradient-filters/class-redux-gradient-filters.php:144
+msgid "Gradient Angle"
+msgstr ""
+
+#: optionpanel/inc/lib/image-filters/class-redux-image-filters.php:55
+msgid "Filters"
+msgstr ""
+
+#: optionpanel/inc/themecheck/checks/class-redux-embedded.php:43
+#: optionpanel/inc/themecheck/checks/class-redux-embedded.php:63
+msgid "RECOMMENDED"
+msgstr ""
+
+#: optionpanel/inc/themecheck/checks/class-redux-embedded.php:43
+msgid "If you are submitting to WordPress.org Theme Repository, it is"
+msgstr ""
+
+#: optionpanel/inc/themecheck/checks/class-redux-embedded.php:43
+msgid "strongly"
+msgstr ""
+
+#: optionpanel/inc/themecheck/checks/class-redux-embedded.php:43
+msgid "suggested that you read"
+msgstr ""
+
+#: optionpanel/inc/themecheck/checks/class-redux-embedded.php:43
+msgid "this document"
+msgstr ""
+
+#: optionpanel/inc/themecheck/checks/class-redux-embedded.php:43
+msgid "or your theme will be rejected because of Redux."
+msgstr ""
+
+#: optionpanel/inc/themecheck/checks/class-redux-embedded.php:50
+msgid "REQUIRED"
+msgstr ""
+
+#: optionpanel/inc/themecheck/checks/class-redux-embedded.php:50
+msgid "You MUST delete"
+msgstr ""
+
+#: optionpanel/inc/themecheck/checks/class-redux-embedded.php:50
+msgid "or your theme will be rejected by WP.org theme submission because of Redux."
+msgstr ""
+
+#: optionpanel/inc/themecheck/checks/class-redux-embedded.php:63
+msgid ""
+"The following arguments MUST be used for WP.org submissions, or you will be "
+"rejected because of your Redux configuration."
+msgstr ""
+
+#: optionpanel/inc/themecheck/checks/class-redux-full-package.php:43
+msgid "Redux localization utilities"
+msgstr ""
+
+#: optionpanel/inc/themecheck/checks/class-redux-full-package.php:44
+msgid "Redux Resting Diles"
+msgstr ""
+
+#: optionpanel/inc/themecheck/checks/class-redux-full-package.php:45
+msgid "Redux Code Styles"
+msgstr ""
+
+#: optionpanel/inc/themecheck/checks/class-redux-full-package.php:46
+msgid "Redux Unit Testing"
+msgstr ""
+
+#: optionpanel/inc/themecheck/checks/class-redux-full-package.php:47
+msgid "Redux Plugin File"
+msgstr ""
+
+#: optionpanel/inc/themecheck/checks/class-redux-full-package.php:48
+msgid "Redux Boostrap Tests"
+msgstr ""
+
+#: optionpanel/inc/themecheck/checks/class-redux-full-package.php:49
+msgid "CI Testing FIle"
+msgstr ""
+
+#: optionpanel/inc/themecheck/checks/class-redux-full-package.php:50
+msgid "PHP Unit Testing"
+msgstr ""
+
+#: optionpanel/inc/themecheck/checks/class-redux-full-package.php:63
+msgid ""
+"It appears that you have embedded the full Redux package inside your theme. You "
+"need only embed the"
+msgstr ""
+
+#: optionpanel/inc/themecheck/checks/class-redux-full-package.php:63
+msgid ""
+"folder. Embedding anything else will get your rejected from theme submission. "
+"Suspected Redux package file(s):"
+msgstr ""
+
+#: optionpanel/inc/validation/color/class-redux-validation-color.php:34
+#, php-format
+msgid ""
+"Invalid HTML color code %1$s. Please enter a valid code. No value was saved."
+msgstr ""
+
+#: optionpanel/inc/validation/color/class-redux-validation-color.php:46
+#, php-format
+msgid "Sanitized value and saved as %1$s instead of %2$s."
+msgstr ""
+
+#: optionpanel/inc/validation/comma_numeric/class-redux-validation-comma-numeric.php:34
+msgid ""
+"You must provide a comma separated list of numerical values for this option."
+msgstr ""
+
+#: optionpanel/inc/validation/css/class-redux-validation-css.php:27
+msgid "Unsafe strings were found in your CSS and have been filtered out."
+msgstr ""
+
+#: optionpanel/inc/validation/date/class-redux-validation-date.php:27
+msgid "This field must be a valid date."
+msgstr ""
+
+#: optionpanel/inc/validation/email/class-redux-validation-email.php:27
+msgid "You must provide a valid email for this option."
+msgstr ""
+
+#: optionpanel/inc/validation/html_custom/class-redux-validation-html-custom.php:27
+msgid "Unallowed HTML was found in this field and has been removed."
+msgstr ""
+
+#: optionpanel/inc/validation/js/class-redux-validation-js.php:27
+msgid "Javascript has been successfully escaped."
+msgstr ""
+
+#: optionpanel/inc/validation/no_html/class-redux-validation-no-html.php:27
+msgid "You must not enter any HTML in this field.  All HTML has been removed."
+msgstr ""
+
+#: optionpanel/inc/validation/no_special_chars/class-redux-validation-no-special-chars.php:27
+msgid ""
+"You must not enter any special characters in this field, all special characters "
+"have been removed."
+msgstr ""
+
+#: optionpanel/inc/validation/not_empty/class-redux-validation-not-empty.php:27
+msgid "This field cannot be empty. Please provide a value."
+msgstr ""
+
+#: optionpanel/inc/validation/numeric/class-redux-validation-numeric.php:27
+msgid "You must provide a numerical value for this option."
+msgstr ""
+
+#: optionpanel/inc/validation/unique_slug/class-redux-validation-unique-slug.php:29
+msgid "That URL slug is in use, please choose another."
+msgstr ""
+
+#: optionpanel/inc/validation/url/class-redux-validation-url.php:27
+msgid "You must provide a valid URL for this option."
+msgstr ""
+
+#: optionpanel/inc/welcome/class-redux-welcome.php:96
+msgid "If you like"
+msgstr ""
+
+#: optionpanel/inc/welcome/class-redux-welcome.php:96
+msgid "please leave us a"
+msgstr ""
+
+#: optionpanel/inc/welcome/class-redux-welcome.php:96
+msgid "rating. A huge thank you in advance!"
+msgstr ""
+
+#: optionpanel/inc/welcome/class-redux-welcome.php:113
+msgid "What is Redux Framework?"
+msgstr ""
+
+#: optionpanel/inc/welcome/class-redux-welcome.php:116
+#: optionpanel/inc/welcome/class-redux-welcome.php:214
+msgid "Templates"
+msgstr ""
+
+#: optionpanel/inc/welcome/class-redux-welcome.php:209
+msgid "What is Redux?"
+msgstr ""
+
+#: optionpanel/inc/welcome/class-redux-welcome.php:283
+msgid "Disable Panel Demo"
+msgstr ""
+
+#: optionpanel/inc/welcome/class-redux-welcome.php:289
+msgid "Enable Panel Demo"
+msgstr ""
+
+#: optionpanel/inc/welcome/views/about.php:17
+#: optionpanel/inc/welcome/views/templates.php:15
+msgid "Welcome to"
+msgstr ""
+
+#: optionpanel/inc/welcome/views/about.php:21
+#: optionpanel/inc/welcome/views/templates.php:19
+msgid ""
+"Redux is the world's most powerful and widely used WordPress interface builder. "
+"We are trusted by millions of developers and end users world-wide."
+msgstr ""
+
+#: optionpanel/inc/welcome/views/about.php:34
+#, php-format
+msgid "Redux is Where the End User %s Interacts with WordPress"
+msgstr ""
+
+#: optionpanel/inc/welcome/views/about.php:35
+msgid ""
+"Redux is a foundation on which to build any interface in WordPress. It's time "
+"saved, frustrations reduced, and a unified experience."
+msgstr ""
+
+#: optionpanel/inc/welcome/views/about.php:38
+msgid "Metaboxes"
+msgstr ""
+
+#: optionpanel/inc/welcome/views/about.php:39
+msgid "Taxonomies"
+msgstr ""
+
+#: optionpanel/inc/welcome/views/about.php:40
+msgid "User Meta"
+msgstr ""
+
+#: optionpanel/inc/welcome/views/about.php:41
+msgid "Options Panel"
+msgstr ""
+
+#: optionpanel/inc/welcome/views/about.php:42
+msgid "Customizer"
+msgstr ""
+
+#: optionpanel/inc/welcome/views/about.php:43
+msgid "Gutenberg"
+msgstr ""
+
+#: optionpanel/inc/welcome/views/about.php:57
+msgid "Did I install this?"
+msgstr ""
+
+#: optionpanel/inc/welcome/views/about.php:61
+msgid ""
+"Maybe not! These items are using Redux. If you want to keep using them, Redux "
+"will need to remain installed and activated."
+msgstr ""
+
+#: optionpanel/inc/welcome/views/about.php:72
+#, php-format
+msgid ""
+"Maybe not! If you want to see what Redux is all about, click here to "
+"%1$sActivate Demo Mode%2$s."
+msgstr ""
+
+#: optionpanel/inc/welcome/views/about.php:99
+msgid "Version:"
+msgstr ""
+
+#: optionpanel/inc/welcome/views/about.php:104
+#: optionpanel/inc/welcome/views/about.php:157
+msgid "By"
+msgstr ""
+
+#: optionpanel/inc/welcome/views/about.php:111
+msgid "Theme"
+msgstr ""
+
+#: optionpanel/inc/welcome/views/about.php:163
+msgid "Plugin"
+msgstr ""
+
+#: optionpanel/inc/welcome/views/templates.php:35
+msgid " Template Libraries"
+msgstr ""
+
+#: optionpanel/inc/welcome/views/templates.php:45
+msgid "Extendify Template Library"
+msgstr ""
+
+#: optionpanel/inc/welcome/views/templates.php:49
+msgid "Load Extendify template library"
+msgstr ""
+
+#: optionpanel/inc/welcome/views/templates.php:54
+msgid "Redux Template Library"
+msgstr ""
+
+#: optionpanel/inc/welcome/views/templates.php:58
+msgid "Load legacy Redux template library"
+msgstr ""
+
+#: optionpanel/templates/panel/footer.tpl.php:58
+#: optionpanel/templates/panel/header-stickybar.tpl.php:22
+msgid "Save Changes"
+msgstr ""
+
+#: optionpanel/templates/panel/footer.tpl.php:62
+#: optionpanel/templates/panel/header-stickybar.tpl.php:26
+msgid "Reset Section"
+msgstr ""
+
+#: optionpanel/templates/panel/footer.tpl.php:63
+#: optionpanel/templates/panel/header-stickybar.tpl.php:27
+msgid "Reset All"
+msgstr ""
+
+#: optionpanel/templates/panel/footer.tpl.php:67
+#: optionpanel/templates/panel/header-stickybar.tpl.php:31
+msgid "Working..."
+msgstr ""
+
+#: optionpanel/templates/panel/header.tpl.php:11
+#: optionpanel/templates/panel/header.tpl.php:48
+msgid "Developer Mode Enabled"
+msgstr ""
+
+#: optionpanel/templates/panel/header.tpl.php:20
+msgid "WP_DEBUG is enabled"
+msgstr ""
+
+#: optionpanel/templates/panel/header.tpl.php:26
+msgid "you are working in a localhost environment"
+msgstr ""
+
+#: optionpanel/templates/panel/header.tpl.php:31
+msgid "and"
+msgstr ""
+
+#: optionpanel/templates/panel/header.tpl.php:34
+msgid "This has been automatically enabled because"
+msgstr ""
+
+#: optionpanel/templates/panel/header.tpl.php:36
+msgid ""
+"If you are not a developer, your theme/plugin author shipped with developer mode "
+"enabled. Contact them directly to fix it."
+msgstr ""
+
+#: shortcodes/shortcodes.php:682 shortcodes/shortcodes.php:4175
+msgid "Please upload svg"
+msgstr ""
+
+#: shortcodes/shortcodes.php:1152
+msgid "Install and activate"
+msgstr ""
+
+#: shortcodes/shortcodes.php:1152
+msgid "Smash Balloon Social Photo Feed"
+msgstr ""
+
+#: shortcodes/shortcodes.php:3517
+msgid "Search..."
+msgstr ""
+
+#: shortcodes/shortcodes.php:3596 shortcodes/shortcodes.php:5949
+msgid "Please install Woocommerce"
+msgstr ""
+
+#: shortcodes/shortcodes.php:3697
+msgid "Compare"
+msgstr ""
+
+#: shortcodes/shortcodes.php:3791
+msgid "Polylang"
+msgstr ""
+
+#: shortcodes/shortcodes.php:3792
+msgid "WPML"
+msgstr ""
+
+#: shortcodes/shortcodes.php:3860
+msgid "Currency switcher"
+msgstr ""
+
+#: shortcodes/shortcodes.php:3920
+msgid "My account"
+msgstr ""
+
+#: shortcodes/shortcodes.php:6391
+msgid "You have not viewed any product yet!"
+msgstr ""
+
+#: shortcodes/shortcodes.php:6879
+msgid "OR"
+msgstr ""
+
+#: shortcodes/shortcodes.php:6879
+msgid "Enter SKU"
+msgstr ""
+
+#: shortcodes/shortcodes.php:6881
+msgid "Shop now"
+msgstr ""
+
+#: templates/single-banner.php:31 templates/single-footer.php:26
+#: templates/single-header.php:150 templates/single-megamenu.php:61
+#: templates/single-title-section.php:29
+msgid "You don't have sufficient privileges to view this page."
+msgstr ""
+
+#: widgets/widget-banner.php:15
+msgid "* Banner"
+msgstr ""
+
+#: widgets/widget-banner.php:83 widgets/widget-contact-form.php:82
+#: widgets/widget-facebook.php:103 widgets/widget-flickr.php:76
+#: widgets/widget-login.php:85 widgets/widget-mailchimp.php:123
+#: widgets/widget-posts.php:119 widgets/widget-product-filter.php:146
+#: widgets/widget-product-search.php:114
+msgid "Title:"
+msgstr ""
+
+#: widgets/widget-banner.php:91
+msgid "Banner:"
+msgstr ""
+
+#: widgets/widget-banner.php:94
+msgid "- Select banner -"
+msgstr ""
+
+#: widgets/widget-banner.php:105
+msgid "Show only for selected category:"
+msgstr ""
+
+#: widgets/widget-banner.php:108
+msgid "- Select category -"
+msgstr ""
+
+#: widgets/widget-banner.php:115
+msgid "Including child categories?"
+msgstr ""
+
+#: widgets/widget-banner.php:120
+msgid "Limit to shop page only?"
+msgstr ""
+
+#: widgets/widget-contact-form.php:13
+msgid "* Fast Contact Form"
+msgstr ""
+
+#: widgets/widget-contact-form.php:14
+msgid "Fast Contact Form widget"
+msgstr ""
+
+#: widgets/widget-contact-form.php:25
+msgid "Send"
+msgstr ""
+
+#: widgets/widget-contact-form.php:39
+msgid "Name"
+msgstr ""
+
+#: widgets/widget-contact-form.php:40
+msgid "Please enter your name"
+msgstr ""
+
+#: widgets/widget-contact-form.php:44
+msgid "Email"
+msgstr ""
+
+#: widgets/widget-contact-form.php:45 widgets/widget-mailchimp.php:74
+msgid "Invalid or empty email"
+msgstr ""
+
+#: widgets/widget-contact-form.php:49
+msgid "Write your message"
+msgstr ""
+
+#: widgets/widget-contact-form.php:50
+msgid "Please enter your message"
+msgstr ""
+
+#: widgets/widget-contact-form.php:58
+msgid "Your message successfully sent"
+msgstr ""
+
+#: widgets/widget-contact-form.php:59
+msgid "Something went wrong. Your message was not send"
+msgstr ""
+
+#: widgets/widget-contact-form.php:73
+msgid "Fast contact"
+msgstr ""
+
+#: widgets/widget-contact-form.php:74
+msgid "Contact us"
+msgstr ""
+
+#: widgets/widget-contact-form.php:86
+msgid "Recipient email:"
+msgstr ""
+
+#: widgets/widget-contact-form.php:90
+msgid "Submit button text:"
+msgstr ""
+
+#: widgets/widget-facebook.php:13
+msgid "* Facebook"
+msgstr ""
+
+#: widgets/widget-facebook.php:14
+msgid "Facebook widget"
+msgstr ""
+
+#: widgets/widget-facebook.php:84
+msgid "Find us on Facebook"
+msgstr ""
+
+#: widgets/widget-facebook.php:107
+msgid "App ID from the app dashboard:"
+msgstr ""
+
+#: widgets/widget-facebook.php:111
+msgid "Language:"
+msgstr ""
+
+#: widgets/widget-facebook.php:113
+msgid ""
+"You can change the language of the Page plugin by loading a localized version of "
+"the Facebook JavaScript SDK. Replace en_US with your locale, e.g., ru_RU for "
+"Russian (Russia):"
+msgstr ""
+
+#: widgets/widget-facebook.php:116
+msgid "The URL of the Facebook Page:"
+msgstr ""
+
+#: widgets/widget-facebook.php:120
+msgid "The pixel width of the plugin. Min. is 180 & Max. is 500:"
+msgstr ""
+
+#: widgets/widget-facebook.php:124
+msgid "The pixel height of the plugin. Min. is 70:"
+msgstr ""
+
+#: widgets/widget-facebook.php:130
+msgid "Show timeline"
+msgstr ""
+
+#: widgets/widget-facebook.php:135
+msgid "Show events"
+msgstr ""
+
+#: widgets/widget-facebook.php:140
+msgid "Show messages"
+msgstr ""
+
+#: widgets/widget-facebook.php:145
+msgid "Hide cover photo in the header"
+msgstr ""
+
+#: widgets/widget-facebook.php:150
+msgid "Show profile photos when friends like this"
+msgstr ""
+
+#: widgets/widget-facebook.php:155
+msgid "Use the small header instead"
+msgstr ""
+
+#: widgets/widget-facebook.php:160
+msgid "Try to fit inside the container width"
+msgstr ""
+
+#: widgets/widget-flickr.php:13
+msgid "* Photos from flickr"
+msgstr ""
+
+#: widgets/widget-flickr.php:14
+msgid "Display photos from flickr"
+msgstr ""
+
+#: widgets/widget-flickr.php:64
+msgid "Photos from flickr"
+msgstr ""
+
+#: widgets/widget-flickr.php:80
+msgid "Flickr id:"
+msgstr ""
+
+#: widgets/widget-flickr.php:80
+msgid "For more infomration go:"
+msgstr ""
+
+#: widgets/widget-flickr.php:80
+msgid "here"
+msgstr ""
+
+#: widgets/widget-flickr.php:84
+msgid "Number of photos to show:"
+msgstr ""
+
+#: widgets/widget-flickr.php:88
+msgid "Columns mobile:"
+msgstr ""
+
+#: widgets/widget-flickr.php:96
+msgid "Columns tablet:"
+msgstr ""
+
+#: widgets/widget-flickr.php:104
+msgid "Columns desktop:"
+msgstr ""
+
+#: widgets/widget-login.php:15
+msgid "* Login form"
+msgstr ""
+
+#: widgets/widget-login.php:16
+msgid "Front-end login form"
+msgstr ""
+
+#: widgets/widget-login.php:39
+msgid "Remember Me"
+msgstr ""
+
+#: widgets/widget-login.php:40
+msgid "Log In"
+msgstr ""
+
+#: widgets/widget-login.php:54
+msgid "Hello, "
+msgstr ""
+
+#: widgets/widget-login.php:57
+msgid "Dashboard"
+msgstr ""
+
+#: widgets/widget-login.php:59
+msgid "Logout"
+msgstr ""
+
+#: widgets/widget-login.php:64
+msgid "Forgot password?"
+msgstr ""
+
+#: widgets/widget-login.php:67
+msgid "Don't have account yet?"
+msgstr ""
+
+#: widgets/widget-login.php:67
+msgid "Sign up"
+msgstr ""
+
+#: widgets/widget-login.php:76
+msgid "Login"
+msgstr ""
+
+#: widgets/widget-login.php:89
+msgid "Registration page link:"
+msgstr ""
+
+#: widgets/widget-login.php:93
+msgid "Password recovery page:"
+msgstr ""
+
+#: widgets/widget-login.php:97
+msgid "My account link:"
+msgstr ""
+
+#: widgets/widget-mailchimp.php:13
+msgid "* Mailchimp"
+msgstr ""
+
+#: widgets/widget-mailchimp.php:14
+msgid "Mailchimp form"
+msgstr ""
+
+#: widgets/widget-mailchimp.php:53
+msgid "First name"
+msgstr ""
+
+#: widgets/widget-mailchimp.php:54
+msgid "Please enter your First name"
+msgstr ""
+
+#: widgets/widget-mailchimp.php:60
+msgid "Last name"
+msgstr ""
+
+#: widgets/widget-mailchimp.php:61
+msgid "Please enter your Last name"
+msgstr ""
+
+#: widgets/widget-mailchimp.php:67
+msgid "Phone number"
+msgstr ""
+
+#: widgets/widget-mailchimp.php:68
+msgid "Please enter your Phone number"
+msgstr ""
+
+#: widgets/widget-mailchimp.php:73
+msgid "Email address"
+msgstr ""
+
+#: widgets/widget-mailchimp.php:80 widgets/widget-mailchimp.php:103
+msgid "Subscribe"
+msgstr ""
+
+#: widgets/widget-mailchimp.php:82
+msgid "You have successfully subscribed to the newsletter."
+msgstr ""
+
+#: widgets/widget-mailchimp.php:83
+msgid "Something went wrong. Your subscription failed."
+msgstr ""
+
+#: widgets/widget-mailchimp.php:84
+msgid "Please accept terms and conditions & privacy policy."
+msgstr ""
+
+#: widgets/widget-mailchimp.php:93
+msgid "I accept"
+msgstr ""
+
+#: widgets/widget-mailchimp.php:93
+msgid "terms and conditions & privacy policy"
+msgstr ""
+
+#: widgets/widget-mailchimp.php:131
+msgid "List:"
+msgstr ""
+
+#: widgets/widget-mailchimp.php:141
+msgid "Description:"
+msgstr ""
+
+#: widgets/widget-mailchimp.php:146
+msgid "Terms &  conditions page link:"
+msgstr ""
+
+#: widgets/widget-mailchimp.php:151
+msgid "Show first name field"
+msgstr ""
+
+#: widgets/widget-mailchimp.php:154 widgets/widget-mailchimp.php:163
+#: widgets/widget-mailchimp.php:172
+msgid "Required?"
+msgstr ""
+
+#: widgets/widget-mailchimp.php:160
+msgid "Show last name field"
+msgstr ""
+
+#: widgets/widget-mailchimp.php:169
+msgid "Show phone field"
+msgstr ""
+
+#: widgets/widget-posts.php:11
+msgid "Your site&#8217;s most recent Posts."
+msgstr ""
+
+#: widgets/widget-posts.php:12
+msgid "*Recent Posts"
+msgstr ""
+
+#: widgets/widget-posts.php:122
+msgid "Number of posts to show:"
+msgstr ""
+
+#: widgets/widget-product-filter.php:13
+msgid "* Product ajax filter"
+msgstr ""
+
+#: widgets/widget-product-filter.php:14
+msgid "Product ajax filter"
+msgstr ""
+
+#: widgets/widget-product-filter.php:124
+msgid "Reset all"
+msgstr ""
+
+#: widgets/widget-product-filter.php:133
+msgid "Product filter"
+msgstr ""
+
+#: widgets/widget-product-filter.php:156
+msgid "Limit to category"
+msgstr ""
+
+#: widgets/widget-product-filter.php:157 widgets/widget-product-filter.php:160
+msgid "Include child categories?"
+msgstr ""
+
+#: widgets/widget-product-filter.php:159
+msgid "Hide on category"
+msgstr ""
+
+#: widgets/widget-product-filter.php:163 widgets/widget-product-filter.php:167
+#: widgets/widget-product-filter.php:185 widgets/widget-product-filter.php:187
+msgid "Display type"
+msgstr ""
+
+#: widgets/widget-product-filter.php:169 widgets/widget-product-filter.php:189
+msgid "Select"
+msgstr ""
+
+#: widgets/widget-product-filter.php:171 widgets/widget-product-filter.php:191
+msgid "Image"
+msgstr ""
+
+#: widgets/widget-product-filter.php:172
+msgid "Label"
+msgstr ""
+
+#: widgets/widget-product-filter.php:173
+msgid "Color"
+msgstr ""
+
+#: widgets/widget-product-filter.php:176 widgets/widget-product-filter.php:193
+msgid "Columns"
+msgstr ""
+
+#: widgets/widget-product-filter.php:181
+msgid ""
+"For color, image display types make sure you set the correct type from this "
+"attribute settings, found under products / attributes. For slider display type, "
+"make sure your attribute is numeric"
+msgstr ""
+
+#: widgets/widget-product-filter.php:198
+msgid ""
+"For image display type make sure you set the product category image from the "
+"Products / Categories"
+msgstr ""
+
+#: widgets/widget-product-filter.php:212 widgets/widget-product-filter.php:216
+msgid "Remove attribute"
+msgstr ""
+
+#: widgets/widget-product-search.php:13
+msgid "* Product ajax search"
+msgstr ""
+
+#: widgets/widget-product-search.php:14
+msgid "Product ajax search"
+msgstr ""
+
+#: widgets/widget-product-search.php:50
+msgid "What are you looking for?"
+msgstr ""
+
+#: widgets/widget-product-search.php:61 widgets/widget-product-search.php:67
+msgid "Search in"
+msgstr ""
+
+#: widgets/widget-product-search.php:86
+msgid "Search"
+msgstr ""
+
+#: widgets/widget-product-search.php:98
+msgid "Product search"
+msgstr ""
+
+#: widgets/widget-product-search.php:119
+msgid "Search within category by default, if in current category page"
+msgstr ""
+
+#: widgets/widget-product-search.php:126
+msgid "Hide category select?"
+msgstr ""
+
+#: widgets/widget-product-search.php:132
+msgid "Search in SKU?"
+msgstr ""
+
+#: widgets/widget-product-search.php:138
+msgid "Search in product description"
+msgstr ""
+
+#: woocommerce/cart/cross-sells.php:35
+msgid "You may be interested in&hellip;"
+msgstr ""
+
+#: woocommerce/cart/mini-cart.php:34
+msgid "Remove this item"
+msgstr ""
+
+#: woocommerce/cart/mini-cart.php:60
+msgid "Quantity:"
+msgstr ""
+
+#: woocommerce/cart/mini-cart.php:101
+msgid "Subtotal"
+msgstr ""
+
+#: woocommerce/cart/mini-cart.php:117
+msgid "No products in the cart."
+msgstr ""
+
+#: woocommerce/content-widget-reviews.php:25
+#, php-format
+msgid "by %s"
+msgstr ""
+
+#: woocommerce/single-product/related.php:36
+msgid "Related products"
+msgstr ""
+
+#: woocommerce/single-product/up-sells.php:36
+msgid "You may also like&hellip;"
+msgstr ""

@@ -1,0 +1,307 @@
+<wpml-config>
+    <custom-fields>
+
+        <custom-field action="translate">element_css</custom-field>
+        <custom-field action="translate">element_font</custom-field>
+        
+        <custom-field action="copy_once">enovathemes_addons_custom_form_styling</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_field_color</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_field_color_focus</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_field_back_color</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_field_back_color_focus</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_field_border_color</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_field_border_color_focus</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_button_color</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_button_color_hover</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_button_back_color</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_button_back_color_hover</custom-field>
+
+        <custom-field action="copy_once">enovathemes_addons_custom_widget_styling</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_widget_title_color</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_widget_color</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_widget_link_color</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_widget_link_color_hover</custom-field>
+
+        <custom-field action="copy_once">enovathemes_addons_sticky</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_header_type</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_sidebar_align</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_transparent</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_shadow</custom-field>
+
+        <custom-field action="copy_once">enovathemes_addons_megamenu_width</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_megamenu_position</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_megamenu_offset</custom-field>
+
+        <custom-field action="copy_once">enovathemes_addons_link</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_gallery</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_audio</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_audio_embed</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_video</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_video_embed</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_gallery_type</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_gallery_columns</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_gallery</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_audio</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_audio_embed</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_video</custom-field>
+        <custom-field action="copy_once">enovathemes_addons_video_embed</custom-field>
+
+        <custom-field action="translate">enovathemes_addons_subtitle</custom-field>
+        <custom-field action="translate">enovathemes_addons_mobile_header</custom-field>
+        <custom-field action="translate">enovathemes_addons_desktop_header</custom-field>
+        <custom-field action="translate">enovathemes_addons_footer</custom-field>
+        <custom-field action="translate">enovathemes_addons_title_section</custom-field>
+        <custom-field action="translate">enovathemes_addons_slider</custom-field>
+        <custom-field action="translate">enovathemes_addons_quote</custom-field>
+
+    </custom-fields>
+    <admin-texts>
+        <key name="propharm_enovathemes">
+            <key name="footer-id" />
+            <key name="header-desktop-id" />
+            <key name="header-mobile-id" />
+            <key name="title-section-id" />
+            <key name="blog-title" />
+            <key name="blog-title-single" />
+            <key name="product-title" />
+            <key name="product-title-single" />
+            <key name="blog-title-text" />
+            <key name="blog-subtitle-text" />
+            <key name="product-title-text" />
+            <key name="product-subtitle-text" />
+        </key>
+    </admin-texts>    
+    <language-switcher-settings>
+        <key name="icl_lang_sel_config">
+            <key name="font-current-normal">#9e9e9e</key>
+            <key name="font-current-hover">#444444</key>
+            <key name="background-current-normal">#f1f1f1</key>
+            <key name="background-current-hover">#eeeeee</key>
+            <key name="font-other-normal">#9e9e9e</key>
+            <key name="font-other-hover">#444444</key>
+            <key name="background-other-normal">#f1f1f1</key>
+            <key name="background-other-hover">#eeeeee</key>
+            <key name="border">#e0e0e0</key>
+        </key>
+        <key name="icl_lang_sel_footer_config">
+            <key name="font-current-normal">#ffffff</key>
+            <key name="font-current-hover">#ffffff</key>
+            <key name="background-current-normal">#19262b</key>
+            <key name="background-current-hover">#19262b</key>
+            <key name="font-other-normal">#ffffff</key>
+            <key name="font-other-hover">#ffffff</key>
+            <key name="background-other-normal">#19262b</key>
+            <key name="background-other-hover">#19262b</key>
+            <key name="border">#19262b</key>
+        </key>    
+        <key name="icl_language_switcher_sidebar">0</key>  
+        <key name="icl_widget_title_show">0</key>
+        <key name="icl_lang_sel_type">dropdown</key>
+        <key name="icl_lso_link_empty">0</key>
+        <key name="icl_lso_flags">0</key>
+        <key name="icl_lso_native_lang">1</key>
+        <key name="icl_lso_display_lang">1</key>
+        <key name="icl_lang_sel_footer">0</key>
+        <key name="icl_post_availability">0</key>
+        <key name="icl_post_availability_position">below</key>
+        <key name="icl_post_availability_text">This post is also available in: %s</key>
+    </language-switcher-settings>
+    <shortcodes>
+        <shortcode>
+            <tag>et_heading</tag>
+            <attributes>
+                <attribute>content</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>et_blockquote</tag>
+            <attributes>
+                <attribute>text</attribute>
+                <attribute>author</attribute>
+                <attribute>title</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>et_button</tag>
+            <attributes>
+                <attribute>button_text</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>et_icon_list</tag>
+            <attributes>
+                <attribute>content</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>et_accordion_item</tag>
+            <attributes>
+                <attribute>title</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>et_tab_item</tag>
+            <attributes>
+                <attribute>title</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>et_icon_box</tag>
+            <attributes>
+                <attribute>title</attribute>
+                <attribute>text</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>et_pricing_table</tag>
+            <attributes>
+                <attribute>label</attribute>
+                <attribute>title</attribute>
+                <attribute>plan</attribute>
+                <attribute>content</attribute>
+                <attribute>button_text</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>et_testimonial</tag>
+            <attributes>
+                <attribute>text</attribute>
+                <attribute>author</attribute>
+                <attribute>title</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>et_client</tag>
+            <attributes>
+                <attribute>title</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>et_person</tag>
+            <attributes>
+                <attribute>name</attribute>
+                <attribute>title</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>et_tagline</tag>
+            <attributes>
+                <attribute>title</attribute>
+                <attribute>button_text</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>et_image</tag>
+            <attributes>
+                <attribute>title</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>et_counter</tag>
+            <attributes>
+                <attribute>title</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>et_progress</tag>
+            <attributes>
+                <attribute>title</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>et_timer</tag>
+            <attributes>
+                <attribute>days</attribute>
+                <attribute>hours</attribute>
+                <attribute>minutes</attribute>
+                <attribute>seconds</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>et_header_button</tag>
+            <attributes>
+                <attribute>button_text</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>widget_contact_form</tag>
+            <attributes>
+                <attribute>title</attribute>
+                <attribute>submit_text</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>widget_facebook</tag>
+            <attributes>
+                <attribute>title</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>widget_flickr</tag>
+            <attributes>
+                <attribute>title</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>widget_instagram</tag>
+            <attributes>
+                <attribute>title</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>widget_mailchimp</tag>
+            <attributes>
+                <attribute>title</attribute>
+                <attribute>description</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>widget_posts</tag>
+            <attributes>
+                <attribute>title</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>widget_login</tag>
+            <attributes>
+                <attribute>title</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>widget_product_categories</tag>
+            <attributes>
+                <attribute>title</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>widget_products_by_rating</tag>
+            <attributes>
+                <attribute>title</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>widget_products</tag>
+            <attributes>
+                <attribute>title</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>widget_recent_product_reviews</tag>
+            <attributes>
+                <attribute>title</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>widget_recent_viewed_products</tag>
+            <attributes>
+                <attribute>title</attribute>
+            </attributes>
+        </shortcode>
+        <shortcode>
+            <tag>widget_product_tag_cloud</tag>
+            <attributes>
+                <attribute>title</attribute>
+            </attributes>
+        </shortcode>
+    </shortcodes>       
+</wpml-config>

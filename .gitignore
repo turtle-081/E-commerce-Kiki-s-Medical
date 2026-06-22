@@ -1,0 +1,33 @@
+# Local Sites configuration
+conf/
+
+# WordPress core (reinstallable)
+app/public/wp-admin/
+app/public/wp-includes/
+app/public/wp-*.php
+app/public/index.php
+app/public/xmlrpc.php
+app/public/license.txt
+app/public/readme.html
+
+# Sensitive config
+app/public/wp-config.php
+
+# Uploads & generated files
+app/public/wp-content/uploads/
+app/public/wp-content/cache/
+app/public/wp-content/upgrade/
+app/public/wp-content/backup-db/
+app/public/wp-content/advanced-cache.php
+app/public/wp-content/wp-cache-config.php
+
+# Default WordPress themes (not custom)
+app/public/wp-content/themes/twentytwentythree/
+app/public/wp-content/themes/twentytwentyfour/
+app/public/wp-content/themes/twentytwentyfive/
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+*.log
+node_modules/
