@@ -31,3 +31,9 @@ app/public/wp-content/themes/twentytwentyfive/
 Thumbs.db
 *.log
 node_modules/
+
+# Local-generated, machine-specific (points at the host's service paths)
+app/.envrc
+
+# LiteSpeed cache data
+app/public/wp-content/litespeed/
