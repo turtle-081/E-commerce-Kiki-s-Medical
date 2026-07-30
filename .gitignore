@@ -37,3 +37,6 @@ app/.envrc
 
 # LiteSpeed cache data
 app/public/wp-content/litespeed/
+
+# LiteSpeed's own .htaccess backup
+app/public/.htaccess.bk
