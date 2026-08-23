@@ -32,6 +32,9 @@ Thumbs.db
 *.log
 node_modules/
 
+# Local Sites service logs (nginx/php/mysql/mailpit), incl. non-".log" snapshots
+logs/
+
 # Local-generated, machine-specific (points at the host's service paths)
 app/.envrc
 
