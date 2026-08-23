@@ -11,3 +11,31 @@
 /* =Theme customization starts here
 -------------------------------------------------------------- */
 
+/*
+ * Fix: single product page summary column was almost empty.
+ *
+ * The parent theme (propharm/style.css) declares, unscoped:
+ *
+ *     .yay-currency-single-page-switcher {
+ *         height: 100%;
+ *         display: flex;
+ *         align-items: center;
+ *         justify-content: center;
+ *     }
+ *
+ * Inside .summary that height:100% resolved to the full column height (602px on a
+ * 1440px viewport) for what is really a 32px dropdown. The switcher therefore filled
+ * the whole column and pushed the short description, price, add-to-cart form, wishlist
+ * / compare row, widgets and product meta far below the fold, leaving a large blank gap
+ * next to the product image.
+ *
+ * Scoped to the summary so the rule keeps working wherever else the theme uses that
+ * switcher (e.g. the header bar), where height:100% is intentional.
+ */
+.summary .yay-currency-single-page-switcher,
+.entry-summary .yay-currency-single-page-switcher {
+	height: auto;
+	justify-content: flex-start;
+}
+
+

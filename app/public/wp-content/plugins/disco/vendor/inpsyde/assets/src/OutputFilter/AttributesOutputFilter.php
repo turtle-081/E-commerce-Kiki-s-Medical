@@ -44,8 +44,16 @@ class AttributesOutputFilter implements AssetOutputFilter
 
         $doc = new \DOMDocument();
         libxml_use_internal_errors(true);
+        // Was: mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8")
+        // PHP 8.2 deprecated handling HTML entities via mbstring, which emitted
+        // "mb_convert_encoding(): Handling HTML entities via mbstring is deprecated"
+        // on every front-end page load. mb_encode_numericentity over the non-ASCII
+        // range is the documented equivalent: it converts every codepoint above
+        // 0x7F to a numeric entity so DOMDocument reads the string as UTF-8.
+        // NOTE: this is a local patch to third-party vendor code and will be lost
+        // when the "disco" plugin is updated.
         @$doc->loadHTML(
-            mb_convert_encoding($html, 'HTML-ENTITIES', "UTF-8"),
+            mb_encode_numericentity($html, [0x80, 0x10FFFF, 0, ~0], 'UTF-8'),
             LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
         );
         libxml_clear_errors();
