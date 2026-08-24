@@ -49,8 +49,15 @@ if ( ! @$db->real_connect( $host, $conf['DB_USER'], $conf['DB_PASSWORD'], $conf[
 }
 $db->set_charset( 'utf8mb4' );
 
-/** Old demo colours we are migrating away from. */
-$OLD = array( '15a9e3', 'f2971f', '39cb74', 'edf4f6' );
+/**
+ * Old demo colours we are migrating away from.
+ *
+ * The first four are the demo's accent palette. The last two are the demo's
+ * navy and grey: the client asked for black text, and navy/grey are off-palette,
+ * so foreground uses become black and the dark panels they painted become the
+ * darkest brand green.
+ */
+$OLD = array( '15a9e3', 'f2971f', '39cb74', 'edf4f6', '184363', '56778f' );
 
 /** Names that mean "this is a filled area", where the bright brand green works. */
 function is_background( $name ) {
@@ -94,6 +101,21 @@ function target( $old, $name ) {
 			// Foreground: text, icons, borders, strokes. #80AF40 fails contrast
 			// for all of these, so use the accessible green.
 			return $hover ? '#4D6926' : '#5A7B2D';
+
+		case '184363': // demo's navy
+		case '56778f': // demo's body grey
+			// Client asked for black text. Every foreground use -- copy, icons,
+			// borders -- becomes black (21:1 on white).
+			//
+			// These same two colours also painted the dark panels (footer, CTA
+			// blocks): 331 background uses for the navy alone. Those carry white
+			// text, so they cannot become the brand green (2.58:1). They take the
+			// darkest brand green instead, which holds white text at 6.24:1 and
+			// keeps the panels on-palette.
+			if ( is_background( $name ) ) {
+				return '#4D6926';
+			}
+			return '#000000';
 	}
 	return null;
 }
@@ -101,7 +123,9 @@ function target( $old, $name ) {
 /** Rewrite one blob, returning [newValue, changeCount, perRuleTally]. */
 function remap( $text, $OLD, &$tally ) {
 	$count = 0;
-	$re    = '/(?:([a-z0-9_\-]+)\s*[:=]\s*"?[^"{};]{0,60}?)?#?(' . implode( '|', $OLD ) . ')\b/i';
+	// The optional quote after the name lets this match JSON ("backgroundColor":"#...")
+	// as well as CSS declarations and shortcode attributes.
+	$re    = '/(?:([a-z0-9_\-]+)"?\s*[:=]\s*"?[^"{};]{0,60}?)?#?(' . implode( '|', $OLD ) . ')\b/i';
 
 	$out = preg_replace_callback(
 		$re,
@@ -131,7 +155,23 @@ $totalRow = 0;
 $totalOcc = 0;
 $like     = implode( ' OR ', array_map( fn( $c ) => "LOWER(%s) LIKE '%$c%'", $OLD ) );
 
-foreach ( array( array( 'wp_posts', 'ID', 'post_content' ), array( 'wp_postmeta', 'meta_id', 'meta_value' ) ) as list( $table, $pk, $col ) ) {
+/*
+ * Slider Revolution keeps its layer styling as JSON in its own table, so the
+ * slider headlines are a third place colours hide -- not reachable through
+ * wp_posts or wp_postmeta.
+ */
+$targets = array(
+	array( 'wp_posts', 'ID', 'post_content' ),
+	array( 'wp_postmeta', 'meta_id', 'meta_value' ),
+	array( 'wp_revslider_slides', 'id', 'layers' ),
+);
+
+foreach ( $targets as list( $table, $pk, $col ) ) {
+	// Skip tables that are not installed (RevSlider may be absent).
+	if ( ! $db->query( "SHOW TABLES LIKE '$table'" )->num_rows ) {
+		printf( "%-22s (table not present, skipped)\n", $table );
+		continue;
+	}
 	$where = str_replace( '%s', $col, $like );
 	$res   = $db->query( "SELECT $pk, $col FROM $table WHERE $where" );
 	$rows  = 0;

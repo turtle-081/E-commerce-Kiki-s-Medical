@@ -21,6 +21,11 @@
 	--brand-red:        #DC2222; /* sale badges, discounts */
 	--brand-red-dark:   #C61F1F; /* red hover */
 	--brand-white:      #FFFFFF;
+
+	/* Client asked for black text, replacing the demo's navy and grey. */
+	--text-black:       #000000; /* all copy, headings, icons: 21:1 on white */
+	--panel-dark:       #4D6926; /* the dark panels the navy used to paint;
+	                                white text on it is 6.24:1 */
 }
 
 /* 1. text-colour use of the brand green -> accessible dark green */

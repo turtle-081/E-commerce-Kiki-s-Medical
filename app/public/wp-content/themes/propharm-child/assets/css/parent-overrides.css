@@ -1,0 +1,438 @@
+
+/* ---------------------------------------------------------------------------
+ * GENERATED FILE - do not edit by hand.
+ * Regenerate with:  python tools/gen-parent-overrides.py
+ *
+ * Navy (#184363) and grey (#56778f) hardcoded in the PARENT theme's style.css.
+ * None of it is driven by a theme option, so neither the palette change nor the
+ * content pass could reach it, and editing the parent would be lost on update.
+ *
+ * The client asked for black text, so every foreground declaration becomes
+ * #000000. The few filled areas take the darkest brand green, which holds white
+ * text at 6.24:1.
+ * ------------------------------------------------------------------------ */
+
+#et-desktop-default .header-menu>.menu-item.depth-0>.mi-link {
+	color: var(--text-black);
+}
+
+#et-desktop-default .header-menu>.menu-item:not(.mm-true) .sub-menu .menu-item .mi-link {
+	color: var(--text-black);
+}
+
+#et-desktop-default .header-menu>.menu-item:not(.mm-true) .sub-menu .menu-item>.mi-link>.arrow svg {
+	fill: var(--text-black);
+}
+
+.mctd .close, .mctd .line {
+	fill: var(--text-black);
+}
+
+.mctd .active .close, .mctd .active .line, .mctd .back, .mctd:hover .close, .mctd:hover .line {
+	fill: var(--text-black);
+}
+
+#mobile-container-default .mobile-container-inner {
+	color: var(--text-black);
+}
+
+#mobile-menu-default>.menu-item>a {
+	color: var(--text-black);
+}
+
+#mobile-menu-default>.menu-item>a .arrow svg {
+	fill: var(--text-black);
+}
+
+#title-section-title-default {
+	color: var(--text-black);
+}
+
+/* footer ----*/ #et-footer-default {
+	background-color: var(--panel-dark);
+}
+
+th {
+	color: var(--text-black);
+}
+
+#to-top svg {
+	fill: var(--text-black);
+}
+
+/* WP 5 ----*/ :root .has-very-dark-gray-color {
+	color: var(--text-black) !important;
+}
+
+/* Dynamic converted ----*/ .post-read-more:hover svg, .content-sidebar-toggle svg, .image-container .placeholder circle, .enovathemes-navigation .next svg, .enovathemes-navigation .prev svg, .post-social-share a.social-toggle svg, .et-person .et-social-links svg, .lazy-inline-image circle {
+	fill: var(--text-black);
+}
+
+.post-single-navigation a:hover, .see-responses:hover, .woocommerce-product-gallery .flex-control-nav li img.flex-active {
+	border-color: var(--text-black);
+}
+
+#to-top:hover, .post-date:after, .post-quote-author:before, .post-status-author:before, .format-quote .post-excerpt:before, .format-status .post-excerpt:before, .format-aside .post-excerpt:before, .format-link .post-body:before, .format-quote .post-content:before, .format-status .post-content:before, .format-aside .post-content:before, .format-link .post-body:before, .single-post-page > .format-link .post-link:before, .post.sticky .post-body:before, .author-wrapper:before, .single-post-page blockquote:after, .widget_tag_cloud .tagcloud a:hover, .wp-block-tag-cloud a:hover, .post-tags a:hover, .widget_product_tag_cloud .tagcloud a:hover, .post-tags-single a:hover, .post-single-navigation a:hover:before, .related-posts-title:after, .comment-reply-title:after, .comments-title:after, .upsells > h4:after, .crosssells > h4:after, .related > h4:after, .comment-reply-link, .post-media .tns-controls button:before, .et-carousel .tns-controls button:before, .et-gallery.slider .tns-controls button:before, .gsap-lightbox-controls:after, .product .button:hover, .product .added_to_cart:hover, .product .single_add_to_cart_button, .woocommerce-product-gallery__trigger:hover, .woocommerce-product-gallery__trigger:before, .woocommerce h2:after, .woocommerce h3:after, .popup-banner-toggle, .post-social-share a:hover {
+	background-color: var(--panel-dark);
+}
+
+.woocommerce-product-search button[type="submit"]:hover {
+	background-color: var(--panel-dark) !important;
+}
+
+.loop-posts .post-title, .loop-posts .post-title a, a, a:hover, .post-ajax-button, .post-quote-author, .post-status-author, .format-quote .post-excerpt, .format-status .post-excerpt, .format-aside .post-excerpt, .widget_calendar, .widget_calendar a, .wp-block-calendar, .wp-block-calendar a, .widget_tag_cloud .tagcloud a, .wp-block-tag-cloud a, .post-tags a, .widget_product_tag_cloud .tagcloud a, .post-tags-single a, .post-author-ind, ul.chat li > *, .product .button, .product .added_to_cart, .widget_price_filter .price_label, .product .price del, .woocommerce-variation-availability, .woocommerce-tabs .tabs li a, .comment-text .meta, .widget_rating_filter ul li, .shop_table thead th, .woocommerce table.wishlist_table thead th, blockquote,q, .et-blockquote .title, .et-testimonial .title, .et-pricing-table .plan, .et-pricing-table .et-button, .et-pricing-table .label, .et-person .title, .woocommerce-message {
+	color: var(--text-black);
+}
+
+.woocommerce-review-link {
+	color: var(--text-black) !important;
+}
+
+a:hover, .comment-content .edit-link a a:hover, .woocommerce-review-link:hover, .product_meta a:hover {
+	color: var(--text-black);
+}
+
+.widget_tag_cloud .tagcloud a:hover:after, .widget_product_tag_cloud .tagcloud a:hover:after {
+	background-color: var(--panel-dark) !important;
+}
+
+.post-categories.img a, .post-categories.single a {
+	color: var(--text-black);
+}
+
+.post-categories.single a {
+	background-color: var(--panel-dark);
+}
+
+.post-meta.single a:hover {
+	color: var(--text-black);
+}
+
+.post-meta, .post-meta a, .comment-date-time, .comment-date-time a {
+	color: var(--text-black);
+}
+
+.mob-tab-content .cart-contents, .mob-tab-content .cart-contents .cart-info, .mob-tab-content .wishlist-contents, .mob-tab-content .compare-contents {
+	background-color: var(--panel-dark);
+}
+
+::placeholder {
+	color: var(--text-black);
+}
+
+:-ms-input-placeholder {
+	color: var(--text-black);
+}
+
+::-ms-input-placeholder {
+	color: var(--text-black);
+}
+
+.error404-default-title {
+	color: var(--text-black);
+}
+
+.widget_layered_nav ul li a:hover, .fbt-list li:hover, .pf-item.list.attr ul li a:hover, .pf-item.list.attr ul li a.chosen, .pf-item.col.attr ul li a:hover, .pf-item.col.attr ul li a.chosen {
+	color: var(--text-black) !important;
+}
+
+.widget_layered_nav ul li.chosen a, .pf-item.list.attr ul li.chosen a {
+	color: var(--text-black) !important;
+}
+
+.widget_layered_nav ul li a:after, .pf-item.list.attr ul li a:after, .pf-item.col.attr ul li a:after, .fbt-list li:after {
+	background-color: var(--panel-dark);
+}
+
+form #searchsubmit, .widget_product_search form button {
+	text-indent: var(--text-black) !important;
+}
+
+.widget_product_search form button:hover {
+	background-color: var(--panel-dark) !important;
+}
+
+.wp-block-search button {
+	text-indent: var(--text-black) !important;
+}
+
+body form #searchsubmit:hover + .search-icon, body .widget_product_search button[type="submit"]:hover, body .wp-block-search button:hover {
+	background-color: var(--panel-dark) !important;
+}
+
+.layout-sidebar .widget_mailchimp input[type="submit"]:hover {
+	background-color: var(--panel-dark) !important;
+}
+
+.insta-placeholder {
+	color: var(--text-black);
+}
+
+.product-data .product-price .sale-price + .regular-price {
+	color: var(--text-black);
+}
+
+.product-search h3 .highlight, .product-search .product-sku .highlight {
+	color: var(--text-black) !important;
+}
+
+.et-carousel .tns-nav .tns-nav-active, .manual-carousel .tns-nav .tns-nav-active {
+	background-color: var(--panel-dark) !important;
+}
+
+.post-media .tns-controls button:before, .et-carousel .tns-controls button:before, .et-gallery.slider .tns-controls button:before, .tns-controls-trigger button:before {
+	background-color: var(--panel-dark);
+}
+
+.single-post-page blockquote:before, .single-post-page q:before {
+	background-color: var(--panel-dark);
+}
+
+.post-social-share a svg {
+	fill: var(--text-black);
+}
+
+ul.chat li > * {
+	color: var(--text-black);
+}
+
+ul.chat li > span {
+	color: var(--text-black);
+}
+
+ul.chat li:nth-child(2n+2) > p {
+	color: var(--text-black) !important;
+}
+
+.comment-reply-link {
+	color: var(--text-black);
+}
+
+.gsap-lightbox-toggle:after, .gsap-lightbox-nav:after {
+	background-color: var(--panel-dark);
+}
+
+.woocommerce-before-shop-loop .layout-control > .chosen, .woocommerce-before-shop-loop .layout-control > *:hover {
+	background: var(--panel-dark) !important;
+}
+
+.woocommerce-before-shop-loop .sale-products:hover:before {
+	box-shadow: var(--text-black);
+}
+
+body .grid .loop-products .product-category .post-body {
+	color: var(--text-black);
+}
+
+.comp-quantity {
+	color: var(--text-black);
+}
+
+.product .price {
+	color: var(--text-black);
+}
+
+.product .post-category a:hover {
+	color: var(--text-black);
+}
+
+.product .post-category a:hover {
+	color: var(--text-black);
+}
+
+.product .button:hover, .product .added_to_cart:hover {
+	background-color: var(--panel-dark) !important;
+}
+
+.comp-counter span {
+	color: var(--text-black);
+}
+
+.woocommerce-message a {
+	background-color: var(--panel-dark) !important;
+}
+
+.woocommerce-message a:hover {
+	background-color: var(--panel-dark) !important;
+}
+
+.woocommerce-product-details__short-description ul {
+	color: var(--text-black);
+}
+
+.product-short-description ul li, .woocommerce-product-details__short-description ul li {
+	color: var(--text-black);
+}
+
+body.woocommerce .variations .tawcvs-swatches .swatch-label, html body .quick-view-wrapper.woocommerce .variations .tawcvs-swatches .swatch-label {
+	color: var(--text-black);
+}
+
+html body.woocommerce div.product form.cart.variations_form .tawcvs-swatches .swatch.swatch-label:hover, html body.woocommerce div.product form.cart.variations_form .tawcvs-swatches .swatch.selected.swatch-label, html body .quick-view-wrapper.woocommerce form.cart.variations_form .tawcvs-swatches .swatch.swatch-label:hover, html body .quick-view-wrapper.woocommerce form.cart.variations_form .tawcvs-swatches .swatch.selected.swatch-label {
+	background-color: var(--panel-dark) !important;
+	border: var(--text-black) !important;
+}
+
+.single-product-category:hover {
+	border-color: var(--text-black);
+}
+
+.shop_table td.product-price, .shop_table td.product-subtotal {
+	color: var(--text-black);
+}
+
+.woocommerce-order-overview strong {
+	color: var(--text-black);
+}
+
+.product_meta > * {
+	color: var(--text-black);
+}
+
+.product_meta span span, .product_meta a {
+	color: var(--text-black);
+}
+
+.woocommerce-product-gallery .flex-control-nav li img.flex-active {
+	border-color: var(--text-black);
+}
+
+.manual-carousel .tns-controls button:before, .et-carousel .tns-controls button:before, .et-shortcode-posts.full .tns-controls button:before {
+	background-color: var(--panel-dark);
+}
+
+.manual-carousel .tns-controls button:hover, .et-carousel .tns-controls button:hover, .et-shortcode-posts.full .tns-controls button:hover {
+	border-color: var(--text-black);
+}
+
+.fbt-list li {
+	color: var(--text-black);
+}
+
+.star-rating-wrap > span {
+	color: var(--text-black);
+}
+
+.star-rating-wrap > a {
+	color: var(--text-black);
+}
+
+.woocommerce-review-link {
+	color: var(--text-black);
+}
+
+.woocommerce-Tabs-panel .shop_attributes tr {
+	color: var(--text-black);
+}
+
+.woocommerce-MyAccount-navigation li a:hover, .woocommerce-MyAccount-navigation li.is-active a {
+	color: var(--text-black) !important;
+}
+
+.shop_table .product-remove a {
+	color: var(--text-black) !important;
+}
+
+.shop_table .product-remove a:hover {
+	background-color: var(--panel-dark) !important;
+}
+
+.cart_totals .shop_table .cart-subtotal td, .cart_totals .shop_table .order-total td {
+	color: var(--text-black);
+}
+
+.et-woo-categories .category-content {
+	color: var(--text-black);
+}
+
+.entry-summary .wishlist-title, .entry-summary .compare-title, .entry-summary .ask-title {
+	color: var(--text-black) !important;
+}
+
+.wishlist-toggle svg, .compare-toggle svg, .ask-toggle svg, .en-quick-view svg {
+	fill: var(--text-black);
+}
+
+.ask-form .ask-close {
+	background-color: var(--panel-dark);
+}
+
+.pf-item.col ul li a span + span {
+	color: var(--text-black);
+}
+
+.pf-item.image ul li span {
+	color: var(--text-black);
+}
+
+.pf-item.col.attr .attr-color.light:before {
+	background-color: var(--panel-dark);
+}
+
+.ui-slider-handle-bubble {
+	background-color: var(--panel-dark);
+}
+
+.ui-slider-handle-bubble:before {
+	background-color: var(--panel-dark);
+}
+
+.clear-all-attribute, .filter-breadcrumbs > * {
+	color: var(--text-black);
+}
+
+.show .post-social-share.filter svg {
+	fill: var(--text-black);
+}
+
+.enovathemes-navigation li a, .enovathemes-navigation li .current, .woocommerce-pagination li a, .woocommerce-pagination li .current {
+	color: var(--text-black);
+}
+
+.post-single-navigation a[rel="prev"]:before, .post-single-navigation a[rel="next"]:after {
+	background-color: var(--panel-dark);
+}
+
+/* et-blockquote ----*/ blockquote,q {
+	color: var(--text-black);
+}
+
+.et-blockquote .title {
+	color: var(--text-black);
+}
+
+.et-blockquote .author {
+	color: var(--text-black) !important;
+}
+
+.et-pricing-table .et-button .regular {
+	background-color: var(--panel-dark) !important;
+}
+
+.et-pricing-table.highlight-true .et-button {
+	color: var(--text-black) !important;
+}
+
+.et-testimonial blockquote {
+	color: var(--text-black);
+}
+
+.et-person .name {
+	color: var(--text-black);
+}
+
+.popup-banner-toggle, .toggle-banner-toggle {
+	background-color: var(--panel-dark);
+}
+
+.et-attribute-box-content ul li a {
+	color: var(--text-black);
+}
+
+.et-attribute-box-content ul li.all a:hover {
+	color: var(--text-black);
+}
+
+.woocommerce table.shop_table_responsive tr td:before, .woocommerce-page table.shop_table_responsive tr td:before {
+	color: var(--text-black);
+}

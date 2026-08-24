@@ -346,3 +346,74 @@ the demo blue. The accent is now `#80AF40`; the original is kept at
 `tools/logo-original-demo.svg`. `uploads/` is gitignored, so that backup is the
 only copy under version control. This is still the demo placeholder — replace it
 with the client's own artwork when they supply it.
+
+---
+
+## 5. Second client round — black text, no COVID notice, Kenyan shillings
+
+### 5.1 Black text, dark panels on-palette
+
+`#184363` (navy) and `#56778f` (grey) were the demo's text colours. The client
+asked for black text, and both are off-palette, so:
+
+| Context | New |
+|---|---|
+| Foreground — copy, headings, icons, borders | `#000000` (21:1 on white) |
+| Filled panels — footer, CTA blocks | `#4D6926` (`--panel-dark`, white text 6.24:1) |
+
+The split matters: those two colours also painted the dark panels, which carry
+white text. Brand green there would be 2.58:1, so they take the darkest brand
+green instead.
+
+Applied in four places, because these colours live in four separate stores:
+
+1. **Theme options** — `main-typo`, `headings-typo`, `form-text-color`
+   (`tools/apply-brand-palette.php`).
+2. **Page content** — 2,661 occurrences across 107 rows
+   (`tools/remap-content-colours.php`).
+3. **Slider Revolution** — 135 occurrences across 15 rows in
+   `wp_revslider_slides.layers`, stored as JSON in the plugin's own table, so
+   neither of the above could see them. The remap tool now covers that table.
+4. **Parent theme `style.css`** — 106 rules hardcode navy/grey with no theme
+   option behind them. Generated into
+   `propharm-child/assets/css/parent-overrides.css` by
+   `tools/gen-parent-overrides.py`, rather than editing the parent, which an
+   update would overwrite. Regenerate after a theme update.
+
+The logo wordmark went navy → black; the untouched demo original is still at
+`tools/logo-original-demo.svg`.
+
+### 5.2 COVID-19 notice removed
+
+`tools/remove-covid-notice.php` strips the `[et_header_slogan]` element carrying
+"Due to the COVID 19 epidemic…" from all six header layouts. Only the slogan is
+removed, not its row — that 48px top bar also holds the login toggle, currency
+switcher and language switcher.
+
+**Deliberately left in place:** a blog post about COVID vaccines, the "COVID 19"
+product filter term, and a `covid-19` product tag. Those are real catalogue and
+editorial content on a pharmacy site, not the banner.
+
+### 5.3 Kenyan shillings
+
+`tools/convert-currency-kes.php`. Changing `woocommerce_currency` alone only
+swaps the symbol, so a product stored as 145.55 would have displayed as
+"KSh 145.55" — about a hundredth of its intended value. Prices were therefore
+converted as well: **196 values across 79 products/variations at 1 USD = 129 KES**,
+rounded to the nearest 10.
+
+`_price` is recomputed from the regular and sale prices rather than converted on
+its own, so a rounded sale price can never land at or above its regular price.
+
+Store settings: `woocommerce_currency = KES`, `price_num_decimals = 0`,
+`currency_pos = left_space`.
+
+**The YayCurrency plugin formats prices itself**, so its own entry
+(`yay-currency-manage` post) had to be switched to KES with matching decimals and
+position — otherwise it silently overrides the WooCommerce settings and prices
+render as "KSh1,540" with no space, still to 2 decimals.
+
+**The rate is an approximation, not client-approved pricing.** Re-run with a
+different rate via `php tools/convert-currency-kes.php apply <rate>` — but only
+against a database restored from before the first conversion, or the multiplier
+compounds.

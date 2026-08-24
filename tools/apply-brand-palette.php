@@ -83,6 +83,19 @@ $TARGET_FORM = array(
 	),
 );
 
+/**
+ * Typography. The client asked for black text, replacing the demo's navy
+ * headings (#184363) and grey body copy (#56778f). Black is 21:1 on white.
+ */
+$TARGET_TYPO = array(
+	'main-typo'       => array( 'color' => '#000000' ),
+	'headings-typo'   => array( 'color' => '#000000' ),
+	'form-text-color' => array(
+		'regular' => '#000000',
+		'hover'   => '#000000',
+	),
+);
+
 $res = $db->query( "SELECT option_value FROM wp_options WHERE option_name='$OPTION' LIMIT 1" );
 if ( ! $res || ! $res->num_rows ) {
 	fwrite( STDERR, "option '$OPTION' not found - is the propharm theme installed?\n" );
@@ -131,6 +144,11 @@ foreach ( $TARGET_FORM as $key => $states ) {
 		printf( "%-20s  %-9s  %s\n", "$key.$state", $opts[ $key ][ $state ] ?? '(unset)', $v );
 	}
 }
+foreach ( $TARGET_TYPO as $key => $states ) {
+	foreach ( $states as $state => $v ) {
+		printf( "%-20s  %-9s  %s\n", "$key.$state", $opts[ $key ][ $state ] ?? '(unset)', $v );
+	}
+}
 
 if ( 'apply' !== $mode ) {
 	echo "\ndry run - pass 'apply' to write\n";
@@ -150,9 +168,11 @@ foreach ( $TARGET as $k => $v ) {
 foreach ( $TARGET_BUTTON as $state => $v ) {
 	$opts['form-button-back'][ $state ] = $v;
 }
-foreach ( $TARGET_FORM as $key => $states ) {
-	foreach ( $states as $state => $v ) {
-		$opts[ $key ][ $state ] = $v;
+foreach ( array( $TARGET_FORM, $TARGET_TYPO ) as $group ) {
+	foreach ( $group as $key => $states ) {
+		foreach ( $states as $state => $v ) {
+			$opts[ $key ][ $state ] = $v;
+		}
 	}
 }
 

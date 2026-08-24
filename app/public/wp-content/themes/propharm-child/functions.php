@@ -38,6 +38,21 @@ function propharm_child_brand_styles() {
 		$deps,
 		filemtime( $path )
 	);
+
+	// Generated overrides for colours hardcoded in the parent theme's style.css.
+	// Depends on the brand sheet because it uses the custom properties defined
+	// there. See tools/gen-parent-overrides.py.
+	$ovr_rel  = '/assets/css/parent-overrides.css';
+	$ovr_path = get_stylesheet_directory() . $ovr_rel;
+
+	if ( file_exists( $ovr_path ) ) {
+		wp_enqueue_style(
+			'propharm-child-parent-overrides',
+			get_stylesheet_directory_uri() . $ovr_rel,
+			array( 'propharm-child-brand' ),
+			filemtime( $ovr_path )
+		);
+	}
 }
 add_action( 'wp_enqueue_scripts', 'propharm_child_brand_styles', 30 );
 
