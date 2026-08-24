@@ -279,3 +279,70 @@ Plus 172 `wp_postmeta` rows. Spread across pages, megamenus, posts, banners,
 headers and footers. Until those are remapped the site keeps rendering the old
 blue in module-level styling (`#et-image-518409 .curtain{background-color:#15a9e3}`
 and similar). That is a content migration, not a settings change.
+
+### 4.1 Content pass — colours baked into page content
+
+The demo set colours per page-builder module, so the theme options could not
+reach them. `tools/remap-content-colours.php` rewrites those:
+**1,525 occurrences across 182 rows** in `wp_posts.post_content` and
+`wp_postmeta.meta_value`. Run it with no argument for a dry run; `apply` to write.
+
+The mapping is context-aware, not a find/replace, because the same old colour
+meant different things in different places:
+
+| Old | Context | New |
+|---|---|---|
+| `#15a9e3`, `#39cb74` | background / fill area | `#80AF40` |
+| `#15a9e3`, `#39cb74` | text, icons, borders, strokes | `#5A7B2D` |
+| `#f2971f` | any (CTA orange) | `#5A7B2D`, hover `#4D6926` |
+| `#edf4f6` | any (pale tint) | `#F5F9F0` |
+
+Two decisions worth knowing:
+
+**`#39cb74` did not become red.** It is the theme's `sale-color` *option*, but in
+page content it paints `et_icon_list` ticks (38), `et_icon_box` (37), `et_button`
+(30) and `et_progress` bars (9) on the About page, product descriptions and posts.
+Recolouring those red would have rendered ~138 feature ticks as error icons.
+Red-for-sale is carried by the `sale-color` option instead.
+
+**Hover states map one step darker** than their base. A flat replace would have
+collapsed some base/hover pairs into a single colour and made the hover invisible.
+
+**Deliberately left alone — product colour swatches.** Three `wp_termmeta` rows
+hold `color` meta for `pa_color` terms named "Blue", "Green" and "Orange". Those
+are variation swatches describing the products themselves, not branding. A swatch
+labelled "Blue" must not render brand green.
+
+### 4.2 Caches that hide the change
+
+Both the generated CSS and the theme's content fragments are cached in transients
+stored with **no expiry**, so edits appear to do nothing until they are cleared:
+
+- `_transient_dynamic-styles-cached` — the generated stylesheet
+- `_transient_enovathemes-megamenu` / `-headers` / `-footers` / `-banners` /
+  `-icons` / `-s-icons` and friends — page-builder HTML, stored gzcompressed, so
+  a plain SQL search will not even find colours inside them
+- `_transient_et_icon_*` — one per inlined SVG, including the logo
+
+Clearing the enovathemes and et_icon transients (41 rows here) makes them rebuild
+from the corrected content.
+
+### 4.3 Parent-theme hardcoded colours
+
+Seven rules in `propharm/style.css` hardcode the demo palette and are not driven
+by any option: desktop and mobile menu hover, the mobile toggle icon, Mailchimp
+success text, post-navigation arrows, the audio playlist progress bar, and star
+ratings. Overridden at the end of `brand.css` rather than by editing the parent,
+which an update would overwrite.
+
+Star ratings are now brand green (they were `#f2971f`). Amber stars are a strong
+e-commerce convention and the brief supplied no amber, so that one declaration is
+worth confirming with the client — it is a single line to revert.
+
+### 4.4 The logo
+
+`uploads/logo.svg` is a two-colour mark: navy `#184363` plus one accent that was
+the demo blue. The accent is now `#80AF40`; the original is kept at
+`tools/logo-original-demo.svg`. `uploads/` is gitignored, so that backup is the
+only copy under version control. This is still the demo placeholder — replace it
+with the client's own artwork when they supply it.

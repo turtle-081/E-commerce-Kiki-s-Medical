@@ -70,6 +70,19 @@ $TARGET_BUTTON = array(
 	'hover'   => '#4D6926', // darker still; white text 6.24:1
 );
 
+/**
+ * Form field colours. The focus border deliberately uses the darker green, not
+ * #80AF40: a focus indicator is a UI component and needs 3:1 against what is
+ * around it, and the brand green manages only 2.58:1 on white.
+ */
+$TARGET_FORM = array(
+	'form-back-color'   => array( 'regular' => '#F5F9F0' ),
+	'form-border-color' => array(
+		'regular' => '#F5F9F0',
+		'hover'   => '#5A7B2D',
+	),
+);
+
 $res = $db->query( "SELECT option_value FROM wp_options WHERE option_name='$OPTION' LIMIT 1" );
 if ( ! $res || ! $res->num_rows ) {
 	fwrite( STDERR, "option '$OPTION' not found - is the propharm theme installed?\n" );
@@ -113,6 +126,11 @@ foreach ( $TARGET as $k => $v ) {
 foreach ( $TARGET_BUTTON as $state => $v ) {
 	printf( "%-20s  %-9s  %s\n", "form-button-back.$state", $opts['form-button-back'][ $state ] ?? '(unset)', $v );
 }
+foreach ( $TARGET_FORM as $key => $states ) {
+	foreach ( $states as $state => $v ) {
+		printf( "%-20s  %-9s  %s\n", "$key.$state", $opts[ $key ][ $state ] ?? '(unset)', $v );
+	}
+}
 
 if ( 'apply' !== $mode ) {
 	echo "\ndry run - pass 'apply' to write\n";
@@ -131,6 +149,11 @@ foreach ( $TARGET as $k => $v ) {
 }
 foreach ( $TARGET_BUTTON as $state => $v ) {
 	$opts['form-button-back'][ $state ] = $v;
+}
+foreach ( $TARGET_FORM as $key => $states ) {
+	foreach ( $states as $state => $v ) {
+		$opts[ $key ][ $state ] = $v;
+	}
 }
 
 $before = count( $opts );

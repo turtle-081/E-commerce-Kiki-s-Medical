@@ -37,3 +37,62 @@
 .post-single-navigation a:hover,.widget_et_recent_entries .post-title:hover a,.widget_categories ul li a:hover,.wp-block-archives li a:hover,.widget_pages ul li a:hover,.widget_archive ul li a:hover,.widget_meta ul li a:hover,.widget_nav_menu ul li a:hover,.widget_product_categories ul li a:hover,.widget_product_categories ul li.current-cat > a,.widget_recent_entries ul li a:hover, .widget_rss ul li a:hover,.widget_icl_lang_sel_widget li a:hover,.widget_products .product_list_widget > li .product-title:hover a,.widget_recently_viewed_products .product_list_widget > li .product-title:hover a,.widget_recent_reviews .product_list_widget > li .product-title:hover a,.widget_top_rated_products .product_list_widget > li .product-title:hover a,.recentcomments a:hover,.page-content-wrap .widget_shopping_cart .cart_list li .remove:hover,.product_meta a:hover,.product-data .product-price .sale-price,.comment-reply-link:hover,.clear-attribute:hover,.clear-attribute:hover a,.pf-item.list.cat .chosen,.et-woo-categories.border-true li:hover .category-title,.et-woo-categories.list li:hover .category-title,.post-title-section .post-date-inline-single span,.woocommerce-tabs .tabs li.active a,.entry-summary .wishlist-title:hover,.entry-summary .compare-title:hover,.entry-summary .ask-title:hover {
 	color: var(--brand-green-dark) !important;
 }
+
+/* ---------------------------------------------------------------------------
+ * Hardcoded demo colours in the PARENT theme's style.css.
+ *
+ * These are not driven by any theme option, so the palette change could not
+ * reach them. Fixed here rather than by editing propharm/style.css, which an
+ * update would overwrite.
+ *
+ * Same split as above: foreground marks (text, icons) take the accessible
+ * #5A7B2D, filled areas take the brand green.
+ * ------------------------------------------------------------------------ */
+
+/* Desktop menu hover / active / open (was #15a9e3) */
+#et-desktop-default .header-menu > .menu-item.depth-0:hover > .mi-link,
+#et-desktop-default .header-menu > .menu-item.depth-0.active > .mi-link,
+#et-desktop-default .header-menu > .menu-item.depth-0.in > .mi-link {
+	color: var(--brand-green-dark);
+}
+
+/* Mobile menu hover (was #15a9e3) */
+#mobile-menu-default > .menu-item > a:hover {
+	color: var(--brand-green-dark);
+}
+
+/* Mobile menu toggle icon (was #15a9e3) */
+.mobile-container-toggle-default svg {
+	fill: var(--brand-green-dark);
+}
+
+/* Mailchimp success message (was #15a9e3) */
+.et-mailchimp .alert.success,
+.widget_mailchimp .alert.success {
+	color: var(--brand-green-dark);
+}
+
+/* Post navigation hover arrows - a filled block, so the brand green (was #15a9e3) */
+.post-single-navigation a[rel="prev"]:hover:before,
+.post-single-navigation a[rel="next"]:hover:after {
+	background-color: var(--brand-green);
+}
+
+/* Audio playlist progress + volume fill (was #15a9e3 !important) */
+.wp-playlist .mejs-controls .mejs-time-rail .mejs-time-current,
+.wp-playlist .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-current {
+	background-color: var(--brand-green) !important;
+}
+
+/*
+ * Star ratings (was #f2971f). These are masked shapes filled by background-color,
+ * so the brand green reads correctly as a filled graphic.
+ *
+ * Judgement call worth revisiting with the client: amber/gold stars are a strong
+ * e-commerce convention and the brief supplied no amber. Switch this one
+ * declaration back to #f2971f if they would rather keep conventional stars.
+ */
+.star-rating span,
+.et-testimonial .rating span {
+	background-color: var(--brand-green);
+}
