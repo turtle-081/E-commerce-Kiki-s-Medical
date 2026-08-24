@@ -8,6 +8,12 @@ Section 2 lists workarounds that live in our own child theme. Updates will not
 touch them, but they should be *removed* once the upstream bug they work around
 is fixed, or they will start fighting the corrected code.
 
+Section 3 covers configuration that is real but lives in gitignored or
+out-of-repo files, so a fresh clone will not have it.
+
+Section 4 documents the client's brand palette — what it is, why the interactive
+green differs from the brand green, and what remains to be migrated.
+
 Versions below are the ones the patches were written against. If an update
 brings a newer version, re-read the upstream code before reapplying — the bug
 may be gone, or the surrounding code may have moved.
@@ -222,3 +228,54 @@ grep -c 'mb_encode_numericentity($html' app/public/wp-content/plugins/disco/vend
 Expected: `1`. `0` means an update reverted the patch.
 
 `git diff` against the commits listed above will show exactly what to restore.
+
+---
+
+## 4. Client brand palette
+
+Client colours: green `#80AF40`, red `#DC2222`, white `#FFFFFF`.
+
+`#80AF40` is **2.58:1 on white** — it fails WCAG AA for text (4.5:1) and even the
+3:1 minimum for UI components. White text on it fails identically. It is an
+identity colour, not an interface colour, so the palette splits those roles:
+
+| Token | Value | Role | Contrast |
+|---|---|---|---|
+| `--brand-green` | `#80AF40` | Identity: fills, borders, icons | 2.58:1 — large/decorative only |
+| `--brand-green-dark` | `#5A7B2D` | Interactive: links, text, buttons | white on it 4.88:1, AA |
+| `--brand-green-tint` | `#F5F9F0` | Section backgrounds | body text on it 4.44:1 |
+| `--brand-red` | `#DC2222` | Sale badges, discounts | 4.89:1, AA |
+| `--brand-red-dark` | `#C61F1F` | Red hover | 5.81:1, AA |
+
+Both greens are mixes of the client's own green, so they read as one family.
+Body copy stays `#56778f` (4.74:1) and headings `#184363` (10.39:1) — recolouring
+text to brand green is the usual way this goes wrong.
+
+**Applied in two places:**
+
+1. **Theme options** (a serialised `wp_options` row, so git cannot track it) —
+   `main-color`, `area-color`, `sale-color`, `discount-color`, `form-button-back`.
+   Reproduce with `php tools/apply-brand-palette.php apply`; roll back with
+   `restore`, which uses `tools/brand-palette-backup.txt`.
+
+2. **`propharm-child/assets/css/brand.css`** — tokens, plus overrides for the three
+   generated rules that paint text in the failing green (97 selectors in total).
+   It must load *after* `propharm/css/dynamic-styles-cached.css`, which is enqueued
+   at priority 20 and so lands after the child `style.css`; one of those rules is
+   `!important` upstream, so specificity alone cannot win. The child theme declares
+   it as a dependency and enqueues at priority 30 to force document order.
+
+**Still outstanding — colours baked into page content.** The demo content sets
+colours per page-builder module, stored in `wp_posts.post_content`, not in settings:
+
+| Colour | Posts | Occurrences |
+|---|---|---|
+| `#15a9e3` | 51 | 521 |
+| `#39cb74` | 20 | 194 |
+| `#edf4f6` | 23 | 105 |
+| `#f2971f` | 20 | 84 |
+
+Plus 172 `wp_postmeta` rows. Spread across pages, megamenus, posts, banners,
+headers and footers. Until those are remapped the site keeps rendering the old
+blue in module-level styling (`#et-image-518409 .curtain{background-color:#15a9e3}`
+and similar). That is a content migration, not a settings change.

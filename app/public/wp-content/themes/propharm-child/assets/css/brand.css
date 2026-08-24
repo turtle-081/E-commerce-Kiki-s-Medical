@@ -1,0 +1,39 @@
+/*
+ * Client brand palette overrides.
+ *
+ * Loaded AFTER propharm/css/dynamic-styles-cached.css (declared as a dependency
+ * in the child theme's functions.php), because that generated stylesheet is
+ * enqueued after the child style.css and would otherwise win. One of the rules
+ * below is !important upstream, so load order -- not specificity -- is what
+ * makes these stick.
+ *
+ * Why these exist: the theme paints links and metadata with main-color, which is
+ * now the client's brand green #80AF40. That green is 2.58:1 on white -- it fails
+ * WCAG AA for text (4.5:1) and even the 3:1 minimum for UI components. Text uses
+ * move to #5A7B2D, a darkened mix of the same green (white on it: 4.88:1, AA).
+ * Backgrounds, borders, fills and icons keep the true brand green.
+ */
+
+:root {
+	--brand-green:      #80AF40; /* identity: fills, borders, icons */
+	--brand-green-dark: #5A7B2D; /* interactive: links, text, buttons */
+	--brand-green-tint: #F5F9F0; /* section backgrounds */
+	--brand-red:        #DC2222; /* sale badges, discounts */
+	--brand-red-dark:   #C61F1F; /* red hover */
+	--brand-white:      #FFFFFF;
+}
+
+/* 1. text-colour use of the brand green -> accessible dark green */
+.woocommerce-message,.wc_payment_methods p,.widget_fast_contact_widget .alert:not(.final) {
+	color: var(--brand-green-dark);
+}
+
+/* 2. text-colour use of the brand green -> accessible dark green */
+.loop-posts .post-title:hover,.loop-posts .post-title a:hover,.post-read-more,.instagram-follow a:hover,.product .summary .price ins,.page-content-wrap .widget_shopping_cart .cart-product-title a:hover,.page-content-wrap .widget_shopping_cart .cart-product-title:hover a,.widget_products .product_list_widget > li > a:hover .product-title,.widget_recently_viewed_products .product_list_widget > li > a:hover .product-title,.widget_recent_reviews .product_list_widget > li > a:hover .product-title,.widget_top_rated_products .product_list_widget > li > a:hover .product-title,.search-posts .post-title a:hover,.search-posts .post-title:hover a,.comment-meta .comment-date-time a:hover,.comment-author a:hover,.comment-content .edit-link a a,#cancel-comment-reply-link:hover,.woocommerce-review-link,.product .summary .price ins span,.star-rating,.comment-form-rating a,.comment-form-rating a:after,.border-true.et-client-container .et-client .plus,.widget_nav_menu ul li.current-menu-item a,.enovathemes-filter .filter.active,.woocommerce-MyAccount-navigation li.is-active a,.woocommerce-MyAccount-navigation li a:hover,.et-blockquote .author,.product-data .product-price .regular-price,.cbt .product-price span,.current-cat-name,.filter-breadcrumbs > a:hover,.share > a:hover,.et-woo-category.children-true a:hover,.et-step-box .step-count,#et-desktop-default .header-menu>.menu-item:not(.mm-true) .sub-menu .menu-item:hover>.mi-link,#mobile-menu-default>.menu-item>a:hover,#mobile-menu-default>.menu-item .sub-menu .menu-item>a:hover,.widget_categories ul li a:hover,.widget_product_categories ul li a:hover,.pf-item.list.cat ul li a:hover,.entry-summary .wishlist-title,.entry-summary .compare-title,.loop-posts .post-meta a:hover,.et-attribute-box-content ul li.all a,.layout2 .product .summary .price,.star-rating-wrap > a:hover,.comp .product .price,.product .summary .price,.woocommerce-variation-availability,.widget_shopping_cart li .quantity,.widget_products .product_list_widget > li .woocommerce-Price-amount,.widget_recently_viewed_products .product_list_widget > li .woocommerce-Price-amount,.widget_recent_reviews .product_list_widget > li .woocommerce-Price-amount,.widget_top_rated_products .product_list_widget > li .woocommerce-Price-amount,.et-woo-category:hover .category-title,.product .post-category a,.product_meta > *,dy .woocommerce-tabs .tabs li.active a,.cbt .woocommerce-button,.post-categories a,.et-person .name {
+	color: var(--brand-green-dark);
+}
+
+/* 3. text-colour use of the brand green -> accessible dark green */
+.post-single-navigation a:hover,.widget_et_recent_entries .post-title:hover a,.widget_categories ul li a:hover,.wp-block-archives li a:hover,.widget_pages ul li a:hover,.widget_archive ul li a:hover,.widget_meta ul li a:hover,.widget_nav_menu ul li a:hover,.widget_product_categories ul li a:hover,.widget_product_categories ul li.current-cat > a,.widget_recent_entries ul li a:hover, .widget_rss ul li a:hover,.widget_icl_lang_sel_widget li a:hover,.widget_products .product_list_widget > li .product-title:hover a,.widget_recently_viewed_products .product_list_widget > li .product-title:hover a,.widget_recent_reviews .product_list_widget > li .product-title:hover a,.widget_top_rated_products .product_list_widget > li .product-title:hover a,.recentcomments a:hover,.page-content-wrap .widget_shopping_cart .cart_list li .remove:hover,.product_meta a:hover,.product-data .product-price .sale-price,.comment-reply-link:hover,.clear-attribute:hover,.clear-attribute:hover a,.pf-item.list.cat .chosen,.et-woo-categories.border-true li:hover .category-title,.et-woo-categories.list li:hover .category-title,.post-title-section .post-date-inline-single span,.woocommerce-tabs .tabs li.active a,.entry-summary .wishlist-title:hover,.entry-summary .compare-title:hover,.entry-summary .ask-title:hover {
+	color: var(--brand-green-dark) !important;
+}
