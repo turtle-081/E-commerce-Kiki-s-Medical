@@ -417,3 +417,40 @@ render as "KSh1,540" with no space, still to 2 decimals.
 different rate via `php tools/convert-currency-kes.php apply <rate>` — but only
 against a database restored from before the first conversion, or the multiplier
 compounds.
+
+---
+
+## 6. Client content round — branding, header, footer
+
+All applied via `tools/apply-client-content.php` and `-2.php` (dry run by default).
+
+| Change | Detail |
+|---|---|
+| Top-bar notice | "Free delivery within Nairobi", re-created as an `[et_header_slogan]` in the 6 headers the COVID notice was removed from. Header "Desktop 4" already had an unrelated slogan and was left alone |
+| Language + currency switchers | `[et_language_switcher]` / `[et_currency_switcher]` removed from all 7 headers |
+| Elements / Features menus | 27 nav items deleted from Header menu, Header menu boxy megamenu and Mobile header — 6 parents plus 21 descendants. Children must go too: WordPress promotes orphaned items to top level rather than deleting them |
+| Logo | `uploads/kiki-logo.png` (749×353) as new attachment 2602; 10 posts repointed from attachment 335. The demo `logo.svg` attachment is untouched, so reverting is a one-line change |
+| Footer | Address, two phone numbers, email, opening hours and copyright across all 5 footer layouts |
+
+### Things worth knowing
+
+**Footer 1603 is the one that renders**, not 564 (the `footer-id` option). It had no
+phone or hours blocks at all, so those were *created* rather than replaced,
+mirroring the styling of the existing icon boxes. Icon ids: 493 phone, 567 email,
+1482 address.
+
+**The address block was a `mailto:` link** in the demo. Removed — an address
+should not open a mail client.
+
+**YayCurrency was deactivated** rather than reconfigured. Its only remaining job
+was the switcher the client asked to remove, and it formats prices itself, which
+silently overrode the WooCommerce currency settings. Those are already correct, so
+this is a clean removal — prices still render "KSh 2,840" afterwards. Reactivate
+from the Plugins screen if a switcher is ever wanted again.
+
+**Hyphens render as en dashes.** WordPress `wptexturize` turns "Monday - Friday"
+into "Monday – Friday". Correct typography, but it means a literal string search
+for the hyphenated form will not match the rendered page.
+
+**Product description bullets are red** (`#DC2222`) — they already were, inherited
+from the theme reusing `sale-color` for `li:before`. Confirmed as intended.
