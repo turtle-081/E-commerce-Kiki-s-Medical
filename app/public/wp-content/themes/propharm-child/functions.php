@@ -32,16 +32,14 @@ function propharm_child_brand_styles() {
 	// missing dependency would silently prevent this stylesheet from loading.
 	$deps = wp_style_is( 'dynamic-styles-cached', 'registered' ) ? array( 'dynamic-styles-cached' ) : array();
 
-	wp_enqueue_style(
-		'propharm-child-brand',
-		get_stylesheet_directory_uri() . $rel,
-		$deps,
-		filemtime( $path )
-	);
-
 	// Generated overrides for colours hardcoded in the parent theme's style.css.
-	// Depends on the brand sheet because it uses the custom properties defined
-	// there. See tools/gen-parent-overrides.py.
+	// See tools/gen-parent-overrides.py.
+	//
+	// This loads BEFORE brand.css deliberately. It is mechanical output that
+	// mirrors whatever the parent theme declared, !important included, whereas
+	// brand.css holds deliberate design decisions -- so brand.css has to be the
+	// one that wins. Custom properties resolve at computed-value time, so it does
+	// not matter that the tokens it uses are defined in the later sheet.
 	$ovr_rel  = '/assets/css/parent-overrides.css';
 	$ovr_path = get_stylesheet_directory() . $ovr_rel;
 
@@ -49,10 +47,18 @@ function propharm_child_brand_styles() {
 		wp_enqueue_style(
 			'propharm-child-parent-overrides',
 			get_stylesheet_directory_uri() . $ovr_rel,
-			array( 'propharm-child-brand' ),
+			$deps,
 			filemtime( $ovr_path )
 		);
+		$deps[] = 'propharm-child-parent-overrides';
 	}
+
+	wp_enqueue_style(
+		'propharm-child-brand',
+		get_stylesheet_directory_uri() . $rel,
+		$deps,
+		filemtime( $path )
+	);
 }
 add_action( 'wp_enqueue_scripts', 'propharm_child_brand_styles', 30 );
 

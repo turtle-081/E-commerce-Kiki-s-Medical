@@ -101,3 +101,70 @@
 .et-testimonial .rating span {
 	background-color: var(--brand-green);
 }
+
+/* ---------------------------------------------------------------------------
+ * Add-to-cart hover: red.
+ *
+ * Covers both places the button appears -- the product grid / quick-view
+ * (.add_to_cart_button / .ajax_add_to_cart, rendered as <a>) and the single
+ * product page (.single_add_to_cart_button, rendered as <button>).
+ *
+ * White on #DC2222 is 4.89:1, so the label stays AA-legible on hover. The icon
+ * is an inline SVG that inherits from currentColor in some spots and is filled
+ * explicitly in others, so both are set.
+ *
+ * :focus-visible mirrors :hover so keyboard users get the same affordance --
+ * a hover-only cue is invisible to anyone tabbing through the grid.
+ * ------------------------------------------------------------------------ */
+/*
+ * The weight here is not decoration. The parent theme declares
+ * `.product .button:hover { background-color: ... !important }`, which
+ * parent-overrides.css mirrors, so a plain `.add_to_cart_button:hover` loses on
+ * both !important and specificity. These selectors carry more class weight than
+ * `.product .button:hover` and match its !important, so red wins outright rather
+ * than depending on stylesheet order.
+ */
+.product .button.add_to_cart_button:hover,
+.product .button.ajax_add_to_cart:hover,
+.product .button.add_to_cart_button:focus-visible,
+.product .button.ajax_add_to_cart:focus-visible,
+.woocommerce .product .button.add_to_cart_button:hover,
+form.cart button.button.single_add_to_cart_button:hover,
+form.cart button.button.single_add_to_cart_button:focus-visible,
+.summary .button.single_add_to_cart_button:hover,
+.summary .button.single_add_to_cart_button:focus-visible {
+	background-color: var(--brand-red) !important;
+	border-color: var(--brand-red) !important;
+	color: var(--brand-white) !important;
+}
+
+.add_to_cart_button:hover svg,
+.ajax_add_to_cart:hover svg,
+.single_add_to_cart_button:hover svg,
+.add_to_cart_button:hover svg *,
+.ajax_add_to_cart:hover svg *,
+.single_add_to_cart_button:hover svg * {
+	fill: var(--brand-white);
+	stroke: var(--brand-white);
+}
+
+/*
+ * Resting state of the single-product "Add to cart" CTA.
+ *
+ * The theme paints it with main-color (#80AF40) and white text: 2.58:1, which
+ * fails AA. This is the most important button on the site, so it takes the same
+ * treatment as every other interactive green in this file -- #5A7B2D, where
+ * white text is 4.88:1. The hover rule above then takes it to red.
+ */
+/*
+ * !important is required, not cosmetic: the generated stylesheet declares
+ * `.product .single_add_to_cart_button { background-color: #80AF40 !important }`.
+ * These selectors already carry more weight, but an !important declaration beats
+ * a normal one regardless of specificity, so this has to match it.
+ */
+form.cart button.button.single_add_to_cart_button,
+.summary .button.single_add_to_cart_button {
+	background-color: var(--brand-green-dark) !important;
+	border-color: var(--brand-green-dark) !important;
+	color: var(--brand-white) !important;
+}
