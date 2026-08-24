@@ -1,0 +1,170 @@
+/*
+ * Client brand palette overrides.
+ *
+ * Loaded AFTER propharm/css/dynamic-styles-cached.css (declared as a dependency
+ * in the child theme's functions.php), because that generated stylesheet is
+ * enqueued after the child style.css and would otherwise win. One of the rules
+ * below is !important upstream, so load order -- not specificity -- is what
+ * makes these stick.
+ *
+ * Why these exist: the theme paints links and metadata with main-color, which is
+ * now the client's brand green #80AF40. That green is 2.58:1 on white -- it fails
+ * WCAG AA for text (4.5:1) and even the 3:1 minimum for UI components. Text uses
+ * move to #5A7B2D, a darkened mix of the same green (white on it: 4.88:1, AA).
+ * Backgrounds, borders, fills and icons keep the true brand green.
+ */
+
+:root {
+	--brand-green:      #80AF40; /* identity: fills, borders, icons */
+	--brand-green-dark: #5A7B2D; /* interactive: links, text, buttons */
+	--brand-green-tint: #F5F9F0; /* section backgrounds */
+	--brand-red:        #DC2222; /* sale badges, discounts */
+	--brand-red-dark:   #C61F1F; /* red hover */
+	--brand-white:      #FFFFFF;
+
+	/* Client asked for black text, replacing the demo's navy and grey. */
+	--text-black:       #000000; /* all copy, headings, icons: 21:1 on white */
+	--panel-dark:       #4D6926; /* the dark panels the navy used to paint;
+	                                white text on it is 6.24:1 */
+}
+
+/* 1. text-colour use of the brand green -> accessible dark green */
+.woocommerce-message,.wc_payment_methods p,.widget_fast_contact_widget .alert:not(.final) {
+	color: var(--brand-green-dark);
+}
+
+/* 2. text-colour use of the brand green -> accessible dark green */
+.loop-posts .post-title:hover,.loop-posts .post-title a:hover,.post-read-more,.instagram-follow a:hover,.product .summary .price ins,.page-content-wrap .widget_shopping_cart .cart-product-title a:hover,.page-content-wrap .widget_shopping_cart .cart-product-title:hover a,.widget_products .product_list_widget > li > a:hover .product-title,.widget_recently_viewed_products .product_list_widget > li > a:hover .product-title,.widget_recent_reviews .product_list_widget > li > a:hover .product-title,.widget_top_rated_products .product_list_widget > li > a:hover .product-title,.search-posts .post-title a:hover,.search-posts .post-title:hover a,.comment-meta .comment-date-time a:hover,.comment-author a:hover,.comment-content .edit-link a a,#cancel-comment-reply-link:hover,.woocommerce-review-link,.product .summary .price ins span,.star-rating,.comment-form-rating a,.comment-form-rating a:after,.border-true.et-client-container .et-client .plus,.widget_nav_menu ul li.current-menu-item a,.enovathemes-filter .filter.active,.woocommerce-MyAccount-navigation li.is-active a,.woocommerce-MyAccount-navigation li a:hover,.et-blockquote .author,.product-data .product-price .regular-price,.cbt .product-price span,.current-cat-name,.filter-breadcrumbs > a:hover,.share > a:hover,.et-woo-category.children-true a:hover,.et-step-box .step-count,#et-desktop-default .header-menu>.menu-item:not(.mm-true) .sub-menu .menu-item:hover>.mi-link,#mobile-menu-default>.menu-item>a:hover,#mobile-menu-default>.menu-item .sub-menu .menu-item>a:hover,.widget_categories ul li a:hover,.widget_product_categories ul li a:hover,.pf-item.list.cat ul li a:hover,.entry-summary .wishlist-title,.entry-summary .compare-title,.loop-posts .post-meta a:hover,.et-attribute-box-content ul li.all a,.layout2 .product .summary .price,.star-rating-wrap > a:hover,.comp .product .price,.product .summary .price,.woocommerce-variation-availability,.widget_shopping_cart li .quantity,.widget_products .product_list_widget > li .woocommerce-Price-amount,.widget_recently_viewed_products .product_list_widget > li .woocommerce-Price-amount,.widget_recent_reviews .product_list_widget > li .woocommerce-Price-amount,.widget_top_rated_products .product_list_widget > li .woocommerce-Price-amount,.et-woo-category:hover .category-title,.product .post-category a,.product_meta > *,dy .woocommerce-tabs .tabs li.active a,.cbt .woocommerce-button,.post-categories a,.et-person .name {
+	color: var(--brand-green-dark);
+}
+
+/* 3. text-colour use of the brand green -> accessible dark green */
+.post-single-navigation a:hover,.widget_et_recent_entries .post-title:hover a,.widget_categories ul li a:hover,.wp-block-archives li a:hover,.widget_pages ul li a:hover,.widget_archive ul li a:hover,.widget_meta ul li a:hover,.widget_nav_menu ul li a:hover,.widget_product_categories ul li a:hover,.widget_product_categories ul li.current-cat > a,.widget_recent_entries ul li a:hover, .widget_rss ul li a:hover,.widget_icl_lang_sel_widget li a:hover,.widget_products .product_list_widget > li .product-title:hover a,.widget_recently_viewed_products .product_list_widget > li .product-title:hover a,.widget_recent_reviews .product_list_widget > li .product-title:hover a,.widget_top_rated_products .product_list_widget > li .product-title:hover a,.recentcomments a:hover,.page-content-wrap .widget_shopping_cart .cart_list li .remove:hover,.product_meta a:hover,.product-data .product-price .sale-price,.comment-reply-link:hover,.clear-attribute:hover,.clear-attribute:hover a,.pf-item.list.cat .chosen,.et-woo-categories.border-true li:hover .category-title,.et-woo-categories.list li:hover .category-title,.post-title-section .post-date-inline-single span,.woocommerce-tabs .tabs li.active a,.entry-summary .wishlist-title:hover,.entry-summary .compare-title:hover,.entry-summary .ask-title:hover {
+	color: var(--brand-green-dark) !important;
+}
+
+/* ---------------------------------------------------------------------------
+ * Hardcoded demo colours in the PARENT theme's style.css.
+ *
+ * These are not driven by any theme option, so the palette change could not
+ * reach them. Fixed here rather than by editing propharm/style.css, which an
+ * update would overwrite.
+ *
+ * Same split as above: foreground marks (text, icons) take the accessible
+ * #5A7B2D, filled areas take the brand green.
+ * ------------------------------------------------------------------------ */
+
+/* Desktop menu hover / active / open (was #15a9e3) */
+#et-desktop-default .header-menu > .menu-item.depth-0:hover > .mi-link,
+#et-desktop-default .header-menu > .menu-item.depth-0.active > .mi-link,
+#et-desktop-default .header-menu > .menu-item.depth-0.in > .mi-link {
+	color: var(--brand-green-dark);
+}
+
+/* Mobile menu hover (was #15a9e3) */
+#mobile-menu-default > .menu-item > a:hover {
+	color: var(--brand-green-dark);
+}
+
+/* Mobile menu toggle icon (was #15a9e3) */
+.mobile-container-toggle-default svg {
+	fill: var(--brand-green-dark);
+}
+
+/* Mailchimp success message (was #15a9e3) */
+.et-mailchimp .alert.success,
+.widget_mailchimp .alert.success {
+	color: var(--brand-green-dark);
+}
+
+/* Post navigation hover arrows - a filled block, so the brand green (was #15a9e3) */
+.post-single-navigation a[rel="prev"]:hover:before,
+.post-single-navigation a[rel="next"]:hover:after {
+	background-color: var(--brand-green);
+}
+
+/* Audio playlist progress + volume fill (was #15a9e3 !important) */
+.wp-playlist .mejs-controls .mejs-time-rail .mejs-time-current,
+.wp-playlist .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-current {
+	background-color: var(--brand-green) !important;
+}
+
+/*
+ * Star ratings (was #f2971f). These are masked shapes filled by background-color,
+ * so the brand green reads correctly as a filled graphic.
+ *
+ * Judgement call worth revisiting with the client: amber/gold stars are a strong
+ * e-commerce convention and the brief supplied no amber. Switch this one
+ * declaration back to #f2971f if they would rather keep conventional stars.
+ */
+.star-rating span,
+.et-testimonial .rating span {
+	background-color: var(--brand-green);
+}
+
+/* ---------------------------------------------------------------------------
+ * Add-to-cart hover: red.
+ *
+ * Covers both places the button appears -- the product grid / quick-view
+ * (.add_to_cart_button / .ajax_add_to_cart, rendered as <a>) and the single
+ * product page (.single_add_to_cart_button, rendered as <button>).
+ *
+ * White on #DC2222 is 4.89:1, so the label stays AA-legible on hover. The icon
+ * is an inline SVG that inherits from currentColor in some spots and is filled
+ * explicitly in others, so both are set.
+ *
+ * :focus-visible mirrors :hover so keyboard users get the same affordance --
+ * a hover-only cue is invisible to anyone tabbing through the grid.
+ * ------------------------------------------------------------------------ */
+/*
+ * The weight here is not decoration. The parent theme declares
+ * `.product .button:hover { background-color: ... !important }`, which
+ * parent-overrides.css mirrors, so a plain `.add_to_cart_button:hover` loses on
+ * both !important and specificity. These selectors carry more class weight than
+ * `.product .button:hover` and match its !important, so red wins outright rather
+ * than depending on stylesheet order.
+ */
+.product .button.add_to_cart_button:hover,
+.product .button.ajax_add_to_cart:hover,
+.product .button.add_to_cart_button:focus-visible,
+.product .button.ajax_add_to_cart:focus-visible,
+.woocommerce .product .button.add_to_cart_button:hover,
+form.cart button.button.single_add_to_cart_button:hover,
+form.cart button.button.single_add_to_cart_button:focus-visible,
+.summary .button.single_add_to_cart_button:hover,
+.summary .button.single_add_to_cart_button:focus-visible {
+	background-color: var(--brand-red) !important;
+	border-color: var(--brand-red) !important;
+	color: var(--brand-white) !important;
+}
+
+.add_to_cart_button:hover svg,
+.ajax_add_to_cart:hover svg,
+.single_add_to_cart_button:hover svg,
+.add_to_cart_button:hover svg *,
+.ajax_add_to_cart:hover svg *,
+.single_add_to_cart_button:hover svg * {
+	fill: var(--brand-white);
+	stroke: var(--brand-white);
+}
+
+/*
+ * Resting state of the single-product "Add to cart" CTA.
+ *
+ * The theme paints it with main-color (#80AF40) and white text: 2.58:1, which
+ * fails AA. This is the most important button on the site, so it takes the same
+ * treatment as every other interactive green in this file -- #5A7B2D, where
+ * white text is 4.88:1. The hover rule above then takes it to red.
+ */
+/*
+ * !important is required, not cosmetic: the generated stylesheet declares
+ * `.product .single_add_to_cart_button { background-color: #80AF40 !important }`.
+ * These selectors already carry more weight, but an !important declaration beats
+ * a normal one regardless of specificity, so this has to match it.
+ */
+form.cart button.button.single_add_to_cart_button,
+.summary .button.single_add_to_cart_button {
+	background-color: var(--brand-green-dark) !important;
+	border-color: var(--brand-green-dark) !important;
+	color: var(--brand-white) !important;
+}

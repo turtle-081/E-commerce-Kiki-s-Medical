@@ -1,0 +1,47 @@
+a:95:{s:8:"last_tab";s:0:"";s:17:"disable-gutenberg";s:1:"1";s:22:"disable-gutenberg-type";a:4:{s:4:"post";s:1:"1";s:4:"page";s:1:"1";s:7:"product";s:1:"1";s:7:"widgets";s:1:"1";}s:16:"disable-defaults";i:1;s:16:"plugins-combined";s:1:"1";s:13:"cache-queries";s:1:"1";s:10:"main-color";s:7:"#15a9e3";s:10:"area-color";s:7:"#edf4f6";s:6:"layout";s:4:"wide";s:15:"site-background";a:7:{s:16:"background-color";s:0:"";s:17:"background-repeat";s:0:"";s:15:"background-size";s:0:"";s:21:"background-attachment";s:0:"";s:19:"background-position";s:0:"";s:16:"background-image";s:0:"";s:5:"media";a:4:{s:2:"id";s:0:"";s:6:"height";s:0:"";s:5:"width";s:0:"";s:9:"thumbnail";s:0:"";}}s:9:"footer-id";s:3:"564";s:14:"footer-id-wpml";s:0:"";s:17:"header-desktop-id";s:3:"333";s:22:"header-desktop-id-wpml";s:0:"";s:16:"header-mobile-id";s:3:"600";s:21:"header-mobile-id-wpml";s:0:"";s:16:"title-section-id";s:3:"354";s:21:"title-section-id-wpml";s:0:"";s:8:"error-id";s:0:"";s:15:"one-page-filter";s:0:"";s:17:"mailchimp-api-key";s:0:"";s:10:"flickr-api";s:0:"";s:9:"instagram";s:1:"1";s:3:"mtt";s:1:"1";s:10:"custom-css";s:0:"";s:18:"custom-css-max-374";s:0:"";s:18:"custom-css-min-375";s:0:"";s:26:"custom-css-min-375-max-767";s:0:"";s:18:"custom-css-max-767";s:491:".footer-logo-column .vc_column-inner {border-right:none !important;}
+.mobile-sales-button {width:calc(100% - 32px) !important;}
+.mobile-sales-button a {width:100%;}
+
+#menu-footer-menu-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+}
+#menu-footer-menu-2 > .menu-item {
+    width: 100%;
+}
+.footer-payment .et-image {margin:0 auto}
+
+.home-2-categories .vc_column-inner {margin-top:0 !important;}
+.features-blocks .et-heading .text-wrapper {padding:0 !important}";s:18:"custom-css-min-768";s:299:".footer-payment .et-image {float:right}	
+.footer-tiny-menu {text-align:right}
+
+.filter-on-slider .select-filter.vertical {
+    position:absolute;
+    top:50%;
+    right:50px;
+    transform:translateY(-50%);
+    z-index:15;
+    margin-top: -22px;
+}
+.payments-image .et-image {float:right;}";s:27:"custom-css-min-768-max-1023";s:249:".footer-logo-column.foot-2 .vc_column-inner {border-right:none !important;}
+.home-3-highlight-products .vc_column-inner {padding-left:16px !important;padding-right:16px !important;}
+.features-blocks .et-heading .text-wrapper {padding:0 !important}";s:19:"custom-css-max-1023";s:185:".home-2-banner-image-parallax .et-image,
+.home-2-banner-image-parallax .et-image .lazy-inline-image
+{margin:0 auto}
+.footer-5-subscribe > .vc_column-inner {margin-top: 0 !important;}";s:19:"custom-css-min-1024";s:63:".filter-on-slider .select-filter.vertical {
+    right:56px;
+}";s:28:"custom-css-min-1024-max-1279";s:217:".home-3-timer-corrections .et-timer li {
+    min-width: 47px;
+}
+
+.home-3-timer-corrections .et-timer .timer-title {
+    font-size: 8px;
+}
+
+.footer-5-subscribe > .vc_column-inner {margin-top: -79px !important;}";s:19:"custom-css-max-1279";s:0:"";s:19:"custom-css-min-1280";s:204:".filter-on-slider .select-filter.vertical {
+    right:56px;
+}
+#header-menu-730690 > .menu-item.depth-0 > #megamenu-1612,
+#header-menu-730690 > .menu-item.depth-0 > #megamenu-1611{
+    left: 217px;
+}";s:28:"custom-css-min-1280-max-1599";s:0:"";s:28:"custom-css-min-1600-max-1919";s:0:"";s:9:"main-typo";a:10:{s:11:"font-family";s:7:"PT Sans";s:12:"font-options";s:0:"";s:6:"google";s:4:"true";s:11:"font-weight";s:3:"400";s:10:"font-style";s:0:"";s:7:"subsets";s:0:"";s:9:"font-size";s:4:"14px";s:11:"line-height";s:4:"24px";s:14:"letter-spacing";s:3:"0px";s:5:"color";s:7:"#56778f";}s:13:"headings-typo";a:9:{s:11:"font-family";s:7:"PT Sans";s:12:"font-options";s:0:"";s:6:"google";s:1:"1";s:11:"font-weight";s:3:"700";s:10:"font-style";s:0:"";s:7:"subsets";s:0:"";s:14:"text-transform";s:0:"";s:14:"letter-spacing";s:3:"0px";s:5:"color";s:7:"#184363";}s:7:"h1-typo";a:2:{s:9:"font-size";s:4:"48px";s:11:"line-height";s:4:"52px";}s:7:"h2-typo";a:2:{s:9:"font-size";s:4:"40px";s:11:"line-height";s:4:"46px";}s:7:"h3-typo";a:2:{s:9:"font-size";s:4:"32px";s:11:"line-height";s:4:"36px";}s:7:"h4-typo";a:2:{s:9:"font-size";s:4:"24px";s:11:"line-height";s:4:"32px";}s:7:"h5-typo";a:2:{s:9:"font-size";s:4:"20px";s:11:"line-height";s:4:"28px";}s:7:"h6-typo";a:2:{s:9:"font-size";s:4:"18px";s:11:"line-height";s:4:"26px";}s:15:"form-text-color";a:2:{s:7:"regular";s:7:"#184363";s:5:"hover";s:7:"#184363";}s:15:"form-back-color";a:2:{s:7:"regular";s:7:"#edf4f6";s:5:"hover";s:7:"#ffffff";}s:17:"form-border-color";a:2:{s:7:"regular";s:7:"#edf4f6";s:5:"hover";s:7:"#15a9e3";}s:16:"form-button-typo";a:7:{s:11:"font-family";s:7:"PT Sans";s:12:"font-options";s:0:"";s:6:"google";s:1:"1";s:11:"font-weight";s:3:"700";s:10:"font-style";s:0:"";s:7:"subsets";s:0:"";s:14:"letter-spacing";s:3:"0px";}s:16:"form-button-back";a:2:{s:7:"regular";s:7:"#f2971f";s:5:"hover";s:7:"#184363";}s:17:"form-button-color";a:2:{s:7:"regular";s:7:"#ffffff";s:5:"hover";s:7:"#ffffff";}s:10:"blog-title";s:7:"inherit";s:17:"blog-title-single";s:7:"inherit";s:15:"blog-title-text";s:4:"Blog";s:18:"blog-subtitle-text";s:0:"";s:12:"blog-sidebar";s:4:"none";s:15:"blog-navigation";s:10:"pagination";s:16:"blog-post-layout";s:4:"grid";s:15:"blog-image-full";s:1:"0";s:23:"blog-post-title-excerpt";s:2:"52";s:17:"blog-post-excerpt";s:1:"0";s:19:"blog-single-sidebar";s:4:"none";s:18:"blog-single-social";s:1:"1";s:18:"blog-related-posts";s:1:"1";s:21:"blog-related-posts-by";s:4:"tags";s:13:"product-title";s:7:"inherit";s:20:"product-title-single";s:7:"inherit";s:18:"product-title-text";s:4:"Shop";s:21:"product-subtitle-text";s:0:"";s:15:"product-sidebar";s:4:"left";s:22:"product-sidebar-toggle";s:1:"0";s:16:"product-per-page";s:2:"28";s:18:"product-navigation";s:10:"pagination";s:19:"product-post-layout";s:4:"grid";s:21:"product-title-excerpt";s:3:"500";s:24:"product-title-min-height";s:2:"22";s:24:"product-title-max-height";s:2:"22";s:18:"product-image-full";s:1:"0";s:10:"sale-color";s:7:"#39cb74";s:14:"discount-color";s:7:"#39cb74";s:9:"quickview";s:1:"1";s:8:"wishlist";s:1:"1";s:7:"compare";s:1:"1";s:3:"ask";s:1:"1";s:16:"product-ask-form";s:2:"28";s:21:"product-wishlist-page";s:30:"http://client1.local/wishlist/";s:20:"product-compare-page";s:29:"http://client1.local/compare/";s:22:"product-single-sidebar";s:5:"right";s:26:"product-single-post-layout";s:30:"single-product-thumbnails-down";s:29:"product-single-details-layout";s:4:"tabs";s:21:"product-single-social";s:1:"1";s:4:"lazy";i:0;s:12:"redux-backup";i:1;s:17:"product-quick-buy";i:0;}

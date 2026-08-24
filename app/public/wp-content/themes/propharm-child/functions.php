@@ -6,6 +6,63 @@ function propharm_enovathemes_child_scripts() {
 add_action( 'wp_enqueue_scripts', 'propharm_enovathemes_child_scripts' );
 
 /**
+ * Client brand palette.
+ *
+ * The theme's generated stylesheet (propharm/css/dynamic-styles-cached.css) is
+ * enqueued on wp_enqueue_scripts at priority 20, which puts it *after* the child
+ * theme's style.css in the document. Anything colour-related we put in style.css
+ * therefore loses, and one of the upstream rules is !important so raising
+ * specificity would not help either.
+ *
+ * So the brand overrides live in their own file, declared to depend on
+ * 'dynamic-styles-cached' and enqueued at priority 30. wp_enqueue_style resolves
+ * dependencies into document order, which guarantees this loads last.
+ *
+ * Versioned by filemtime so edits are picked up without a manual cache bust.
+ */
+function propharm_child_brand_styles() {
+	$rel  = '/assets/css/brand.css';
+	$path = get_stylesheet_directory() . $rel;
+
+	if ( ! file_exists( $path ) ) {
+		return;
+	}
+
+	// Only depend on the generated sheet when it is actually registered -- a
+	// missing dependency would silently prevent this stylesheet from loading.
+	$deps = wp_style_is( 'dynamic-styles-cached', 'registered' ) ? array( 'dynamic-styles-cached' ) : array();
+
+	// Generated overrides for colours hardcoded in the parent theme's style.css.
+	// See tools/gen-parent-overrides.py.
+	//
+	// This loads BEFORE brand.css deliberately. It is mechanical output that
+	// mirrors whatever the parent theme declared, !important included, whereas
+	// brand.css holds deliberate design decisions -- so brand.css has to be the
+	// one that wins. Custom properties resolve at computed-value time, so it does
+	// not matter that the tokens it uses are defined in the later sheet.
+	$ovr_rel  = '/assets/css/parent-overrides.css';
+	$ovr_path = get_stylesheet_directory() . $ovr_rel;
+
+	if ( file_exists( $ovr_path ) ) {
+		wp_enqueue_style(
+			'propharm-child-parent-overrides',
+			get_stylesheet_directory_uri() . $ovr_rel,
+			$deps,
+			filemtime( $ovr_path )
+		);
+		$deps[] = 'propharm-child-parent-overrides';
+	}
+
+	wp_enqueue_style(
+		'propharm-child-brand',
+		get_stylesheet_directory_uri() . $rel,
+		$deps,
+		filemtime( $path )
+	);
+}
+add_action( 'wp_enqueue_scripts', 'propharm_child_brand_styles', 30 );
+
+/**
  * Slider Revolution: load the v6->v7 migration script, and make the SR7 script
  * load order deterministic.
  *
