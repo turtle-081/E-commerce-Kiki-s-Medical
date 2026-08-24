@@ -168,3 +168,21 @@ form.cart button.button.single_add_to_cart_button,
 	border-color: var(--brand-green-dark) !important;
 	color: var(--brand-white) !important;
 }
+
+/*
+ * Reserve the logo's space before the image arrives.
+ *
+ * The theme sizes the logo with `width: 200px` and no height, and LiteSpeed's
+ * "add missing sizes" is off, so the <img> carries no width/height attributes.
+ * Until the file loads the browser reserves zero height, then the header grows
+ * once it does -- a visible jolt on every page load.
+ *
+ * The supplied artwork is 749x353. Declaring that ratio lets the browser reserve
+ * the right height from the first layout pass. Update both numbers if the logo
+ * is replaced with different dimensions.
+ */
+.logo,
+.sticky-logo {
+	aspect-ratio: 749 / 353;
+	height: auto;
+}
