@@ -505,7 +505,10 @@ require_once('includes/dynamic-styles.php' );
 
             if (isset($decoded["content"]) && !empty($decoded["content"])){
                 $data = array();
-                WPBMap::addAllMappedShortcodes();
+                // LOCAL PATCH: WPBMap only exists while js_composer is active. Calling it
+                // unguarded fataled the whole request; skipping it degrades to unparsed
+                // shortcodes instead. Lost if this plugin is updated.
+                if (class_exists('WPBMap')) { WPBMap::addAllMappedShortcodes(); }
                 $data[$decoded["mobile"]] = apply_filters('the_content', gzuncompress(base64_decode($decoded["content"])));
                 if (!empty($data)) {
                     wp_send_json($data);
@@ -683,7 +686,7 @@ require_once('includes/dynamic-styles.php' );
             $footers = enovathemes_addons_footers();
             if (!is_wp_error($footers)) {
                 $data = array();
-                WPBMap::addAllMappedShortcodes();
+                if (class_exists('WPBMap')) { WPBMap::addAllMappedShortcodes(); } // LOCAL PATCH: js_composer may be inactive.
                 $data[$_POST["footer"]] = apply_filters('the_content', gzuncompress($footers[$_POST["footer"]]));
                 wp_send_json($data);
             }
@@ -3717,7 +3720,7 @@ require_once('includes/dynamic-styles.php' );
             if (!is_wp_error($megamenu)) {
                 $data = array();
                 foreach ($megamenues as $mega_menu){
-                    WPBMap::addAllMappedShortcodes();
+                    if (class_exists('WPBMap')) { WPBMap::addAllMappedShortcodes(); } // LOCAL PATCH: js_composer may be inactive.
                     $data[$mega_menu] = apply_filters('the_content', gzuncompress($megamenu[$mega_menu][2]));
                 }
                 if (!empty($data)) {
@@ -6793,7 +6796,7 @@ require_once('includes/dynamic-styles.php' );
                 if (!is_wp_error($megamenu)) {
                     $data = array();
                     foreach ($megamenues as $mega_menu){
-                        WPBMap::addAllMappedShortcodes();
+                        if (class_exists('WPBMap')) { WPBMap::addAllMappedShortcodes(); } // LOCAL PATCH: js_composer may be inactive.
                         $data[$mega_menu] = apply_filters('the_content', gzuncompress($megamenu[$mega_menu][2]));
                     }
                     if (!empty($data)) {
@@ -6825,7 +6828,7 @@ require_once('includes/dynamic-styles.php' );
                 $footers = enovathemes_addons_footers();
                 if (!is_wp_error($footers)) {
                     $data = array();
-                    WPBMap::addAllMappedShortcodes();
+                    if (class_exists('WPBMap')) { WPBMap::addAllMappedShortcodes(); } // LOCAL PATCH: js_composer may be inactive.
                     $data[$decoded["footer"]] = apply_filters('the_content', gzuncompress($footers[$decoded["footer"]]));
                     if (!empty($data)) {
                         wp_send_json_success($data);
@@ -6852,7 +6855,7 @@ require_once('includes/dynamic-styles.php' );
 
             if (isset($decoded["content"]) && !empty($decoded["content"])){
                 $data = array();
-                WPBMap::addAllMappedShortcodes();
+                if (class_exists('WPBMap')) { WPBMap::addAllMappedShortcodes(); } // LOCAL PATCH: js_composer may be inactive.
                 $data[$decoded["mobile"]] = apply_filters('the_content', gzuncompress(base64_decode($decoded["content"])));
                 if (!empty($data)) {
                     wp_send_json_success($data);
