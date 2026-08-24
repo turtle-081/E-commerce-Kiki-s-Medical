@@ -1262,7 +1262,20 @@ function enovathemes_addons_include_dynamic_styles_cached() {
         $file = get_template_directory() . '/css/dynamic-styles-cached.css';
 
         if (is_file($file)) {
-        	file_put_contents($file, $dynamic_css);
+        	// LOCAL PATCH: this write sat outside the transient-cache branch above, so a
+        	// ~270KB file was rewritten on every single request even on a cache hit --
+        	// pure disk I/O per page view. Worse, concurrent requests raced on the same
+        	// handle and Windows reported the sharing violation as
+        	// "file_put_contents(...): Failed to open stream: Permission denied".
+        	//
+        	// Only write when the contents actually differ (md5 of 270KB is well under a
+        	// millisecond against writing 270KB), and take an exclusive lock so any real
+        	// write still cannot collide with a concurrent one. The enqueue must stay
+        	// unconditional -- the stylesheet is needed on every request either way.
+        	// Lost if this plugin is updated.
+        	if (md5_file($file) !== md5($dynamic_css)) {
+        		file_put_contents($file, $dynamic_css, LOCK_EX);
+        	}
         	wp_enqueue_style('dynamic-styles-cached', get_template_directory_uri() . '/css/dynamic-styles-cached.css');
         }
 

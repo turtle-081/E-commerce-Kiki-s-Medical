@@ -66,6 +66,38 @@ request: unguarded → HTTP 500; guarded → HTTP 200.
 
 **Introduced in:** `3503b04b`
 
+### 1.3 `enovathemes-addons` 3.1 — dynamic CSS rewritten on every request
+
+**File:** `app/public/wp-content/plugins/enovathemes-addons/includes/dynamic-styles.php` (~line 1264)
+
+`enovathemes_addons_include_dynamic_styles_cached()` caches the generated CSS in a
+transient, but the `file_put_contents()` that mirrors it to
+`themes/propharm/css/dynamic-styles-cached.css` sat *outside* that cache branch. So
+a ~270 KB file was rewritten on every single page view even on a cache hit, and
+concurrent requests raced on the same handle — which Windows reports as:
+
+```
+file_put_contents(...): Failed to open stream: Permission denied
+```
+
+Now guarded by a content comparison, plus an exclusive lock on any real write:
+
+```php
+if (md5_file($file) !== md5($dynamic_css)) {
+    file_put_contents($file, $dynamic_css, LOCK_EX);
+}
+```
+
+The `wp_enqueue_style()` call stays unconditional — the stylesheet is needed on
+every request regardless. Hashing 270 KB costs well under a millisecond against
+writing 270 KB.
+
+Verified both directions: no write across 6 varied page loads, no write across 8
+concurrent requests, zero new log entries — and the file still self-heals, with a
+deliberately corrupted copy restored to the correct content by a single request.
+
+**Introduced in:** `7732f0b6`
+
 ---
 
 ## 2. Workarounds in our own child theme (safe from updates)

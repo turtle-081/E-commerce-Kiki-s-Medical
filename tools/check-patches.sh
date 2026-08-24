@@ -27,7 +27,7 @@ check() {
 		return
 	fi
 
-	found=$(code_lines "$file" | grep -c -- "$pattern")
+	found=$(code_lines "$file" | grep -cF -- "$pattern")
 
 	if [ "$found" -eq "$expected" ]; then
 		printf 'ok            %s (%s/%s)\n' "$label" "$found" "$expected"
@@ -48,7 +48,7 @@ check_absent() {
 		return
 	fi
 
-	found=$(code_lines "$file" | grep -c -- "$pattern")
+	found=$(code_lines "$file" | grep -cF -- "$pattern")
 
 	if [ "$found" -eq 0 ]; then
 		printf 'ok            %s\n' "$label"
@@ -77,6 +77,10 @@ else
 	printf '%s\n' "$unguarded" | sed 's/^/              /'
 	status=1
 fi
+
+DYNSTYLES="app/public/wp-content/plugins/enovathemes-addons/includes/dynamic-styles.php"
+check 1 "enovathemes-addons: CSS write guarded" "$DYNSTYLES" 'md5_file($file) !== md5($dynamic_css)'
+check_absent "enovathemes-addons: per-request CSS write gone" "$DYNSTYLES" 'file_put_contents($file, $dynamic_css);'
 
 # Match the call itself, not the explanatory comment that names the function.
 check 1 "disco: mbstring fix present" "$DISCO" 'mb_encode_numericentity($html'
