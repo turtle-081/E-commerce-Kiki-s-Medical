@@ -92,8 +92,13 @@ full WordPress bootstrap (~2 s here, of which ~700 ms is
 Turning it off was measured and is **worse** on this setup: median went from
 ~4.4 s to ~14 s with intermittent multi-minute hangs. With it on, those requests
 run concurrently and the page shell paints immediately; with it off everything
-serialises into one request and nothing renders until all of it finishes. Leave
-it on unless `pm.max_children` is raised first.
+serialises into one request and nothing renders until all of it finishes. It is
+left **on**.
+
+That measurement was taken while PHP concurrency was still 2. Now that it is 6
+(see above), the trade-off has shifted in favour of leaving it on even more
+clearly — the parallel requests it fires can finally run in parallel. Re-test
+before changing it.
 
 ---
 
@@ -117,19 +122,35 @@ needed (WooCommerce Action Scheduler, scheduled posts):
 wp cron event run --due-now
 ```
 
-### `conf/php/php-fpm.d/www.conf.hbs` — PHP-FPM worker count (gitignored, Local-managed)
+### PHP concurrency — `%APPDATA%\Local\sites.json` (outside the repo entirely)
+
+PHP-FPM does **not** run on Windows — `conf/php/php-fpm.d/www.conf.hbs` says so in
+its first line, so its `pm.max_children = 2` is a red herring and changing it does
+nothing. Local instead starts one `php-cgi.exe` per port listed here:
 
 ```
-pm = static
-pm.max_children = 2
+sites.json -> cPNju-zlO.services.php.ports.cgi
 ```
 
-Two worker processes on a 12-core machine. The theme fires 6–8 concurrent PHP
-requests per page view (see `cache-queries` below), so they queue two at a time.
-Combined with `max_execution_time = 1200` in `conf/php/php.ini.hbs`, a request a
-browser has already given up on keeps occupying a worker for up to 20 minutes,
-which starves everything behind it. Raising `pm.max_children` (8–12 here) needs a
-site restart in Local to take effect.
+Each `php-cgi` handles exactly one request at a time (no forking on Windows), and
+nginx round-robins across them via the `upstream php` block in its generated
+`site.conf`. So that array *is* the concurrency limit.
+
+It was `[10002, 10003]` — two concurrent PHP requests on a 12-core machine, while
+the theme fires 6–8 per page view. Combined with `max_execution_time = 1200`, a
+request the browser had already abandoned kept a worker busy for up to 20 minutes,
+so every other request queued until the client gave up. Raised to:
+
+```
+[10002, 10003, 10006, 10007, 10008, 10009]
+```
+
+Measured effect on the shop page: `loadEventEnd` 62.6 s → 8.9 s, worst-case image
+queueing 20,150 ms → 545 ms, and sequential page loads went from 2 of 4 timing out
+to 6 of 6 succeeding.
+
+Takes effect when Local restarts the site. If the edit does not stick, Local has
+overwritten it from memory — quit Local completely, re-apply, then relaunch.
 
 ### Windows Defender exclusion (machine-level, needs an elevated shell)
 
