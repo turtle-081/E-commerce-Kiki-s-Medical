@@ -81,6 +81,66 @@ workaround when the corresponding upstream fix lands.
 | `propharm_child_fix_add_to_cart_url()` | `add_query_arg()`'s `REQUEST_URI` fallback produces protocol-relative `//ajax-api/...?add-to-cart=N` hrefs during the theme's own AJAX endpoint requests | the theme passes an explicit base URL |
 | `.summary .yay-currency-single-page-switcher` rule in `style.css` | propharm 3.1 declares `height:100%` on the switcher unscoped, so it fills the whole product summary column | the parent theme scopes that rule |
 
+### A note on the `cache-queries` theme option
+
+Theme options → "Cache custom queries?" is **on**, though the theme's own default
+is off. It makes each page render as a shell and fetch megamenus, footer, mobile
+header, products and posts through separate `/ajax-api/` requests, each paying a
+full WordPress bootstrap (~2 s here, of which ~700 ms is
+`propharm_enovathemes_integrateVC` re-registering all 102 WPBakery shortcodes).
+
+Turning it off was measured and is **worse** on this setup: median went from
+~4.4 s to ~14 s with intermittent multi-minute hangs. With it on, those requests
+run concurrently and the page shell paints immediately; with it off everything
+serialises into one request and nothing renders until all of it finishes. Leave
+it on unless `pm.max_children` is raised first.
+
+---
+
+## 3. Settings that live outside git
+
+These are real configuration, but `.gitignore` excludes the files they live in, so
+a fresh clone or a restore on another machine will not have them. Reapply by hand.
+
+### `app/public/wp-config.php` (gitignored)
+
+```php
+define( 'DISABLE_WP_CRON', true );
+```
+
+Without it, every page view spawns `wp-cron.php` — a second full WordPress
+bootstrap costing roughly 2.4 s on this machine, on top of the page's own
+render. Nothing runs scheduled tasks while it is set, so run them manually when
+needed (WooCommerce Action Scheduler, scheduled posts):
+
+```bash
+wp cron event run --due-now
+```
+
+### `conf/php/php-fpm.d/www.conf.hbs` — PHP-FPM worker count (gitignored, Local-managed)
+
+```
+pm = static
+pm.max_children = 2
+```
+
+Two worker processes on a 12-core machine. The theme fires 6–8 concurrent PHP
+requests per page view (see `cache-queries` below), so they queue two at a time.
+Combined with `max_execution_time = 1200` in `conf/php/php.ini.hbs`, a request a
+browser has already given up on keeps occupying a worker for up to 20 minutes,
+which starves everything behind it. Raising `pm.max_children` (8–12 here) needs a
+site restart in Local to take effect.
+
+### Windows Defender exclusion (machine-level, needs an elevated shell)
+
+Real-time scanning inspects every PHP file WordPress opens, and a single request
+opens thousands. Excluding the sites directory is usually the largest single win
+for Local on Windows:
+
+```powershell
+Add-MpPreference -ExclusionPath "C:\Users\Turtle\Local Sites"
+```
+
 ---
 
 ## Checking whether a patch survived an update
