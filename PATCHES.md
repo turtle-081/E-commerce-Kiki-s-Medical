@@ -96,7 +96,7 @@ Verified both directions: no write across 6 varied page loads, no write across 8
 concurrent requests, zero new log entries — and the file still self-heals, with a
 deliberately corrupted copy restored to the correct content by a single request.
 
-**Introduced in:** `7732f0b6`
+**Introduced in:** `8987df14`
 
 ---
 
