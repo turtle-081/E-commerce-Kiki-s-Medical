@@ -1,17 +1,25 @@
 # Local Sites configuration
-conf/
+# conf/ is deliberately NOT ignored: working rule 3 requires every config file we
+# change to be in git, and the nginx FastCGI cache directives live in
+# conf/nginx/*.hbs (Local regenerates the runtime config from these templates).
 
 # WordPress core (reinstallable)
 app/public/wp-admin/
 app/public/wp-includes/
 app/public/wp-*.php
+# ...but wp-config.php is ours, not core, and rule 3 requires it tracked.
+!app/public/wp-config.php
 app/public/index.php
 app/public/xmlrpc.php
 app/public/license.txt
 app/public/readme.html
 
 # Sensitive config
-app/public/wp-config.php
+# wp-config.php is deliberately NOT ignored: working rule 3 lists it explicitly,
+# and Phase 2/7 change it (WP_CACHE, WP_POST_REVISIONS, cache constants).
+# Safe here because the repository is private and this is a local development
+# install whose DB credentials are Local's defaults. The auth salts it contains
+# are development-only -- REGENERATE THEM before any production deployment.
 
 # Uploads & generated files
 app/public/wp-content/uploads/
