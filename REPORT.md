@@ -216,10 +216,159 @@ is entirely in the browser.
 
 ---
 
+## Phase 4 — WooCommerce and theme AJAX
+
+The goal for this phase was the brief's "0 uncached PHP requests per anonymous
+page view". The page cache from Phase 2 made the *document* free; this phase is
+about the requests that fire after it.
+
+### Starting point
+
+A single anonymous `/shop/` view made **8 uncached PHP requests** behind the
+cached HTML:
+
+| Source | What it was |
+|---|---|
+| `?wc-ajax=get_refreshed_fragments` | WooCommerce cart fragments |
+| 5–6 × `/ajax-api/…` | theme `cache-queries` mode — footer, megamenus, product grids |
+| `admin-ajax.php` | mini-cart contents |
+
+### 4.1 / 4.2 — cart fragments
+
+`wc-cart-fragments` is dequeued everywhere except `/cart/` and `/checkout/`,
+which are uncached by design. Its only real job on other pages is the header cart
+count, so that is replaced with ~1 KB of inlined JavaScript that reads
+`wc/store/v1/cart` — **but only when the `woocommerce_items_in_cart` cookie is
+present**. A visitor browsing without a cart makes zero requests for this;
+previously every visitor made one.
+
+Verified end to end: anonymous shop page HIT with an empty badge → add product →
+all three Woo cookies set → Store API returns `items_count: 1`, `total: 2890
+KES` → shop page now BYPASS → cart page correct.
+
+### 4.3 / 4.4 — asset scoping
+
+The brief warns that `is_woocommerce()` is false on pages that merely *display*
+products, and that dequeuing there breaks add-to-cart. That is exactly this site
+— the homepage alone has 35 add-to-cart links. So `safi_page_needs_woo()` also
+scans `post_content` for the theme's product shortcodes rather than relying on
+a hand-written allowlist.
+
+Confirmed: Woo assets retained on `/`, `/shop/`, `/product/…`, `/cart/`;
+dequeued on `/about-us/`, `/faq/`, `/delivery-information/`.
+
+Marketplace suggestions and background image regeneration are disabled.
+**`woocommerce_admin_disabled` is deliberately NOT set** — the brief requires
+confirmation first, and it has not been given. It is the largest remaining
+admin-side win and is worth asking about.
+
+### 4.5 / 4.6 — the theme's own AJAX (the bigger win)
+
+`cache-queries` was turned **off**. My earlier recommendation to leave it on was
+made before a page cache existed, and it no longer holds: the `/ajax-api/`
+endpoints can never be cached, so with cached HTML in front they were pure
+overhead. Turning it off eliminated all 5–6 of them and the content now renders
+inline. TTFB was unchanged (25–60 ms, still HIT).
+
+That left three `admin-ajax.php` calls, identified by logging the actual actions
+server-side rather than guessing:
+
+| Action | Payload | Fixed? |
+|---|---|---|
+| `megamenu_load` | 62 KB | mostly — see below |
+| `mobile_load` | 2.5 KB | yes |
+| `update_mini_cart_contents` | 321 B | no |
+
+Both fixable ones were **theme settings, not code**: the header-button shortcode
+carries `megamenu_ajax="true"` and the mobile container carries `async="true"`,
+each of which emits an empty placeholder and fetches its contents on every page
+view. Deferring like that is sensible with no page cache; with one it is exactly
+backwards, because the inline copy is baked into the cached response for free
+while the AJAX copy is an uncached PHP hit — roughly 1.4 s each on this machine —
+every single time.
+
+Flipped via `tools/inline-header-megamenu.php` and `tools/inline-mobile-header.php`,
+both of which store the original `post_content` in post meta and support
+`--revert`. No vendor code was touched, and the same toggles exist in the theme's
+header builder UI.
+
+**One trap worth recording:** the first attempt appeared to do nothing. The theme
+caches rendered header markup in transients, and Phase 7 had just given those a
+one-week TTL, so the old markup kept being served. `tools/flush-theme-caches.php`
+was added to clear them.
+
+### Result
+
+| | Before | After |
+|---|---|---|
+| Uncached PHP requests per anonymous page view | **8** | **2** |
+| Document, gzipped | ~48 KB | ~100 KB |
+| Total wire bytes for the same content | ~112 KB | ~103 KB |
+
+Fewer bytes, six fewer round trips, and nothing left that blocks on PHP except
+the two below. TTFB stayed at 29–60 ms HIT throughout.
+
+**The two that remain, and why.** `update_mini_cart_contents` (321 B) fires
+whenever the body carries `woocommerce-js`; suppressing it means either removing
+that class — which disables AJAX add-to-cart — or patching theme JavaScript. Not
+worth the risk for 321 bytes. `megamenu_load` (now 10.7 KB, down from 62 KB)
+survives because the theme's JavaScript collects **every** `.menu-item.mm-true`
+regardless of the per-item ajax flag; only header *buttons* honour the setting.
+Removing it would require patching `controller.js`, which working rule 4 puts
+off-limits. Both are documented rather than silently left.
+
+So the "0 uncached PHP requests" target is **not** met — it is 2, down from 8.
+Reaching 0 needs vendor JavaScript changes that the brief prohibits.
+
+### Lighthouse — no improvement, and an earlier claim withdrawn
+
+| Metric | Baseline | Phase 2 | Phase 4 |
+|---|---|---|---|
+| Home — Performance | 29 | 27 | 30 |
+| Home — LCP | 7.7 s | 8.2 s | 8.7 s |
+| Home — TBT | 7,860 ms | 13,320 ms | 8,690 ms |
+| Product — Performance | 38 | 9 | 7 |
+| Product — CLS | 0.148 | 0.955 | 0.955 |
+| Document KB | 44 / 48 | 47 / 49 | 97 / 100 |
+| JS KB | 418 / 445 | 419 / 446 | 418 / 445 |
+
+Mid-phase I recorded product CLS improving from 0.955 to 0.076 and called it a
+Phase 4 win. **That was wrong.** Three identical runs of the finished
+configuration returned:
+
+| Run | Score | LCP | CLS | TBT |
+|---|---|---|---|---|
+| 1 | 17 | 7.9 s | 0.955 | 1,180 ms |
+| 2 | 30 | 8.3 s | **0.076** | 4,190 ms |
+| 3 | 6 | 8.7 s | 0.955 | 2,890 ms |
+
+CLS on this page is **bimodal** — it lands on 0.955 or 0.076 depending on a race,
+and the score swings between 6 and 30 with no configuration change at all. The
+0.076 I saw was a coin flip, not a result. Any single Lighthouse number from this
+page should be treated as unreliable until the underlying race is fixed.
+
+The shift itself is one event of 0.955 — an entire viewport — and Lighthouse's
+`unsized-images` audit *passes*, so it is not the usual missing-dimensions cause.
+A live `PerformanceObserver` on an unthrottled load recorded zero shifts, which
+fits an intermittent that only reproduces under throttling. Diagnosing it belongs
+in Phase 6 alongside the rest of the client-side work.
+
+Document size roughly doubled, which is the honest cost of inlining. It is
+accepted because the bytes it replaced were larger (a 62 KB XHR plus a 2.5 KB
+one), they are now compressed and cached rather than fetched live, and each
+removed request cost ~1.4 s of PHP. Phase 6 should trim the megamenu markup
+itself, which is the real problem — 316 KB of raw HTML for a navigation menu.
+
+**Phase 4 did not move Lighthouse, and was not going to.** Both pages still ship
+~420–445 KB of JavaScript and ~2.2 MB total, and RevSlider accounts for 9 of the
+10 heaviest requests. That is Phase 6's scope, and it is now the only thing left
+standing between this site and the target scores.
+
+---
+
 ## Phases not yet started
 
-Phase 4 (WooCommerce), 5 (instant navigation), 6 (payload), 8 (final
-verification).
+Phase 5 (instant navigation), 6 (payload), 8 (final verification).
 
 ## Skipped permanently in this environment
 

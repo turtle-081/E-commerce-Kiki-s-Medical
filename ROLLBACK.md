@@ -89,15 +89,95 @@ instead: WebP output, correct `sizes`, and `fetchpriority` on the LCP image.
 
 ---
 
+## Phase 2A — nginx FastCGI page cache
+
+The cache directives live in `conf/nginx/nginx.conf.hbs` and
+`conf/nginx/site.conf.hbs`, **not** in the generated runtime config — Local
+rebuilds the runtime config from those templates on every site restart, so
+editing the generated output alone would be silently reverted.
+
+To disable the page cache:
+
+1. Comment out the `fastcgi_cache`, `fastcgi_cache_valid`,
+   `fastcgi_cache_bypass`, `fastcgi_no_cache` and `add_header X-FastCGI-Cache`
+   lines in `conf/nginx/site.conf.hbs`.
+2. Comment out `fastcgi_cache_path` and `fastcgi_cache_key` in
+   `conf/nginx/nginx.conf.hbs`.
+3. Restart the site in Local, then empty the store:
+
+```bash
+rm -rf "app/nginx-cache"/*
+```
+
+Both files are tracked in git, so `git checkout -- conf/nginx` also works.
+
+### Purge module
+
+```bash
+rm app/public/wp-content/mu-plugins/safi-performance/cache-purge.php
+```
+
+Only removes automatic purging; it does not disable the cache itself. If the
+cache is still on after removing this, purge by hand with the `rm -rf` above.
+
+### OPcache settings
+
+`conf/php/php.ini.hbs` — revert the `opcache.*` values and restart the site.
+
+---
+
+## Phase 4 — WooCommerce and theme AJAX
+
+### Cart fragments and asset scoping
+
+```bash
+rm app/public/wp-content/mu-plugins/safi-performance/woo-fragments.php
+rm app/public/wp-content/mu-plugins/safi-performance/woo-assets.php
+```
+
+`woo-fragments.php` also carries the replacement cart-count script, so removing
+it restores WooCommerce's own `wc-cart-fragments` behaviour in one step — there
+is no half-state where the badge stops updating.
+
+### Inlined header megamenu and mobile header
+
+These are header-builder settings, not code, so they are reverted with the same
+scripts that applied them. Each stored the original `post_content` in post meta
+before changing it.
+
+```bash
+php tools/inline-header-megamenu.php --revert
+php tools/inline-mobile-header.php --revert
+php tools/flush-theme-caches.php
+rm -rf "app/nginx-cache"/*
+```
+
+The flush is required: the theme caches rendered header markup in transients, so
+without it the old markup is served until the transient lapses (a week, since
+Phase 7 gave these a real TTL).
+
+The same toggles exist in the theme's header builder UI — *Megamenu ajax* on the
+header button element, and *Async* on the mobile container — so the client can
+also flip them back without the CLI.
+
+### `cache-queries` theme option
+
+Turned **off** in Theme Options. Turn it back on there, or:
+
+```php
+// value lives in the enovathemes option array, key 'cache-queries'
+// '1' = on (per-page /ajax-api/ endpoints), '0' = off (render inline)
+```
+
+Re-run `php tools/flush-theme-caches.php` and empty the nginx cache afterwards.
+
+---
+
 ## Phases not yet applied
 
-Phase 2 (page cache), 3 (skipped — no Cloudflare), 4 (WooCommerce), 5 (instant
-navigation), 6 (payload). Rollback notes will be added here as each is applied.
+Phase 3 (skipped — no Cloudflare), 5 (instant navigation), 6 (payload),
+8 (final verification). Rollback notes will be added here as each is applied.
 
-Planned rollback shape for the ones that touch config:
-
-- **Phase 2A** — the nginx cache directives go in `conf/nginx/*.hbs`, not the
-  generated output. Comment out the `fastcgi_cache*` lines and restart the site
-  in Local; the generated config is rebuilt from the templates.
-- **Phase 4/5/6** — one file each under `mu-plugins/safi-performance/`. Delete
-  the file to disable that change; nothing else references it.
+Planned shape: **Phase 5/6** — one file each under
+`mu-plugins/safi-performance/`. Delete the file to disable that change; nothing
+else references it.
