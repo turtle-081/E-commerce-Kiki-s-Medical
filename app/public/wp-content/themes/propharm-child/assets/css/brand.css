@@ -186,3 +186,83 @@ form.cart button.button.single_add_to_cart_button,
 	aspect-ratio: 749 / 353;
 	height: auto;
 }
+
+/* ---------------------------------------------------------------------------
+ * Content pages written as plain HTML (About, Contact, FAQ, and the policy
+ * pages). The theme has no styling for bare markup outside a page-builder row,
+ * so without this the text runs the full viewport width with no padding.
+ *
+ * .container is the theme's own 1240px wrapper. .kiki-page adds the vertical
+ * rhythm and caps the measure: 1240px of 14px text is far too long a line to
+ * read comfortably, so prose is held to about 68 characters while tables and
+ * headings keep the full width.
+ * ------------------------------------------------------------------------ */
+.kiki-page {
+	padding: 48px 0 64px;
+}
+
+.kiki-page > h2 {
+	margin: 0 0 16px;
+}
+
+.kiki-page > h3 {
+	margin: 40px 0 12px;
+}
+
+.kiki-page > p,
+.kiki-page > ul,
+.kiki-page > ol {
+	max-width: 68ch;
+	margin: 0 0 16px;
+	line-height: 1.7;
+}
+
+.kiki-page > ul,
+.kiki-page > ol {
+	padding-left: 20px;
+	list-style: disc outside;
+}
+
+.kiki-page > ol {
+	list-style: decimal outside;
+}
+
+.kiki-page > ul li,
+.kiki-page > ol li {
+	margin-bottom: 6px;
+}
+
+/* Links need to look like links now that all body copy is black. */
+.kiki-page a {
+	color: var(--brand-green-dark);
+	text-decoration: underline;
+}
+
+.kiki-page a:hover {
+	color: var(--brand-red);
+}
+
+.kiki-page table {
+	width: 100%;
+	max-width: 720px;
+	border-collapse: collapse;
+	margin: 0 0 24px;
+}
+
+.kiki-page th,
+.kiki-page td {
+	text-align: left;
+	padding: 8px 12px;
+	border-bottom: 1px solid #eaeaea;
+}
+
+.kiki-page th {
+	background-color: var(--brand-green-tint);
+	font-weight: 700;
+}
+
+@media (max-width: 767px) {
+	.kiki-page {
+		padding: 32px 16px 48px;
+	}
+}
