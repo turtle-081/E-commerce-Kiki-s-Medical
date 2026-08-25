@@ -43,3 +43,6 @@ app/public/wp-content/litespeed/
 
 # LiteSpeed's own .htaccess backup
 app/public/.htaccess.bk
+
+# Lighthouse HTML reports are large; the JSON is what the numbers come from
+reports/*.report.html
