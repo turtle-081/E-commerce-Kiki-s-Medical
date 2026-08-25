@@ -19,6 +19,33 @@ http {
     fastcgi_buffer_size 32k;
     fastcgi_read_timeout 1800s;
 
+	#
+	# Phase 2A - FastCGI full-page cache
+	#
+	# The path is absolute and machine-specific, which matches how Local already
+	# renders this file (see error_log above). The directory is created by nginx
+	# on first use and is gitignored.
+	#
+	# use_temp_path=off keeps writes on the same volume as the cache, avoiding a
+	# copy per response.
+	#
+	fastcgi_cache_path "C:/Users/Turtle/Local Sites/client1/app/nginx-cache"
+	                   levels=1:2 keys_zone=WORDPRESS:100m
+	                   inactive=24h max_size=2g use_temp_path=off;
+
+	fastcgi_cache_key "$scheme$request_method$host$request_uri";
+
+	# WordPress sets cookies and no-cache headers on almost every response. Without
+	# ignoring them nothing would ever be stored. The $skip_cache rules in
+	# site.conf are what keep genuinely private responses out of the cache.
+	fastcgi_ignore_headers Cache-Control Expires Set-Cookie;
+
+	# Strip tracking parameters so ?utm_source=... does not fragment the cache.
+	map $args $clean_args {
+		~^(.*?)(&|^)(utm_[a-z_]+|fbclid|gclid|mc_[a-z]+|_gl)=[^&]*(.*)$ $1$4;
+		default $args;
+	}
+
 	map $http_x_forwarded_proto $resolved_scheme {
         default "http";
         "https" "https";

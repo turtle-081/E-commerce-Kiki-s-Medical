@@ -31,6 +31,32 @@ server {
     {{/unless}}
 
 	#
+	# Phase 2A - decide what may be served from the FastCGI cache
+	#
+	# Order matters: each rule can only ever set the flag, never clear it.
+	#
+	set $skip_cache 0;
+
+	# Anything that mutates state.
+	if ($request_method != GET) { set $skip_cache 1; }
+
+	# Real query strings bypass; tracking-only ones do not, because $clean_args
+	# (see nginx.conf) has already had utm_*/fbclid/gclid stripped out.
+	if ($clean_args != "") { set $skip_cache 1; }
+
+	# WooCommerce pages confirmed from the DB: cart=9 /cart/, checkout=10
+	# /checkout/, my-account=11 /my-account/. Also the theme's own /ajax-api/
+	# endpoints, which return per-request JSON.
+	if ($request_uri ~* "/wp-admin/|/wp-login\.php|/wp-json/|/wc-api/|/wp-cron\.php|/xmlrpc\.php|/feed/|sitemap(_index)?\.xml|/cart/?|/checkout/?|/my-account/?|/ajax-api/|\?add-to-cart=|wc-ajax=") {
+		set $skip_cache 1;
+	}
+
+	# Anyone with a session: logged in, commenting, or holding a cart.
+	if ($http_cookie ~* "comment_author|wordpress_[a-f0-9]+|wp-postpass|wordpress_no_cache|wordpress_logged_in|woocommerce_items_in_cart|woocommerce_cart_hash|wp_woocommerce_session_") {
+		set $skip_cache 1;
+	}
+
+	#
 	# Forward 404's to WordPress
 	#
 	error_page 404 = @wperror;
@@ -107,6 +133,29 @@ server {
 		fastcgi_buffer_size      64k;
 		fastcgi_buffers          32 32k;
 		fastcgi_read_timeout	 1200s;
+
+		#
+		# Phase 2A - FastCGI cache
+		#
+		# Note this upstream is "php", a pool of php-cgi workers on TCP ports.
+		# There is no PHP-FPM on Windows, so the usual unix-socket fastcgi_pass
+		# from the brief does not apply here.
+		#
+		fastcgi_cache_bypass $skip_cache;
+		fastcgi_no_cache     $skip_cache;
+		fastcgi_cache        WORDPRESS;
+		fastcgi_cache_valid  200 301 302 24h;
+		fastcgi_cache_valid  404 10m;
+
+		# Serve stale while revalidating, so only one visitor per page per day
+		# pays the full PHP cost rather than everyone who arrives during a rebuild.
+		fastcgi_cache_use_stale error timeout updating http_500 http_503;
+		fastcgi_cache_background_update on;
+		fastcgi_cache_lock on;
+		fastcgi_cache_min_uses 1;
+
+		add_header X-FastCGI-Cache $upstream_cache_status always;
+		add_header X-Cache-Skipped $skip_cache always;
 
 		proxy_buffer_size        64k;
 		proxy_buffers            32 32k;

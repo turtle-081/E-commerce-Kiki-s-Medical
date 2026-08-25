@@ -220,6 +220,10 @@ zend_extension = {{extensionsDir}}/opcache.so
 {{/if}}
 
 opcache.enable=1
+opcache.revalidate_freq=60
+opcache.max_accelerated_files=20000
+opcache.interned_strings_buffer=32
+opcache.memory_consumption=256
 opcache.enable_cli=1
 {{/unless}}
 

@@ -51,9 +51,13 @@ for path in "${PATHS[@]}"; do
 			"$(awk -v t="$total_ttfb" -v n="$ok" 'BEGIN{print t/n}')" "$ok"
 	fi
 
-	# Cache-related response headers, separately (portable across curl builds).
-	curl -sI --max-time 300 "$URL$path" 2>/dev/null |
-		grep -iE '^(x-fastcgi-cache|x-litespeed-cache|x-lsadc-cache|cf-cache-status|x-cache|cache-control|age|server):' |
+	# Cache-related response headers.
+	#
+	# Deliberately a GET with -D, not `curl -I`. A HEAD request is not a GET, so
+	# the cache-bypass rules skip it by design and it always reports BYPASS --
+	# which makes a perfectly working cache look broken.
+	curl -s --max-time 300 -o /dev/null -D - "$URL$path" 2>/dev/null |
+		grep -iE '^(x-fastcgi-cache|x-cache-skipped|x-litespeed-cache|cf-cache-status|x-cache|cache-control|age|server):' |
 		sed 's/^/   /'
 	echo
 done

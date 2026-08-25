@@ -116,10 +116,110 @@ would be substituting one plugin for another rather than fixing the payload.
 
 ---
 
+## Phase 2A — nginx FastCGI full-page cache
+
+Branch A, adapted. Branch B was not applicable and LiteSpeed was removed in
+Phase 7, so rule 5 is satisfied: exactly one caching layer now exists.
+
+### What was configured
+
+Directives live in `conf/nginx/nginx.conf.hbs` and `conf/nginx/site.conf.hbs`,
+because Local re-renders the runtime config from those templates on every site
+restart — editing the generated output alone would be lost. The same edits were
+mirrored into the running config so they could be tested without a restart.
+
+Two deviations from the brief, both forced by the environment:
+
+- `fastcgi_pass` targets the existing `php` upstream — a TCP pool of `php-cgi`
+  workers. There is no PHP-FPM on Windows, so the brief's unix-socket line does
+  not apply.
+- No `/purge` location, because `ngx_cache_purge` is not compiled into this
+  nginx. Purging is done by deleting cache files from
+  `mu-plugins/safi-performance/cache-purge.php` instead, which is also what
+  Nginx Helper would fall back to.
+
+OPcache raised to the brief's numbers (256 MB, 20000 files, 32 MB interned
+strings, revalidate 60) in both the template and the runtime ini. **This takes
+effect on the next PHP restart**, so it is not reflected in the numbers below.
+
+### Results — the target is met, decisively
+
+TTFB, medians of 9 samples:
+
+| Page | Baseline | Phase 2 | Change |
+|---|---|---|---|
+| `/` | 1.887 s | **0.029 s** | 65× faster |
+| `/shop/` | 2.054 s | **0.025 s** | 82× faster |
+| `/product/…` | 1.753 s | **0.025 s** | 70× faster |
+| `/cart/` | 1.855 s | 1.620 s | uncached by design |
+
+Lighthouse "server response" fell from **2,170 ms to 20 ms** on the homepage and
+**3,640 ms to 20 ms** on the product page.
+
+**Target: < 100 ms TTFB for a cached anonymous page. Achieved: 25–29 ms.**
+
+### Correctness — verified, and one bug caught
+
+Full matrix re-tested after every change:
+
+| Must BYPASS | Result |
+|---|---|
+| `woocommerce_items_in_cart`, `woocommerce_cart_hash`, `wp_woocommerce_session_*` | BYPASS |
+| `wordpress_logged_in_*`, `comment_author_*`, `wp-postpass_*` | BYPASS |
+| `/cart/`, `/checkout/`, `/my-account/`, `/wp-login.php`, `/wp-json/` | BYPASS |
+| `?add-to-cart=`, `?wc-ajax=`, `?s=` | BYPASS |
+| POST to any URL | not cached |
+
+| Should cache | Result |
+|---|---|
+| `/`, `/shop/`, `/about-us/`, product pages | HIT |
+| `?utm_source=`, `?fbclid=` (tracking stripped) | HIT |
+
+Purge on publish verified: 6 cached files → 0 after a post update, next request
+MISS then HIT.
+
+**A serious bug was caught during this verification.** The first version of the
+generated config was missing the `$http_cookie` rule entirely — a scripted
+extraction had stopped at the first `set $skip_cache 1;` and silently truncated.
+The config passed `nginx -t` and cacheable pages behaved perfectly, but every
+session cookie returned **HIT**: a logged-in user would have been served
+anonymous cached HTML, and their responses could have been cached and served to
+others. Only the explicit cookie matrix surfaced it. It is fixed, the cache was
+purged, and all six cookies now BYPASS.
+
+### Lighthouse got worse, and that is expected
+
+| Metric | Baseline | Phase 7 | Phase 2 |
+|---|---|---|---|
+| Home — Performance | 29 | 30 | **27** |
+| Home — TBT | 7,860 ms | 9,430 ms | **13,320 ms** |
+| Product — Performance | 38 | 32 | **9** |
+| Product — CLS | 0.148 | 0.145 | **0.955** |
+| Server response | 2,170 / 3,640 ms | 2,610 / 2,470 ms | **20 / 20 ms** |
+
+This is not a regression caused by caching — it is caching **removing the thing
+that was hiding the client-side problems**. When the document took 2–4 seconds to
+arrive, the browser had that long to work through scripts and images before the
+measurement window filled up. Now the HTML lands in 20 ms and every bit of
+client-side work happens at once, so the simulated-throttle run sees all of it
+competing.
+
+The product page's CLS of 0.955 is the clearest symptom: content now arrives
+instantly, and then the theme's AJAX-injected product grids and megamenus push
+the layout around. Images still ship without `width`/`height`, so nothing
+reserves space.
+
+**Neither number is fixable in Phase 2.** They are precisely what Phases 4 and 6
+exist for: cart fragments firing on every page view, ~445 KB of JavaScript, and
+images with no intrinsic dimensions. The server-side work is done; what remains
+is entirely in the browser.
+
+---
+
 ## Phases not yet started
 
-Phase 2 (page cache), 4 (WooCommerce), 5 (instant navigation), 6 (payload),
-8 (final verification).
+Phase 4 (WooCommerce), 5 (instant navigation), 6 (payload), 8 (final
+verification).
 
 ## Skipped permanently in this environment
 
