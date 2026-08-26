@@ -255,6 +255,97 @@ result.
 
 ---
 
+## Outstanding work
+
+The performance engagement is paused, not finished. Five of eight phases are
+done, one is skipped for environmental reasons, and two remain. `REPORT.md` has
+a status table; this section is what you need to *resume*.
+
+Three of the brief's targets are met — TTFB under 100 ms cached (~30 ms),
+JavaScript under 300 KB on the product page (254 KB), and CLS under 0.05
+(0–0.002). Three are not: LCP (~7.8 s against 2.5 s), Lighthouse mobile (~42
+against 90), and zero uncached PHP per anonymous view (currently 2, down from 8).
+
+### Phase 6 — payload (the real remaining work)
+
+Both remaining items are blocked on the same root cause, and it is worth
+understanding before starting: **the theme renders images by hand at full size,
+and disables responsive images globally.**
+
+```php
+// enovathemes-addons/shortcodes/shortcodes.php — always 'full'
+$image = wp_get_attachment_image_src( $image, 'full' );
+$output .= '<img src="'.$image_src.'" width="'.$w.'" height="'.$h.'" ... />';
+
+// enovathemes-addons.php:1862 — kills srcset site-wide, no setting for it
+add_filter( 'wp_calculate_image_srcset', '__return_empty_array', PHP_INT_MAX );
+```
+
+Measured consequence: 73 upload images on the homepage, none with `srcset`,
+twenty rendering at ~225 px and nine at ~100 px while all download the 1000×1000
+original. The resized files (100×100 through 768×768) already exist on disk.
+
+**Do not retry the output-buffer retrofit.** It was tried in 6.5 and reverted.
+Rewriting `<img>` tags after the fact and applying core's "first large image is
+the LCP" heuristic *saved* 124 KB but regressed homepage LCP from 9.0 s to 12.4 s
+and doubled product TBT — because the hero here is a Slider Revolution module
+built by JavaScript, so the first `<img>` in source order is not what paints.
+Restricting it to already-lazy images was safe but a no-op, because those use a
+`data-src` placeholder. The full implementation is in git history if wanted.
+
+The approach that should work is to fix it at the source rather than downstream:
+override the specific theme shortcodes in `propharm-child` so they request a
+sized variant (`propharm_425X425` and similar already exist) instead of `'full'`,
+and drop the blanket srcset filter for those contexts. That is a child-theme
+override, not a vendor edit, so it stays inside working rule 4.
+
+Also outstanding here: **156 KB of unused CSS** (`propharm/style.css` 78 KB,
+`js_composer.min.css` 46 KB), worth ~930 ms by Lighthouse's estimate.
+
+### Phase 8 — final verification
+
+The before/after deliverable is written. Two of the brief's checks cannot run
+here and need a real deployment: **edge TTFB from Nairobi** (no public hostname,
+no CDN) and the **M-Pesa STK push test** (no payment gateway plugin installed).
+
+### Phase 3 — Cloudflare
+
+Skipped entirely. `client1.local` is not publicly resolvable, so none of it
+applies until this is on a real domain.
+
+### Smaller items, not phase work
+
+- **Two uncached PHP requests per page view remain** — `update_mini_cart_contents`
+  (321 B) and `megamenu_load` (~10.7 KB). Both need `controller.js` patches:
+  the mini-cart fires whenever `body.woocommerce-js` is present, and the theme's
+  JS collects *every* `.menu-item.mm-true` regardless of the per-item AJAX flag.
+  Getting to zero means patching vendor JavaScript.
+- **Two demo menu items link to `/nothing`** (HTTP 404), labelled "404 Error
+  Page" in the navigation.
+- **Every image has `alt="One"`** — the site name, not a description. An
+  accessibility problem rather than a performance one, but it should be fixed
+  before handover.
+- **Structured data has not been audited.** WooCommerce and Yoast emit `Product`,
+  `Offer`, `BreadcrumbList` and `Organization` JSON-LD, but nobody has checked
+  that `priceCurrency` followed the KES conversion. If it still says `USD`,
+  search results would advertise wrong prices.
+- **The PR into `master` is not open.** Nothing has merged forward.
+
+### Before resuming
+
+Re-measure first — do not trust the numbers in `REPORT.md` to still hold after
+any WordPress, WooCommerce, theme or plugin update:
+
+```bash
+bash scripts/measure.sh http://client1.local 5
+bash tools/check-patches.sh
+```
+
+The second one matters: `PATCHES.md` documents patches to third-party code that
+**any plugin or theme update will silently revert**.
+
+---
+
 ## Not in this repo
 
 Machine-level state a fresh clone will not reproduce:
