@@ -275,6 +275,22 @@ The previous values were `no-cache, must-revalidate` for CSS/JS and `expires 5m`
 for images and fonts. There is no good reason to go back: the URLs are versioned,
 so a long lifetime cannot serve stale content.
 
+### Inlined footer
+
+```bash
+php tools/inline-footer.php --revert
+php tools/flush-theme-caches.php
+rm -rf "app/nginx-cache"/*
+```
+
+Returns the footers to AJAX loading. **Do not do this while
+`script-loading.php` is active** — deferred scripts stop the theme's footer
+hydration from running, which leaves the homepage footer blank. That combination
+is the bug this change fixed.
+
+The same toggle is in the theme's footer editor, so the client can flip it
+without the CLI.
+
 ---
 
 ## Phases not yet applied

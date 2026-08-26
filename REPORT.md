@@ -757,6 +757,47 @@ Noted while reading the image audit and out of scope: every image on the page
 has `alt="One"` — the site name, not a description. That is an accessibility
 problem, not a performance one, but it should be fixed before handover.
 
+### 6.6 — a regression the final smoke test caught
+
+The last check before writing this up found the **homepage footer rendering as an
+empty placeholder**. Worth recording both because it was user-visible and because
+of how it was introduced.
+
+The theme can load a footer over admin-ajax, leaving a fixed-height placeholder
+until the response arrives. It is controlled per footer by
+`enovathemes_addons_footer_async`, with per-context exemptions
+(enovathemes-addons.php:624-658). On this site the **shop and product exemptions
+were already on** — which is exactly why `/shop/` and `/product/` had real
+footers throughout this engagement while the homepage did not. The split was
+latent and invisible: the homepage footer was being hydrated by JavaScript.
+
+Deferring scripts in Phase 6.4 turned that latent split into a visible bug. The
+hydration call never fired — one `admin-ajax` request on the homepage instead of
+five — so the footer stayed blank.
+
+Diagnosis was by bisection rather than inspection: disabling `script-loading.php`
+and reloading restored the footer, which pinned the cause precisely. A manual
+`footer_load` POST returned a perfectly good 15 KB of footer HTML, confirming the
+server side was fine and the trigger was the problem.
+
+The fix is not to stop deferring. It is to render the footer inline, which is the
+same decision already taken for the header megamenu and the mobile header:
+
+- it removes another uncached PHP request per page view,
+- the markup lands in the page cache, so it costs nothing per visit,
+- and it cannot break, because there is no client-side step left to fail.
+
+Applied with `tools/inline-footer.php` (backs up the original meta, supports
+`--revert`) across all five footers. Verified: zero placeholders on `/`, `/shop/`
+and `/product/`, and the homepage footer now carries the full address, phone,
+email and copyright inline with defer still active.
+
+**The lesson worth keeping:** deferring scripts does not just change timing, it
+changes whether timing-dependent hydration runs at all. Anything on this site
+that paints via JavaScript needs checking against it — which is why the smoke
+test covered the slider, megamenus, cart and gallery, and why it was worth doing
+one more pass over a page I thought was finished.
+
 ---
 
 ## Phase 8 — where this ended up
