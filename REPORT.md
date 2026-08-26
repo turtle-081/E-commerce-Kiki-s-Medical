@@ -694,7 +694,7 @@ The resized files (100×100 through 768×768) already exist on disk, unused.
 **And there is a second cause underneath it.** `wp_get_attachment_image_srcset()`
 returned false for every image even though the metadata was healthy (1000×1000,
 12 sizes). `enovathemes-addons` disables responsive images site-wide and
-unconditionally — there is no setting for it (enovathemes-addons.php:1861):
+unconditionally — there is no setting for it (enovathemes-addons.php:1862):
 
 ```php
 add_filter( 'wp_calculate_image_srcset', '__return_empty_array', PHP_INT_MAX );
