@@ -593,11 +593,105 @@ the median is 0.046. What remains is small and no longer bimodal — the logo bo
 resolving from 65 px to 66 px is visible in the trace and is the likely
 remainder. Honest position: substantially fixed, not finished.
 
+### 6.4 — static asset caching, and unblocking the render
+
+Two changes, both aimed at what the audits actually ranked highest rather than at
+the usual image advice.
+
+**Static asset lifetimes.** Local's nginx defaults were
+`Cache-Control: no-cache, must-revalidate` for CSS and JS, and `max-age=300` —
+five minutes — for images and fonts. Lighthouse flagged 345 KB being re-fetched
+or revalidated on every visit. Every one of these URLs is versioned (WordPress
+appends `?ver=`, and this project's own stylesheets use `filemtime()`), so the
+bytes behind a given URL never change; they are now
+`public, max-age=31536000, immutable`. The `expires` directive was dropped in
+favour of a single `add_header`, because together they emitted two
+`Cache-Control` headers.
+
+**Render-blocking JavaScript — the largest single item on the page at ~1,950 ms.**
+The biggest entry was jQuery at 918 ms, loaded synchronously in the `<head>`.
+
+Deferring jQuery on a WordPress site is usually reckless, so it was checked
+rather than assumed: of 28 inline script blocks on the product page, 15 are
+WordPress-managed and of the remaining 13 exactly **one** touches jQuery — the
+Phase 5 `.no-prefetch` marker, which already guards with `if (window.jQuery)`.
+The theme has no raw inline jQuery at all.
+
+`script-loading.php` therefore asks for `defer` broadly and lets core decide.
+Since 6.3, `WP_Scripts::filter_eligible_strategies()` only defers a script when
+every script depending on it can also be deferred, so anything that would break
+ordering is silently left blocking. That safety net is why this is a broad opt-in
+rather than a hand-maintained allowlist.
+
+Two things had to be fixed before core would actually defer jQuery:
+
+1. *A late-enqueued dependent.* The search widget enqueues its script while the
+   body renders, after `wp_enqueue_scripts` has run — so it was never marked, and
+   one un-marked dependent was enough to keep jQuery blocking. A second pass on
+   `wp_print_footer_scripts` catches late arrivals.
+
+2. *My own Phase 4 code.* Core refuses to defer any handle with an inline script
+   in the `'after'` position, and that propagates to everything depending on it.
+   The cart-count script was attached to `jquery-core` — so 1 KB of cart code was
+   pinning jQuery as render-blocking in the head. It now has its own `src`-less
+   handle, which costs no request.
+
+Result: **zero render-blocking scripts in the `<head>`**, and render-blocking
+savings down from 1,950 ms to 550 ms.
+
+### Verified working after deferring
+
+This is the riskiest change in the engagement, so it was tested rather than
+assumed, in a fresh tab for a clean console:
+
+| Check | Result |
+|---|---|
+| jQuery available | 3.7.1 |
+| `wc_add_to_cart_params`, `controller_opt` | both present |
+| AJAX add-to-cart on `/shop/` | `added_to_cart` fired, cookie set, Store API `items_count: 1`, `1540 KES` |
+| Cart badge after add | shows **1** |
+| Product gallery / tabs / related | 1 / 51 / 5 |
+| Homepage slider | 4 slides, 424 px, `revapi5` |
+| Megamenus, carousels | 4 filled, 23 carousels |
+| New console errors | none — only the pre-existing `plugins-combined.js` one |
+
+### Result
+
+| Product page | 6.3 | 6.4 |
+|---|---|---|
+| Score (3 runs) | 57 / 32 / 35 | 50 / 42 / 39 |
+| **CLS** | 0.069 / 0.046 / 0 | **0 / 0.002 / 0** |
+| FCP median | 5.4 s | **3.6 s** |
+| TBT | 441 / 1,974 / 1,511 ms | 488 / 1,212 / 1,168 ms |
+| LCP median | 7.5 s | 7.8 s |
+
+**Target: CLS < 0.05. Achieved: 0–0.002.** The homepage also went from 0.076 to
+**0**. Deferring is what finished the job the Phase 6.2/6.3 work started — with
+scripts running after parse rather than during it, there is no mid-parse layout
+change left to measure.
+
+**One regression, reported not buried:** homepage TBT rose from 6,321 ms to
+9,926 ms. Deferring means all the JavaScript executes in one burst after parsing
+instead of being spread through it, and the homepage carries RevSlider plus 44
+products. FCP and CLS improved and the score was flat (28 → 29), so this is kept
+— but it is a real trade and the homepage's script weight is the thing that needs
+addressing, not the defer.
+
+LCP did not move. It is now the binding constraint.
+
 ### Still to do in this phase
 
-`fetchpriority` on the LCP image (set on no page currently), WebP conversion,
-unused CSS (~156 KB, mostly `propharm/style.css` at 78 KB and
-`js_composer.min.css` at 46 KB), and the last ~0.02 of CLS.
+LCP is the remaining gap at ~7.8 s against a 2.5 s target. The two unexploited
+levers the audits name are **image delivery** (182 KB — product images are 1000×1000
+originals served with `width`/`height` but **no `srcset`/`sizes`**, so mobile
+downloads full-size files) and **unused CSS** (156 KB / 930 ms). `fetchpriority`
+is still set on no page, and the logo `<img>` still has no `width`/`height`
+attributes.
+
+Also noted while reading the image audit: every image on the page has
+`alt="One"` — the site name, not a description. That is an accessibility problem
+rather than a performance one, and is out of scope here, but it should be fixed
+before handover.
 
 ---
 

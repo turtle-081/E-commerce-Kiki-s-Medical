@@ -240,6 +240,41 @@ leaves the header at a single 64px row:
 @media (max-width: 1024px) { .et-mobile .header-slogan { display: none; } }
 ```
 
+### Deferred JavaScript
+
+```bash
+rm app/public/wp-content/mu-plugins/safi-performance/script-loading.php
+rm -rf "app/nginx-cache"/*
+```
+
+Returns every script to its original loading strategy. This is the change most
+likely to be implicated if a front-end behaviour breaks, so it is the first thing
+to remove when diagnosing.
+
+To keep the benefit but exempt one script, prefer the denylist over removal:
+
+```php
+add_filter( 'safi_blocking_script_handles', function ( $handles ) {
+    $handles[] = 'some-handle';   // stays render-blocking
+    return $handles;
+} );
+```
+
+Note that `woo-fragments.php` was also changed as part of this: its cart-count
+script moved off `jquery-core` onto its own handle, because core will not defer
+any handle carrying an `'after'` inline script. Reverting only `script-loading.php`
+leaves that change in place, which is correct and harmless.
+
+### Static asset cache headers
+
+`conf/nginx/site.conf.hbs` — the three static `location` blocks. Restore with
+`git checkout -- conf/nginx/site.conf.hbs`, then restart the site in Local so the
+runtime config is regenerated from the template.
+
+The previous values were `no-cache, must-revalidate` for CSS/JS and `expires 5m`
+for images and fonts. There is no good reason to go back: the URLs are versioned,
+so a long lifetime cannot serve stale content.
+
 ---
 
 ## Phases not yet applied

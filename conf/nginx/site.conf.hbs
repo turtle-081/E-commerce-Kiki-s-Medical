@@ -67,25 +67,36 @@ server {
     #
 	# Static file rules
 	#
-	location ~* \.(?:css|js)$ {
+	# Phase 6.4 -- static asset cache lifetimes.
+    #
+    # Local's defaults were "no-cache, must-revalidate" for CSS/JS and a
+    # five-minute max-age for images and fonts, so Lighthouse flagged 345 KB of
+    # assets being refetched or revalidated on every visit.
+    #
+    # Every one of these URLs is versioned -- WordPress appends ?ver= and this
+    # project's own stylesheets use filemtime() -- so the bytes behind a given
+    # URL never change. A long max-age with immutable is therefore correct, and
+    # is what makes repeat visits and Phase 5 prerendering nearly free.
+    #
+    # immutable also stops the browser revalidating on reload, which the old
+    # no-cache value forced it to do every single time.
+    location ~* \.(?:css|js)$ {
         access_log        off;
         log_not_found     off;
-        add_header        Cache-Control "no-cache, public, must-revalidate, proxy-revalidate";
+        add_header        Cache-Control "public, max-age=31536000, immutable";
     }
 
-    location ~* \.(?:jpg|jpeg|gif|png|ico|xml)$ {
+    location ~* \.(?:jpg|jpeg|gif|png|webp|avif|ico|svg|xml)$ {
         access_log        off;
         log_not_found     off;
-        expires           5m;
-        add_header        Cache-Control "public";
+        add_header        Cache-Control "public, max-age=31536000, immutable";
     }
 
-    location ~* \.(?:eot|woff|woff2|ttf|svg|otf) {
+    location ~* \.(?:eot|woff|woff2|ttf|otf) {
         access_log        off;
         log_not_found     off;
 
-        expires           5m;
-        add_header        Cache-Control "public";
+        add_header        Cache-Control "public, max-age=31536000, immutable";
 
         # allow CORS requests
         add_header        Access-Control-Allow-Origin *;

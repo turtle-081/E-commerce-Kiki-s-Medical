@@ -51,15 +51,24 @@ add_action(
 			return; // fragments still run here
 		}
 
-		// Attach to a handle that is always present so ordering is predictable.
-		$handle = wp_script_is( 'jquery-core', 'enqueued' ) ? 'jquery-core' : 'jquery';
-		if ( ! wp_script_is( $handle, 'enqueued' ) && ! wp_script_is( $handle, 'registered' ) ) {
-			wp_register_script( 'safi-mini-cart', '', array(), null, true );
-			wp_enqueue_script( 'safi-mini-cart' );
-			$handle = 'safi-mini-cart';
-		}
-
-		wp_add_inline_script( $handle, safi_mini_cart_js() );
+		/*
+		 * Deliberately its own handle rather than an inline script attached to
+		 * jquery-core.
+		 *
+		 * WP_Scripts::filter_eligible_strategies() refuses to defer any handle
+		 * that has an inline script in the 'after' position, and that decision
+		 * propagates to everything depending on it. Hanging this off jquery-core
+		 * therefore pinned jQuery as a render-blocking script in the head — worth
+		 * ~918 ms on the product page — purely to deliver 1 KB of cart-count code.
+		 *
+		 * A standalone handle costs nothing (it has no src, so no request) and
+		 * leaves jQuery free to defer. The script does not need jQuery anyway:
+		 * the only jQuery use is an optional binding already guarded by
+		 * `if (window.jQuery)`.
+		 */
+		wp_register_script( 'safi-mini-cart', false, array(), null, true );
+		wp_enqueue_script( 'safi-mini-cart' );
+		wp_add_inline_script( 'safi-mini-cart', safi_mini_cart_js() );
 	},
 	110
 );
