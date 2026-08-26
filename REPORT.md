@@ -843,9 +843,26 @@ in `scripts/measure.sh` already in place to prove it.
 
 ---
 
-## Phases not yet started
+## Phase status at a glance
 
-Phase 8 (final verification).
+| Phase | State | Note |
+|---|---|---|
+| 1 — discovery and baseline | done | `DISCOVERY.md` |
+| 2 — caching | done | 2A.1 and 2A.4 skipped, see below |
+| 3 — Cloudflare | skipped | not possible here, see below |
+| 4 — WooCommerce | done | target missed: 2 uncached requests remain, not 0 |
+| 5 — instant navigation | done | rules verified; live activation could not be exercised here |
+| 6 — payload | **incomplete** | images and unused CSS outstanding |
+| 7 — database and background | done | |
+| 8 — final verification | **partial** | summary written; two checks impossible here |
+
+**Phase 6 is the one genuinely unfinished.** 6.1 through 6.4 landed and 6.5 was
+tried and reverted, but image delivery (~182 KB) and unused CSS (156 KB) remain,
+and both need vendor-side changes that working rule 4 puts off-limits. See
+"Still to do in this phase" above.
+
+**Phase 8 is partial rather than done.** The before/after deliverable exists, but
+the brief's edge-TTFB and M-Pesa checks cannot be run in this environment.
 
 ## Skipped permanently in this environment
 
