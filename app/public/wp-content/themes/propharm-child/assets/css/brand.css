@@ -266,3 +266,48 @@ form.cart button.button.single_add_to_cart_button,
 		padding: 32px 16px 48px;
 	}
 }
+
+/* -------------------------------------------------------------------------
+ * Mobile header: give the slogan its own row.
+ *
+ * This is the cause of the intermittent full-viewport layout shift that made
+ * the product page's CLS bimodal (0.955 or 0.07 on identical runs).
+ *
+ * At a 412px viewport the mobile header row holds four items:
+ *
+ *     .header-slogan  x=21   w=166   "Free delivery within Nairobi"
+ *     .header-logo    x=186  w=138
+ *     .mobile-container-toggle        x=372  w=19
+ *     .header-product-search-toggle   w=32   -- no room left, wraps
+ *
+ * They total more than the viewport, so the search toggle wraps onto a second
+ * row and the header doubles from 64px to 128px, pushing the whole page down.
+ * Whether that happens before or after first paint depends on when the fonts
+ * resolve, which is why the shift came and went between identical runs.
+ *
+ * The slogan is the item that does not fit -- it was added to the header when
+ * the COVID notice was replaced, and there was never room for it beside the
+ * logo and both toggles.
+ *
+ * Rather than hide it (the client asked for that message) it is given its own
+ * full-width row. The header is then deterministically two rows at every
+ * viewport width and cannot change height after paint, so there is nothing left
+ * to shift.
+ * ---------------------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+	.et-mobile .header-slogan {
+		width: 100%;
+		flex-basis: 100%;
+		justify-content: center;
+		text-align: center;
+	}
+
+	/* The remaining items now have the full width to themselves and cannot
+	   wrap, whatever the font metrics turn out to be. */
+	.et-mobile .header-logo,
+	.et-mobile .mobile-container-toggle,
+	.et-mobile .header-product-search-toggle {
+		white-space: nowrap;
+	}
+}

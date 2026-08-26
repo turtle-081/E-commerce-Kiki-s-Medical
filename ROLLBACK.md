@@ -213,6 +213,33 @@ add_filter( 'safi_page_needs_revslider', '__return_true' ); // that template onl
 The homepage is unaffected either way: it contains a slider shortcode, so its
 assets are never dequeued.
 
+### Font loading
+
+```bash
+rm app/public/wp-content/mu-plugins/safi-performance/font-loading.php
+rm -rf "app/nginx-cache"/*
+```
+
+Returns PT Sans to `display=swap`. Only do this if the client would rather see
+the brand font on every first view than avoid the reflow — it reintroduces the
+layout shift described in `REPORT.md`.
+
+### Mobile header slogan row
+
+In `themes/propharm-child/assets/css/brand.css`, delete the block commented
+"Mobile header: give the slogan its own row". The file is tracked, so
+`git checkout -- app/public/wp-content/themes/propharm-child/assets/css/brand.css`
+also works. Empty the page cache afterwards.
+
+Removing it restores the crowded single row, where the search toggle wraps and
+the header changes height after paint. If the slogan itself is unwanted on
+mobile, hiding it is the better alternative — that also fixes the shift, and
+leaves the header at a single 64px row:
+
+```css
+@media (max-width: 1024px) { .et-mobile .header-slogan { display: none; } }
+```
+
 ---
 
 ## Phases not yet applied

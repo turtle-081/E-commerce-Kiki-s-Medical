@@ -513,11 +513,86 @@ because console messages accumulate across navigations in this tool, which has
 produced a false conclusion earlier in this engagement. Only the pre-existing
 `plugins-combined.js` `HierarchyRequestError` remains.
 
+### 6.2 / 6.3 — the intermittent layout shift, found and fixed
+
+The bimodal CLS documented in Phase 4 turned out to be two separate causes, and
+neither was the one every audit pointed at. Lighthouse's `unsized-images` audit
+**passes** on this page and every image has its box reserved by CSS, so the usual
+explanation was ruled out early. Lighthouse also could not attribute the shift —
+its `layout-shifts` audit reported one 0.955 event with no node — so this needed
+the raw trace.
+
+The trace was unambiguous:
+
+```
+node 124  [0, 64, 412, 759]  ->  [0, 128, 412, 695]   the entire page content
+node 121  [324, 0,  32,  64] ->  [343, 64,  32,  64]  a header icon wraps
+```
+
+The header was not growing because something loaded into it. It was growing
+because its contents **re-wrapped onto a second row**, doubling it from 64 px to
+128 px and pushing the whole page down by 64 px. Whether that happened before or
+after first paint decided which side of the coin flip a run landed on.
+
+**6.2 — the font.** The theme loads PT Sans from Google Fonts with
+`display=swap`, and only the *stylesheet* is preloaded, not the font files. So
+the header rendered in a fallback face, the real font arrived ~150 ms later,
+every string in the header changed width, and the row re-wrapped. `swap` is
+right for body copy, where a reflow is invisible; it is wrong for a fixed-height
+header bar, where it moves the entire page.
+
+Changed to `display=optional`, which gives the font a short window and then
+keeps the fallback **for that page view without swapping** — one layout, so no
+shift. The font is still cached for every later view, and with the page cache and
+Phase 5 prerendering those are the common case. Preloading the woff2 files
+directly was rejected: Google serves them from hashed URLs that would rot into
+dead preloads. A `crossorigin` preconnect to `fonts.gstatic.com` was added, since
+font fetches are CORS requests and a preconnect without it opens a connection the
+fetch cannot reuse.
+
+That fixed three runs in four. The fourth still hit 0.955, so the header was
+measured directly at Lighthouse's emulated 412 px width:
+
+| Element | x | y | width |
+|---|---|---|---|
+| `.header-slogan` — "Free delivery within Nairobi" | 21 | 0 | 166 |
+| `.header-logo` | 186 | 0 | 138 |
+| `.mobile-container-toggle` | 372 | 0 | 19 |
+| `.header-product-search-toggle` | 343 | **64** | 32 |
+
+**6.3 — the real culprit.** There was never room for four items on that row. The
+slogan is the one that does not fit — it was added to the header when the COVID
+notice was replaced, and at mobile widths it leaves the search toggle nowhere to
+go, so the toggle wraps and the header doubles. The font merely decided *when*
+that happened.
+
+Rather than hide the slogan — the client asked for that message — it is given its
+own full-width row in `brand.css`, so the header is deterministically two rows at
+every viewport width and cannot change height after paint. Verified at 412 px:
+slogan alone on row 1, logo and both toggles on row 2 with room to spare.
+
+### Result
+
+| Stage | CLS across runs | Max | Scores |
+|---|---|---|---|
+| 6.1 — RevSlider only | 0.145 / 0.955 / 0.955 | 0.955 | 40, 13, 11 |
+| 6.2 — + `font-display` | 0.071 / 0.071 / 0.002 / 0.955 | 0.955 | 53, 34, 32, 9 |
+| 6.3 — + header row fix | 0.069 / 0.046 / 0 / 0.069 / 0 | **0.069** | 57, 32, 35, 31, 36 |
+
+The 0.955 outlier is gone across five consecutive runs, and the score stopped
+swinging between 9 and 53 — which finally makes this page's numbers worth
+comparing at all.
+
+**The CLS target of < 0.05 is not yet met**: the worst of five runs is 0.069 and
+the median is 0.046. What remains is small and no longer bimodal — the logo box
+resolving from 65 px to 66 px is visible in the trace and is the likely
+remainder. Honest position: substantially fixed, not finished.
+
 ### Still to do in this phase
 
-Unused CSS (~156 KB, mostly `propharm/style.css` at 78 KB and
-`js_composer.min.css` at 46 KB), `fetchpriority` on the LCP image (set on no page
-currently), WebP conversion, and the intermittent full-viewport layout shift.
+`fetchpriority` on the LCP image (set on no page currently), WebP conversion,
+unused CSS (~156 KB, mostly `propharm/style.css` at 78 KB and
+`js_composer.min.css` at 46 KB), and the last ~0.02 of CLS.
 
 ---
 
