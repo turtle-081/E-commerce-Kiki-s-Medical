@@ -422,13 +422,18 @@ followed, whatever its URL shape. Verified: **39 of 39** add-to-cart links on
 ### Not verified in this environment
 
 **Live prerender activation could not be exercised here.** Speculation rules
-respond only to genuine user hover, and the browser pane available in this
-environment reports a zero-size viewport, so hover coordinates are meaningless
-and no real hover can be dispatched. The emitted rules, the exclusion list and
-the `.no-prefetch` marking are all verified directly; what remains unverified is
-the browser actually activating a prerendered page — which should be confirmed
-by hand in a real browser via `chrome://net-export` or the Application panel's
-Speculative Loads view.
+respond only to genuine user hover, and pointer input cannot be dispatched in
+this environment: the browser pane is not displayed, so the page never
+composites frames and no screenshot — and therefore no coordinate-based hover —
+is possible. DOM inspection and scripted measurement work fine; only real
+pointer input does not.
+
+The emitted rules, the exclusion list and the `.no-prefetch` marking are all
+verified directly. What remains unverified is the browser actually activating a
+prerendered page, which should be confirmed by hand in a real browser via the
+Application panel's Speculative Loads view, or by checking that
+`performance.getEntriesByType('navigation')[0].activationStart > 0` after a
+hovered navigation.
 
 Lighthouse is unaffected by this phase by design: it measures a single cold page
 load, which is exactly the case speculation cannot help.
