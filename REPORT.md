@@ -679,19 +679,126 @@ addressing, not the defer.
 
 LCP did not move. It is now the binding constraint.
 
+### 6.5 — responsive images: tried, measured, and reverted
+
+This one did not work, and the attempt is recorded because the reason is the
+useful part.
+
+**The problem is real.** The theme renders images by hand —
+`wp_get_attachment_image_src( $image, 'full' )` into a raw `<img>` — so core's
+`wp_filter_content_tags()` never sees them. On the homepage: **73 images from
+uploads, 0 with `srcset`, 0 with `fetchpriority`**, only 14 lazy. Twenty render
+at ~225 px and nine at ~100 px while every one downloads the 1000×1000 original.
+The resized files (100×100 through 768×768) already exist on disk, unused.
+
+**And there is a second cause underneath it.** `wp_get_attachment_image_srcset()`
+returned false for every image even though the metadata was healthy (1000×1000,
+12 sizes). `enovathemes-addons` disables responsive images site-wide and
+unconditionally — there is no setting for it (enovathemes-addons.php:1861):
+
+```php
+add_filter( 'wp_calculate_image_srcset', '__return_empty_array', PHP_INT_MAX );
+```
+
+So a retrofit has to build the attribute itself.
+
+**Attempt 1 — core's heuristic.** First large image gets `fetchpriority="high"`
+and loads eagerly; everything after it gets `loading="lazy"` and `sizes="auto"`.
+Image bytes on the product page fell from 349 KB to 225 KB. Everything else got
+worse:
+
+| Product (medians of 3) | Before | Aggressive |
+|---|---|---|
+| Score | 42 | **35** |
+| LCP | 7.8 s | 7.3 s |
+| TBT | 1,168 ms | **2,173 ms** |
+| Image KB | 349 | 225 |
+
+| Homepage | Before | Aggressive |
+|---|---|---|
+| LCP | 9.0 s | **12.4 s** |
+| FCP | 3.9 s | 4.5 s |
+
+Core's heuristic assumes the first large `<img>` in source order is the element
+that paints largest. On this theme it is not: the hero is a Slider Revolution
+module built by JavaScript, so the first `<img>` in the markup is somewhere else
+entirely. Guessing wrong means lazy-loading the element that actually paints —
+which is what a 3.4 s LCP regression on the homepage looks like.
+
+**Attempt 2 — no guessing.** Restricted to images the theme had *already* marked
+`loading="lazy"`, adding only `srcset` and `sizes="auto"`. Safe by construction:
+it cannot change which element is the LCP. It also did nothing — **0 images
+matched**, because the theme's own lazy-loaded images use a `data-src`
+placeholder, which this correctly skips. Product medians were within noise of
+baseline (358 KB vs 349 KB image, score 38 vs 42).
+
+**So it was reverted.** A change that either measures worse or does nothing does
+not belong in the tree. `image-delivery.php` is deleted; `git log` has the full
+implementation if it is ever wanted.
+
+**What would actually fix it** is changing how the theme requests images —
+`wp_get_attachment_image_src( $image, 'propharm_425X425' )` instead of `'full'`
+for grid contexts — and dropping the plugin's blanket srcset filter. Both are
+vendor-code changes, which working rule 4 puts off-limits, and both belong
+upstream or in a child-theme override of the specific shortcodes. This is the
+single largest remaining payload win and should be scoped as its own piece of
+work.
+
 ### Still to do in this phase
 
-LCP is the remaining gap at ~7.8 s against a 2.5 s target. The two unexploited
-levers the audits name are **image delivery** (182 KB — product images are 1000×1000
-originals served with `width`/`height` but **no `srcset`/`sizes`**, so mobile
-downloads full-size files) and **unused CSS** (156 KB / 930 ms). `fetchpriority`
-is still set on no page, and the logo `<img>` still has no `width`/`height`
-attributes.
+- **Images** (~182 KB) — blocked on the above; needs vendor-side changes.
+- **Unused CSS** (156 KB / 930 ms) — `propharm/style.css` 78 KB and
+  `js_composer.min.css` 46 KB.
+- **HTTP/2** — `modern-http-insight` estimates 680 ms. Local serves this site
+  over plain HTTP/1.1; HTTP/2 requires TLS. Environment-specific, and production
+  would differ, so not pursued here.
 
-Also noted while reading the image audit: every image on the page has
-`alt="One"` — the site name, not a description. That is an accessibility problem
-rather than a performance one, and is out of scope here, but it should be fixed
-before handover.
+Noted while reading the image audit and out of scope: every image on the page
+has `alt="One"` — the site name, not a description. That is an accessibility
+problem, not a performance one, but it should be fixed before handover.
+
+---
+
+## Phase 8 — where this ended up
+
+### Targets
+
+| Target | Result | |
+|---|---|---|
+| TTFB < 100 ms cached | **44–140 ms, all HIT** | met |
+| JS < 300 KB on product page | **254 KB** (was 445 KB) | met |
+| CLS < 0.05 | **0–0.002** (was 0.148, then 0.955 intermittent) | met |
+| 0 uncached PHP requests per anonymous view | **2** (was 8) | not met |
+| LCP < 2.5 s | **~7.8 s** (was 6.9 s) | not met |
+| Lighthouse mobile ≥ 90 | **~42 product / ~29 home** | not met |
+
+### The honest summary
+
+**The server-side work is done and the targets there are met.** An anonymous page
+view is a 44 ms cached HIT instead of a ~2 s PHP render — a 40–70× improvement —
+and it stays correct: every session cookie and every transactional path bypasses
+the cache, verified by an explicit matrix that caught a real bug where logged-in
+users would have been served anonymous HTML.
+
+**The client-side targets are not met, and will not be met by more tuning.** LCP
+sits around 7.8 s against a 2.5 s target, and the Lighthouse score around 42.
+Everything cheap has been taken: 191 KB of JavaScript removed, render-blocking
+cut from 1,950 ms to 550 ms with nothing blocking in the `<head>`, layout shift
+eliminated, 2.1 MB of autoloaded options removed, six of eight uncached PHP
+requests gone.
+
+What remains is structural. This page still ships ~254 KB of JavaScript and
+~940 KB in total on a WPBakery + Slider Revolution + Elementor stack, with a
+theme that renders images at full size by hand and disables responsive images
+globally. Reaching a 2.5 s LCP means changing what the page is made of, not how
+it is delivered — and every remaining lever the audits name (image delivery,
+156 KB of unused CSS, the theme's own asset bundles) sits inside vendor code that
+working rule 4 correctly puts off-limits.
+
+That is the recommendation to take forward: the delivery layer is finished; the
+next real gain is a scoped piece of work on the theme's image handling and asset
+loading, done as child-theme overrides or upstream, with the measurement harness
+in `scripts/measure.sh` already in place to prove it.
 
 ---
 
