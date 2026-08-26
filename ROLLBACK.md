@@ -193,10 +193,28 @@ be emptied either way, since the rules are baked into cached HTML.
 
 ---
 
+## Phase 6 — payload
+
+### Slider Revolution scoping
+
+```bash
+rm app/public/wp-content/mu-plugins/safi-performance/slider-assets.php
+rm -rf "app/nginx-cache"/*
+```
+
+Restores Slider Revolution's assets on every page. Only do this if a slider is
+added to a page the detection cannot see — in which case the better fix is the
+escape hatch, which keeps the saving everywhere else:
+
+```php
+add_filter( 'safi_page_needs_revslider', '__return_true' ); // that template only
+```
+
+The homepage is unaffected either way: it contains a slider shortcode, so its
+assets are never dequeued.
+
+---
+
 ## Phases not yet applied
 
-Phase 3 (skipped — no Cloudflare), 6 (payload), 8 (final verification).
-Rollback notes will be added here as each is applied.
-
-Planned shape: **Phase 6** — one file under `mu-plugins/safi-performance/`.
-Delete the file to disable that change; nothing else references it.
+Phase 3 (skipped — no Cloudflare), 8 (final verification).

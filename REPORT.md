@@ -452,9 +452,78 @@ flagged separately for cleanup.
 
 ---
 
+## Phase 6 — payload *(in progress)*
+
+### 6.1 — Slider Revolution, the single biggest item in the payload
+
+`tptools.js` (73 KB) and `sr7.js` (94 KB), plus `migration.js` and `sr7.css`,
+loaded on **every page of the site including `/cart/`**. Together they were
+larger than jQuery, the theme's combined plugin bundle and WooCommerce put
+together — 9 of the 10 heaviest requests on the product page.
+
+Exactly one page uses a slider: the front page (#373, "Home 5"), which renders
+Slider 5.
+
+**The obvious check gives the wrong answer here, and it is worth recording why.**
+Slider Revolution 6.7 builds its markup *client-side*: the server sends no
+`<rs-module>` element, and the `SR7-MODULE` node only exists after `sr7.js` has
+run. Parsing the served HTML for slider elements reports **zero sliders on every
+page including the homepage** — which would have made dequeuing everywhere look
+perfectly safe, and would have silently broken the homepage. The homepage was
+confirmed to genuinely use a slider by inspecting the live DOM
+(`SR7-MODULE#SR7_5_1`, `window.revapi5`, 4 slides, 424 px tall), not the source.
+
+`slider-assets.php` therefore detects sliders by the shortcode in the content —
+which is what actually drives the render — and checks the header and footer
+builder post types as well, since either can embed one.
+
+Verified after the change: slider assets load on `/` **only**, and the homepage
+slider still builds with all 4 slides intact.
+
+| Product page | Before | After |
+|---|---|---|
+| **JavaScript** | **445 KB** | **254 KB** |
+| Total transfer | 1,136 KB | 866 KB |
+| Requests | 100 | 83 |
+| TBT (3 runs) | 1,184 / 4,188 / 2,892 ms | 628 / 1,160 / 1,441 ms |
+| LCP (3 runs) | 7.9 / 8.3 / 8.7 s | 7.2 / 7.7 / 7.9 s |
+
+**Target: < 300 KB of JavaScript on the product page. Achieved: 254 KB.**
+
+Payload, request count and TBT are deterministic and all improved clearly. The
+Lighthouse *score* is not: it read 40 / 13 / 11 across the three runs, against
+17 / 30 / 6 before. That spread is the same bimodal CLS problem documented in
+Phase 4 — the score is dominated by which side of the coin flip each run lands
+on, so it should not be read as a result in either direction until that is
+fixed. The homepage is unchanged, as expected, since it keeps the slider.
+
+### A Phase 4 bug found and fixed here
+
+Checking the console on a dequeued page surfaced a `TypeError: Cannot read
+properties of null (reading 'addEventListener')` coming from my own Phase 4
+cart-count script. The script attaches to `jquery-core`, which this theme
+enqueues in the `<head>`, so `document.body` was still null when it ran. The
+throw aborted the rest of the script and took the jQuery `added_to_cart` binding
+with it — meaning the cart badge would not have updated after an AJAX
+add-to-cart.
+
+Moved into a `bind()` function that runs on `DOMContentLoaded` and guards
+`document.body` regardless. Verified in a **fresh browser tab** — necessary
+because console messages accumulate across navigations in this tool, which has
+produced a false conclusion earlier in this engagement. Only the pre-existing
+`plugins-combined.js` `HierarchyRequestError` remains.
+
+### Still to do in this phase
+
+Unused CSS (~156 KB, mostly `propharm/style.css` at 78 KB and
+`js_composer.min.css` at 46 KB), `fetchpriority` on the LCP image (set on no page
+currently), WebP conversion, and the intermittent full-viewport layout shift.
+
+---
+
 ## Phases not yet started
 
-Phase 6 (payload), 8 (final verification).
+Phase 8 (final verification).
 
 ## Skipped permanently in this environment
 

@@ -108,15 +108,26 @@ function safi_mini_cart_js() {
 			.catch(function () { /* leave the cached value alone */ });
 	}
 
-	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', refresh);
-	} else {
+	// Archive add-to-cart is AJAX, so re-read the count once Woo says it is done.
+	//
+	// This has to wait for DOM ready: the handle this script is attached to is
+	// enqueued in the head, so document.body is still null when it first runs.
+	// Touching it directly here threw a TypeError that aborted the rest of the
+	// script, and took the jQuery binding below with it.
+	function bind() {
 		refresh();
+		if (!document.body) { return; }
+		document.body.addEventListener('added_to_cart', refresh);
+		if (window.jQuery) {
+			window.jQuery(document.body).on('added_to_cart removed_from_cart', refresh);
+		}
 	}
 
-	// Archive add-to-cart is AJAX, so re-read the count once Woo says it is done.
-	document.body.addEventListener('added_to_cart', refresh);
-	if (window.jQuery) { window.jQuery(document.body).on('added_to_cart removed_from_cart', refresh); }
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', bind);
+	} else {
+		bind();
+	}
 })();
 JS;
 }
