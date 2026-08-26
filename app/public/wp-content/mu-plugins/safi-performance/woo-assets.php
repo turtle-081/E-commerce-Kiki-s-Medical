@@ -92,11 +92,14 @@ add_filter( 'woocommerce_background_image_regeneration', '__return_false' );
 /**
  * NOT enabled: `woocommerce_admin_disabled`.
  *
- * The brief says to confirm before turning WC Admin off because some clients
- * rely on the analytics dashboard, and that confirmation has not been given.
- * It is the single biggest remaining admin-side win, so it is worth asking.
+ * Asked and answered: the client uses the Analytics dashboard, so WC Admin
+ * stays. This is a deliberate decision, not an oversight — do not "optimise" it
+ * away later without asking again.
  *
- * To enable, uncomment:
+ * The cost is admin-side only (a large React bundle and some background
+ * scheduling); anonymous front-end performance is unaffected either way.
+ *
+ * If that ever changes:
  *
  *     add_filter( 'woocommerce_admin_disabled', '__return_true' );
  */

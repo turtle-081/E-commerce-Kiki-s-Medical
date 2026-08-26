@@ -366,9 +366,95 @@ standing between this site and the target scores.
 
 ---
 
+## Phase 5 — instant navigation (Speculation Rules)
+
+### Discovery: it was already on, at its weakest setting
+
+WordPress 7.0.2 ships speculative loading in core (6.8+), and it was already
+emitting rules — but `prefetch` with `conservative` eagerness, which fires on
+*pointerdown*. By then the visitor has already committed to the click, so it
+saves a little latency and does not feel instant.
+
+Raised to **`prerender` / `moderate`**: Chrome renders the next page in full in
+the background once a link has been hovered for roughly 200 ms, so the
+navigation is close to zero. This is only affordable because of Phase 2 — the
+speculative request is a cached HIT at ~30 ms rather than a 2 s PHP render.
+
+Core disables speculation entirely for logged-in users and for sites without
+pretty permalinks. `speculation-rules.php` returns early when core has already
+decided to disable, so that behaviour is preserved rather than overridden.
+
+### The exclusions are the important half
+
+Core excludes `wp-admin`, `wp-*.php`, `wp-content` and — because pretty
+permalinks are on — **any URL with a query string**, which already covers
+`?add-to-cart=` and nonce-bearing links.
+
+What core does not know about is WooCommerce, and **WooCommerce registers no
+exclusions of its own** (checked in its source). Under `prerender` the page
+genuinely executes: scripts run, the Store API is called, a session starts. On a
+store, prerendering `/cart/`, `/checkout/` or `/my-account/` means creating
+sessions for visitors who never went there, and activating a page that may be
+stale.
+
+Those three are now excluded, resolved through `wc_get_page_id()` rather than
+hardcoded so renaming the cart page in WooCommerce settings cannot silently
+reopen the gap — with the literal defaults kept as a fallback.
+
+A small inline script additionally marks state-changing links with core's
+`.no-prefetch` opt-out class — add-to-cart, remove-from-cart and logout — on the
+principle that a link which mutates state should never be speculatively
+followed, whatever its URL shape. Verified: **39 of 39** add-to-cart links on
+`/shop/` are marked.
+
+### Verified
+
+| Check | Result |
+|---|---|
+| Mode / eagerness emitted | `prerender` / `moderate` |
+| `/cart`, `/checkout`, `/my-account` (+ `/*`) excluded | yes |
+| Query strings, `wp-admin`, `wp-*.php` excluded | yes (core) |
+| Add-to-cart links marked `.no-prefetch` | 39 / 39 |
+| Rules suppressed for logged-in users | yes (core, preserved) |
+| Browser reports prerender support | yes |
+| TTFB unchanged | 30 ms `/shop/`, still HIT |
+
+### Not verified in this environment
+
+**Live prerender activation could not be exercised here.** Speculation rules
+respond only to genuine user hover, and the browser pane available in this
+environment reports a zero-size viewport, so hover coordinates are meaningless
+and no real hover can be dispatched. The emitted rules, the exclusion list and
+the `.no-prefetch` marking are all verified directly; what remains unverified is
+the browser actually activating a prerendered page — which should be confirmed
+by hand in a real browser via `chrome://net-export` or the Application panel's
+Speculative Loads view.
+
+Lighthouse is unaffected by this phase by design: it measures a single cold page
+load, which is exactly the case speculation cannot help.
+
+### Trade-off worth knowing
+
+`prerender` executes the whole page, and this site still ships ~420–445 KB of
+JavaScript (Phase 6's problem). On low-end mobile, prerendering two pages in the
+background is real work. Chrome caps concurrent moderate-eagerness prerenders,
+so it is bounded, but if the client reports battery or jank complaints on cheap
+Android hardware, changing `'prerender'` to `'prefetch'` in
+`speculation-rules.php` is a one-line dial-back that keeps every exclusion
+intact.
+
+### Noted, not fixed (out of scope)
+
+Two leftover theme demo menu items link to `/nothing`, which returns 404, and
+render in the navigation labelled "404 Error Page" (`menu-item-1804`,
+`menu-item-389`). They are demo content rather than a Phase 5 issue, and are
+flagged separately for cleanup.
+
+---
+
 ## Phases not yet started
 
-Phase 5 (instant navigation), 6 (payload), 8 (final verification).
+Phase 6 (payload), 8 (final verification).
 
 ## Skipped permanently in this environment
 

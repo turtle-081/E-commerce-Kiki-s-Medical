@@ -173,11 +173,30 @@ Re-run `php tools/flush-theme-caches.php` and empty the nginx cache afterwards.
 
 ---
 
+## Phase 5 — instant navigation (Speculation Rules)
+
+```bash
+rm app/public/wp-content/mu-plugins/safi-performance/speculation-rules.php
+rm -rf "app/nginx-cache"/*
+```
+
+This does **not** turn speculative loading off — it returns it to the WordPress
+core default of `prefetch` / `conservative`, which was already active before this
+engagement. Removing the file also removes the WooCommerce exclusions, but core's
+own rules still exclude every URL with a query string, so add-to-cart links stay
+safe under the weaker default.
+
+To keep the exclusions but reduce the aggressiveness — the right move if the
+client reports jank or battery drain on low-end Android — edit the file and
+change `'prerender'` to `'prefetch'` instead of deleting it. The page cache must
+be emptied either way, since the rules are baked into cached HTML.
+
+---
+
 ## Phases not yet applied
 
-Phase 3 (skipped — no Cloudflare), 5 (instant navigation), 6 (payload),
-8 (final verification). Rollback notes will be added here as each is applied.
+Phase 3 (skipped — no Cloudflare), 6 (payload), 8 (final verification).
+Rollback notes will be added here as each is applied.
 
-Planned shape: **Phase 5/6** — one file each under
-`mu-plugins/safi-performance/`. Delete the file to disable that change; nothing
-else references it.
+Planned shape: **Phase 6** — one file under `mu-plugins/safi-performance/`.
+Delete the file to disable that change; nothing else references it.
