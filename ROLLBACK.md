@@ -291,6 +291,91 @@ is the bug this change fixed.
 The same toggle is in the theme's footer editor, so the client can flip it
 without the CLI.
 
+### WebP image delivery
+
+Two independent halves. Removing either one alone is safe — the config without
+the files serves the originals, and the files without the config are never
+requested — so they can be reverted in whichever order suits.
+
+**The generated files:**
+
+```bash
+PHP="/c/Users/Turtle/AppData/Roaming/Local/lightning-services/php-8.2.29+0/bin/win64/php.exe"
+INI="/c/Users/Turtle/AppData/Roaming/Local/run/cPNju-zlO/conf/php"
+"$PHP" -c "$INI" tools/make-webp.php --revert
+```
+
+Deletes only the double-extension files the script created (`*.png.webp`,
+`*.jpg.webp`), so a genuine `.webp` upload is never touched. Add `--dry-run`
+first to see the count.
+
+**The nginx config:**
+
+```bash
+git checkout -- conf/nginx/nginx.conf.hbs conf/nginx/site.conf.hbs
+```
+
+then restart the site in Local so the runtime config is regenerated. The two
+blocks are the `map $http_accept $webp_suffix` in `nginx.conf.hbs` and the
+`location ~* \.(?:jpe?g|png)$` in `site.conf.hbs`, both commented "Phase 6.8".
+
+To reload without a restart, edit the runtime copies too and reload nginx — see
+PLATFORM.md. Backups of both runtime files were left beside them as
+`nginx.conf.bak-p68` and `site.conf.bak-p68`.
+
+**Neither the images nor the markup that references them were modified**, so
+there is nothing else to undo. New uploads are not converted automatically;
+re-running `tools/make-webp.php` picks them up and is idempotent, so it is cheap
+to run on a schedule or after a bulk import.
+
+### Homepage grids rendered inline
+
+```bash
+PHP="/c/Users/Turtle/AppData/Roaming/Local/lightning-services/php-8.2.29+0/bin/win64/php.exe"
+INI="/c/Users/Turtle/AppData/Roaming/Local/run/cPNju-zlO/conf/php"
+"$PHP" -c "$INI" tools/inline-grid-ajax.php --revert
+"$PHP" -c "$INI" tools/flush-theme-caches.php
+```
+
+Returns the front page's four `[et_woo_products]` grids and one `[et_posts]`
+to loading over `admin-ajax.php`. That costs four uncached PHP requests of
+roughly 2.5 s each per view, so there is no performance reason to go back.
+
+The same toggle is in the WPBakery element editor, so the client can flip an
+individual grid without the CLI.
+
+**Do not do this while `script-loading.php` is active** unless you re-check the
+homepage afterwards. Deferred scripts are what broke the AJAX-hydrated footer in
+Phase 6.6, and these grids hydrate the same way.
+
+### Main product image priority
+
+```bash
+rm app/public/wp-content/mu-plugins/safi-performance/product-image-priority.php
+rm -rf "app/nginx-cache"/*
+```
+
+Returns the single product page's gallery image to `loading="lazy"`. There is no
+good reason to: it is the largest element on the page and the one the customer
+came to look at, so deferring it delays LCP for no saving.
+
+If it ever needs to be scoped differently, note that the module deliberately
+promotes **only the first** image matching the product's own featured image, so
+a multi-image gallery still lazy-loads the ones below the fold.
+
+### Block editor stylesheets
+
+```bash
+rm app/public/wp-content/mu-plugins/safi-performance/block-assets.php
+rm -rf "app/nginx-cache"/*
+```
+
+Restores `wp-block-library` and `wc-blocks-style` on every page. Only needed if
+a page starts using blocks *and* the gate fails to notice — which should not
+happen, because the module checks the rendered content for block delimiters on
+every request and keeps the stylesheets when it finds any. Cart, checkout and
+my-account are exempt unconditionally and are unaffected either way.
+
 ---
 
 ## Phases not yet applied

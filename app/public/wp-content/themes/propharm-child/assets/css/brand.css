@@ -311,3 +311,29 @@ form.cart button.button.single_add_to_cart_button,
 		white-space: nowrap;
 	}
 }
+
+/* ------------------------------------------------------------------------
+ * Phase 8: the WhatsApp widget's layout shift -- diagnosed, NOT fixed here.
+ *
+ * One product run in two records CLS 0.114, attributed by the trace to
+ * `body.wp-singular > div.qlwapp > div.qlwapp__container`.
+ *
+ * An earlier attempt added `position: fixed` to that base class on the theory
+ * that the container was briefly in normal flow. **That was wrong and the rule
+ * has been removed.** `wp-whatsapp-chat` already sets
+ * `.qlwapp__container--bottom-right { position: fixed; top: auto; bottom: 0;
+ * left: auto; right: 0 }`, and its JavaScript builds the corner modifier into
+ * the className at creation time, so the container is viewport-anchored from
+ * the moment it enters the DOM. The added rule was redundant, and the four
+ * clean runs that followed it were the intermittent case not firing rather
+ * than evidence that it worked.
+ *
+ * Verified in the settled DOM: the container is `position: fixed` with full
+ * offsets, and no ancestor carries a transform, filter, containment or
+ * `will-change` that would turn it into a content-anchored element.
+ *
+ * Lighthouse names the actual causes as the product gallery image and the
+ * PT Sans web font -- both change page height around the widget. The gallery
+ * image is handled in `mu-plugins/safi-performance/product-image-priority.php`.
+ * See REPORT.md, Phase 8.
+ * ---------------------------------------------------------------------- */

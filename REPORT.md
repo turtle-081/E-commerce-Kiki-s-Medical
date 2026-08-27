@@ -798,50 +798,321 @@ that paints via JavaScript needs checking against it — which is why the smoke
 test covered the slider, megamenus, cart and gallery, and why it was worth doing
 one more pass over a page I thought was finished.
 
+### 6.7 — responsive images, attempted again and reverted again
+
+Phase 6.5 tried this with an output-buffer retrofit and failed because it moved
+the LCP. This attempt avoided that failure completely and still had to be
+reverted, for a different and more interesting reason. Recording it because the
+conclusion changes what should be recommended next.
+
+**The two blockers were identified precisely this time.** First,
+`enovathemes-addons` disables responsive images site-wide, but it does so from a
+*named* function on `init` (`enovathemes_addons_disable_responsive_images`,
+enovathemes-addons.php:1850), so it can be lifted from a mu-plugin with a single
+`remove_action` on `plugins_loaded` — no vendor edit. Second, the theme builds
+thumbnails as raw HTML and echoes them straight into WooCommerce loop hooks, so
+they never pass `the_content` and core's `wp_filter_content_tags()` never sees
+them. That was not assumed: all four content filters were instrumented and the
+product grid images appeared in none of them.
+
+**The implementation deliberately could not repeat 6.5.** It added `srcset` and
+`sizes` only to images that already carried `loading="lazy"`, and wrote no
+`loading`, `fetchpriority` or `decoding` attribute at all. `sizes="auto"` was
+used so the browser would match the real layout width rather than the viewport.
+`tools/check-image-attrs.py` diffed every image attribute on three pages before
+and after and confirmed it: 24 images gained `srcset`/`sizes`, and not one
+loading decision moved.
+
+**It did not work, and the reason is structural.** Checking `currentSrc` in the
+live DOM: of the 13 images that gained a `srcset`, **12 had a layout width of
+zero at selection time** — they sit inside carousels that have not been laid out
+when the browser picks a candidate. `sizes="auto"` has nothing to measure, so it
+falls back and the browser takes the largest candidate. Six of the thirteen
+fetched the full-size original anyway.
+
+**And lifting the vendor filter made the page heavier.** With responsive images
+restored, the main WooCommerce product image gained a proper `srcset`, and on
+Lighthouse's mobile profile — 412 px wide at DPR 2.625 — core's `sizes` asks for
+more device pixels than the theme's fixed choice, so the browser upgraded it:
+
+| | Baseline | With responsive images |
+|---|---|---|
+| Main product image | `product13-600x600.jpg`, 16 KB | `product13-768x768.jpg`, 22 KB |
+
+Identical in all three runs, so this is not noise. Everything else was within
+run-to-run spread.
+
+**The finding worth keeping** is that the premise recorded after 6.5 — that
+image delivery was the single largest remaining payload win, blocked only by
+vendor code — is wrong as stated. Lighthouse's "larger than it needs to be"
+savings are computed against CSS pixels; at DPR 2.625 a *correct* responsive
+implementation asks for roughly 2.6x more pixels than the theme's hardcoded
+sizes do. The theme's crude fixed sizes are, on this profile, already smaller
+than what proper responsive images would request. Serving fewer bytes here means
+serving a *worse* image than the browser asks for, which is a client decision
+about quality, not a technical one.
+
+Reverted. `image-delivery.php` is deleted; `tools/check-image-attrs.py` is kept,
+because it is the guard that made this attempt cheap to evaluate and would make
+the next one cheap too.
+
+### 6.8 — WebP, and the payload win that was actually there
+
+Re-reading the same Lighthouse insight for what it says rather than what 6.5
+assumed it said: of the homepage's 608 KB, **290 KB is attributed to "using a
+modern image format (WebP, AVIF) or increasing this image's compression"**, not
+to sizing at all. Four Slider Revolution PNGs account for 262 KB of it, and they
+are small in dimensions and enormous in bytes — `slider-1-as6.png` is 200x379
+and 84 KB.
+
+That is a much better target than sizing, because it is independent of layout,
+independent of DPR, and cannot move the LCP: the URL does not change and neither
+does the markup. Only the bytes behind the URL change, and only for browsers
+that asked for them.
+
+**Implementation.** `tools/make-webp.php` writes `foo.png.webp` beside
+`foo.png`, keeping the conversion only where it saves at least 15%. nginx picks
+it up with a `map` on the request's `Accept` header and
+`try_files $uri$webp_suffix $uri`, so the suffix is appended rather than
+rewritten and the fallback is automatic for anything unconverted. `Vary: Accept`
+is set, without which a shared cache could hand a WebP to a client that cannot
+render it.
+
+```
+1041 files converted, 23 rejected as not worth it
+26,234 KB -> 12,263 KB across those files, a 54% reduction
+```
+
+Verified in both directions on the worst offender:
+
+```
+Accept: image/webp  ->  Content-Type: image/webp,  10,114 bytes
+Accept: image/*     ->  Content-Type: image/png,   84,127 bytes
+```
+
+Neither the file nor the markup that references it was modified, so this is
+reversible by deleting the generated files and reverting two config blocks.
+
+**Measured.** The payload reduction is large and the timing effect is not:
+
+| Homepage | Before | After |
+|---|---|---|
+| **Images** | **1,508 KB** | **802 KB** |
+| **Total transfer** | **2,378 KB** | **1,671 KB** |
+| LCP (median of 3-4) | 9.57 s | 9.14 s — within spread |
+| Score | 28 | 29 — within spread |
+
+| Product page | Before | After |
+|---|---|---|
+| Images | 343 KB | 278 KB |
+| Total transfer | 936 KB | 871 KB |
+| LCP | 7.46 s | 7.13 s |
+
+**Read that honestly: 707 KB — 30% of the homepage — stopped being transferred,
+and the page did not get measurably faster on this machine.** That is not a
+contradiction. The homepage's bottleneck is JavaScript execution, not image
+bytes: TBT sits between 3.5 s and 8.7 s across runs. Removing bytes that were
+never on the critical path does not move a metric gated on main-thread work.
+
+It is still worth keeping, and the reason is not the Lighthouse score. This site
+sells to customers in Kenya, many on metered mobile data. A third less data per
+page view is a real improvement to them whether or not a lab metric on a
+Windows workstation notices.
+
+### A measurement that was wrong, and how it was caught
+
+The first attempt to measure this produced a homepage that looked dramatically
+better: FCP down 1.11 s, images down to 722 KB. It was wrong. All four runs had
+measured a **276 KB homepage instead of the real 622 KB one** — an incomplete
+render, missing every megamenu and the mobile header, that nginx had stored and
+was serving as a `HIT`.
+
+The cause is worth recording because it is a live production hazard rather than
+a measurement quirk. The theme rebuilds its layout transients lazily. A render
+that triggers that rebuild while the site is busy — six php-cgi workers, all of
+them saturated by Lighthouse — can emit the page without its megamenus, and the
+page cache will then keep that version for its full 24-hour TTL. **Flush the
+theme cache in production and the first visitor's broken page becomes
+everyone's page for a day.**
+
+Two changes came out of it:
+
+- `tools/flush-theme-caches.php` now empties the nginx cache itself, so the two
+  can no longer be flushed out of step.
+- `scripts/lh-summary.py` compares the HTML document size across runs and
+  refuses to present the metrics as an improvement when it differs. It flags the
+  original contaminated pair correctly.
+
+The tell was that the document had halved. A page that gets dramatically faster
+*and* dramatically smaller has usually lost content.
+
+### 6.9 — the last of the CSS, and a layout shift that was still there
+
+**Block editor stylesheets.** The site runs Classic Editor with WPBakery and
+Elementor; a DOM count returns **0 elements** carrying a `wp-block-*` class,
+while `wp-block-library` loads at 17 KB and render-blocking on every page.
+`block-assets.php` drops it, gated on the rendered content actually containing
+no block delimiter so the saving cannot outlive the assumption behind it.
+
+Two things the first version got wrong, both caught by checking rather than
+assuming:
+
+- It kept the stylesheet on `/shop/` because `widget_block` contains blocks —
+  but all five are WordPress's default widgets sitting in `wp_inactive_widgets`,
+  where nothing renders them. The gate now only counts block widgets actually
+  placed in a sidebar.
+- It also tried to drop `wc-blocks-style`, which appeared to work and did
+  nothing: WooCommerce enqueues that one from a `wc_get_template` filter during
+  template rendering, long after `wp_enqueue_scripts`. Just as well — it is
+  genuinely used, because WooCommerce renders its "added to cart" and validation
+  notices with block-based templates on classic pages. Dropping it would have
+  left the transactional flow's messaging unstyled to save 3 KB. It stays.
+
+**The remaining layout shift, identified.** One product run in four still
+recorded CLS 0.069 against a 0.002 median — above the brief's 0.05 target on its
+own. The trace attributed it to
+`body.wp-singular > div.qlwapp > div.qlwapp__container`: the **WhatsApp chat
+widget**, not the header wrap that Phase 6.3 fixed.
+
+`wp-whatsapp-chat` injects its container with JavaScript and only then adds the
+corner modifier that carries `position: fixed`. In between, the container is a
+static 430x88 flex box in normal flow near the end of `<body>`, so everything
+above it moves. The base class simply has no `position` of its own.
+
+One rule in `brand.css` gives the base class `position: fixed`. It cannot change
+where the widget ends up — the modifier still supplies the corner offsets — it
+only means the container is never in flow to begin with. Verified in the live
+DOM afterwards: still fixed, still bottom-right, still 430x88.
+
+**What is left in this phase, and why it is not what the brief expected.** The
+"156 KB of unused CSS" recorded after 6.5 does not survive scrutiny. Lighthouse
+measures coverage on a 412 px mobile run, so every desktop `@media
+(min-width: ...)` rule counts as unused: 39% of `dynamic-styles-cached.css` and
+14% of the theme stylesheet by raw bytes. `js_composer.min.css` reads **100%
+unused** on mobile while containing the entire `.vc_col-sm-*` grid that desktop
+layout depends on — dequeuing it on that evidence would break the site at
+desktop widths. What was genuinely removable was the 17 KB of block CSS, and it
+has been removed. Trimming the rest means generating a per-page CSS subset and
+regenerating it whenever content changes, which is a different kind of project.
+
 ---
 
 ## Phase 8 — where this ended up
 
 ### Targets
 
-| Target | Result | |
+| Target | Baseline | Final | |
+|---|---|---|---|
+| TTFB < 100 ms cached | ~1.9 s uncached | **20-24 ms, all HIT** | met |
+| JS < 300 KB on product page | 445 KB | **253 KB** | met |
+| CLS < 0.05 | 0.148, then 0.955 intermittent | **median 0.000, worst 0.069** | **not reliably met** |
+| 0 uncached PHP per anonymous view | 8 | **2** (home was 4 until Phase 8) | not met |
+| LCP < 2.5 s | 9.57 s home / 7.46 s product | **8.86 s / 6.59 s** | not met |
+| Lighthouse mobile >= 90 | 28 home / 40 product | **36-59 / 58-64** | not met |
+
+### What moved, and by how much
+
+| Homepage | Before | After |
 |---|---|---|
-| TTFB < 100 ms cached | **44–140 ms, all HIT** | met |
-| JS < 300 KB on product page | **254 KB** (was 445 KB) | met |
-| CLS < 0.05 | **0–0.002** (was 0.148, then 0.955 intermittent) | met |
-| 0 uncached PHP requests per anonymous view | **2** (was 8) | not met |
-| LCP < 2.5 s | **~7.8 s** (was 6.9 s) | not met |
-| Lighthouse mobile ≥ 90 | **~42 product / ~29 home** | not met |
+| Score | 28 | 36-59 (see the caveat below) |
+| LCP | 9.57 s | 8.86 s |
+| FCP | 3.93 s | 3.28 s |
+| Speed Index | 9.89 s | 6.65 s |
+| **TBT** | **9.60 s** | **2.21 s** |
+| Images | 1,508 KB | **532 KB** |
+| **Total transfer** | **2,378 KB** | **1,382 KB** |
+
+| Product page | Before | After |
+|---|---|---|
+| Score | 40 | 58-64 |
+| **LCP** | **7.46 s** | **6.59 s** |
+| FCP | 3.98 s | 3.12 s |
+| Speed Index | 6.07 s | 4.45 s |
+| **TBT** | **1.10 s** | **420 ms** |
+| Images | 343 KB | 272 KB |
+| Total transfer | 936 KB | 848 KB |
+
+The homepage HTML grew from 622 KB to 944 KB, and that is the change working
+rather than a regression: five grids that used to be fetched over
+`admin-ajax.php` after load are now baked into the cached response.
+
+### The measurement caveat, stated plainly
+
+**Run-to-run spread within one session badly understates the real variance on
+this machine.** Two full measurement rounds, taken an hour apart with no change
+affecting the homepage between them:
+
+| Homepage score | Runs |
+|---|---|
+| Round A | 58, 59, 59, 59 |
+| Round B | 33, 45, 32, 38 |
+
+Each round is internally tight, so either one looks like a solid result on its
+own. Between them the median moves 23 points. Any single session's numbers from
+this environment should be read as a range, not a value, and that is why the
+score row above gives one.
+
+The deterministic figures -- bytes, request counts, TTFB, uncached PHP requests
+-- do not behave this way and are the ones worth quoting.
+
+### Uncached PHP per view
+
+Phase 4 reported this as 2 and it was 2 on the product page. On the **homepage
+it was 4**, and nobody had measured it there. Instrumenting `admin-ajax.php`
+named them:
+
+| Request | Status |
+|---|---|
+| `et_posts_ajax` | removed -- grid now inline |
+| `woo_products_ajax` | removed -- grids now inline |
+| `megamenu_load` | remains |
+| `update_mini_cart_contents` | remains |
+
+Each was taking ~2.5 s. The two that remain are the theme's sidebar category
+flyouts and the cart badge; both need a different approach than a builder
+setting, and neither blocks first paint.
+
+### CLS: honest position
+
+The median is 0.000 and the worst of four runs is 0.069. It is a single
+intermittent shift of the **WhatsApp chat widget**, which `wp-whatsapp-chat`
+injects with JavaScript. It fired in two runs of four before the product image
+was promoted to `eager` and in one of four after, so that helped and did not
+finish the job.
+
+An earlier attempt to fix it with CSS was wrong and has been reverted: the
+plugin already sets `position: fixed` with full offsets on the corner modifier,
+and builds that modifier into the className at creation, so the added rule was
+redundant. Four clean runs after it were the intermittent case not firing, not
+evidence it worked. That is recorded in `brand.css` so nobody re-derives it.
+
+Finishing this means either configuring the widget out, reserving its space, or
+patching its JavaScript. It is a third-party widget shifting a page it does not
+own, and it is the only thing standing between this site and the CLS target.
 
 ### The honest summary
 
-**The server-side work is done and the targets there are met.** An anonymous page
-view is a 44 ms cached HIT instead of a ~2 s PHP render — a 40–70× improvement —
-and it stays correct: every session cookie and every transactional path bypasses
-the cache, verified by an explicit matrix that caught a real bug where logged-in
-users would have been served anonymous HTML.
+**The server-side work is finished and its targets are met.** An anonymous page
+view is a 20-24 ms cached HIT against a ~1.9 s PHP render, and it stays correct:
+every session cookie and transactional path bypasses the cache.
 
-**The client-side targets are not met, and will not be met by more tuning.** LCP
-sits around 7.8 s against a 2.5 s target, and the Lighthouse score around 42.
-Everything cheap has been taken: 191 KB of JavaScript removed, render-blocking
-cut from 1,950 ms to 550 ms with nothing blocking in the `<head>`, layout shift
-eliminated, 2.1 MB of autoloaded options removed, six of eight uncached PHP
-requests gone.
+**The payload work is finished too, and went further than the brief scoped.**
+Total transfer is down 42% on the homepage and 9% on the product page, images
+down 65% and 21%, with 1,041 files served as WebP under content negotiation
+without a single URL or markup change.
 
-What remains is structural. This page still ships ~254 KB of JavaScript and
-~940 KB in total on a WPBakery + Slider Revolution + Elementor stack, with a
-theme that renders images at full size by hand and disables responsive images
-globally. Reaching a 2.5 s LCP means changing what the page is made of, not how
-it is delivered — and every remaining lever the audits name (image delivery,
-156 KB of unused CSS, the theme's own asset bundles) sits inside vendor code that
-working rule 4 correctly puts off-limits.
+**The biggest single win was not on the brief's list at all.** The homepage was
+fetching its five main grids over `admin-ajax.php` after load -- roughly 10 s of
+uncached PHP per view, sitting behind a page cache that was serving the HTML in
+24 ms. Inlining them cut TBT from 9.60 s to 2.21 s. It was found only because
+Phase 8 re-measured a number Phase 4 had recorded rather than trusting it.
 
-That is the recommendation to take forward: the delivery layer is finished; the
-next real gain is a scoped piece of work on the theme's image handling and asset
-loading, done as child-theme overrides or upstream, with the measurement harness
-in `scripts/measure.sh` already in place to prove it.
-
----
+**The client-side targets remain unmet and will not be met by tuning.** LCP is
+6.59 s against 2.5 s and the score sits in the 40s to 50s. What is left is
+structural: ~417 KB of JavaScript on a page built from WPBakery, Elementor and
+Slider Revolution simultaneously. Reaching 2.5 s means changing what the page is
+made of. That is a rebuild decision, and it is the recommendation to take
+forward.
 
 ## Phase status at a glance
 
@@ -852,17 +1123,45 @@ in `scripts/measure.sh` already in place to prove it.
 | 3 — Cloudflare | skipped | not possible here, see below |
 | 4 — WooCommerce | done | target missed: 2 uncached requests remain, not 0 |
 | 5 — instant navigation | done | rules verified; live activation could not be exercised here |
-| 6 — payload | **incomplete** | images and unused CSS outstanding |
+| 6 — payload | done | images and CSS addressed; what remains is structural, see below |
 | 7 — database and background | done | |
-| 8 — final verification | **partial** | summary written; two checks impossible here |
+| 8 — final verification | done | two of the brief's checks are impossible here, named below |
 
-**Phase 6 is the one genuinely unfinished.** 6.1 through 6.4 landed and 6.5 was
-tried and reverted, but image delivery (~182 KB) and unused CSS (156 KB) remain,
-and both need vendor-side changes that working rule 4 puts off-limits. See
-"Still to do in this phase" above.
+**Phase 6 is finished, but not the way the brief anticipated.** Responsive
+images were tried twice (6.5, 6.7) and reverted twice, the second time with
+measurements showing that a *correct* srcset implementation makes this site
+heavier on a DPR 2.625 mobile profile than the theme's hardcoded sizes do. The
+real image win was format, not sizing: 6.8 serves 1,041 files as WebP under
+content negotiation, taking 65% off homepage image bytes without touching a
+single URL or markup. The "156 KB of unused CSS" turned out to be largely a
+mobile-viewport artifact; the 17 KB that was genuinely removable has been
+removed.
 
-**Phase 8 is partial rather than done.** The before/after deliverable exists, but
-the brief's edge-TTFB and M-Pesa checks cannot be run in this environment.
+**Three targets are met, three are not.** What blocks the remaining three is
+structural — ~417 KB of JavaScript on a page built from WPBakery, Elementor and
+Slider Revolution at once — and is a rebuild decision rather than a tuning one.
+
+**Two caveats a reader should carry forward.** The Lighthouse *score* on this
+machine varies by more than 20 points between measurement sessions even when the
+site does not change, so scores are quoted as ranges and the deterministic
+figures are the ones to trust. And CLS has an intermittent 0.069 shift from the
+WhatsApp chat widget that is not fully fixed.
+
+### Found during Phase 8, worth knowing
+
+Re-measuring rather than trusting recorded numbers turned up three things:
+
+- The homepage was making **4 uncached PHP requests per view, not 2** — five
+  builder grids were being fetched over `admin-ajax.php` at ~2.5 s each, behind
+  a page cache serving the HTML in 24 ms. Inlining them cut homepage TBT from
+  9.60 s to 2.21 s, the largest single win of the whole engagement.
+- **None of the tool-applied database changes were present**, because a
+  database restore had silently undone them while every file-based change
+  survived in git. See `PATCHES.md` §3.
+- An **incomplete render can be promoted into the page cache** and served for
+  24 hours. It happened here and four Lighthouse runs measured the wrong page.
+  `tools/flush-theme-caches.php` and `scripts/lh-summary.py` were both changed
+  so it cannot pass unnoticed again.
 
 ## Skipped permanently in this environment
 
@@ -873,6 +1172,7 @@ the brief's edge-TTFB and M-Pesa checks cannot be run in this environment.
 | **2A.4 Redis object cache** | no Redis server and no `php_redis` extension |
 | **8 — edge/Nairobi TTFB** | no public hostname, no CDN |
 | **8 — M-Pesa STK test** | no payment gateway plugin is installed |
+| **6 — HTTP/2** (`modern-http-insight`, ~460 ms) | verified rather than assumed this time: Local *does* have a certificate for `client1.local` and `https://` responds 200, but its router negotiates **HTTP/1.1** in both cases. `curl -sk -o /dev/null -w '%{http_version}' https://client1.local/` returns `1.1`. Production behind any modern host or CDN would differ |
 
 `wp db optimize` also could not complete: one table fails with
 `Invalid default value for 'scheduled_date_gmt'`, a known MySQL 8 strict-mode

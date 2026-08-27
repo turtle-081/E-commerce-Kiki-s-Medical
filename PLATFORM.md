@@ -58,6 +58,8 @@ app/public/                     WordPress root
     plugins/                      includes locally patched vendor code
 conf/                           Local's config TEMPLATES  <- edit these
 scripts/measure.sh              TTFB / cache-status harness
+scripts/lh.sh                   Lighthouse runner (N runs per page)
+scripts/lh-summary.py           medians + spread + deltas between runs
 tools/                          one-off, reversible change scripts
 reports/                        raw Lighthouse JSON (evidence, prunable)
 DISCOVERY.md REPORT.md ROLLBACK.md PATCHES.md PLATFORM.md
@@ -149,11 +151,43 @@ change a header or footer and nothing appears to happen, this is why. Purging th
 nginx cache does not help — the stale markup is coming from the database.
 
 ```bash
-php tools/flush-theme-caches.php
-rm -rf "app/nginx-cache"/*      # then clear the page cache too
+php tools/flush-theme-caches.php   # empties the nginx page cache too
 ```
 
 Do this after **any** header, footer, menu or theme-option change.
+
+**The two caches must be flushed together, and the tool now does that itself.**
+Clearing the transients alone leaves the theme to rebuild them on the next
+render — and a rebuild that happens under load can emit the page *without* its
+megamenus, which nginx will then cache and serve as a `HIT` for 24 hours. See
+"Things that will bite you".
+
+### 3. WebP content negotiation (not really a cache, but it lives here)
+
+`tools/make-webp.php` writes `foo.png.webp` beside every `foo.png` and
+`foo.jpg` in uploads that converts at least 15% smaller. nginx serves the
+sibling only when the request's `Accept` header allows it:
+
+```nginx
+map $http_accept $webp_suffix { default ""; "~*image/webp" ".webp"; }   # nginx.conf.hbs
+try_files $uri$webp_suffix $uri =404;                                    # site.conf.hbs
+```
+
+**Page URLs and markup are untouched** — the page still asks for `foo.png`.
+Check which one you are getting:
+
+```bash
+curl -s -o /dev/null -D - -H 'Accept: image/webp' \
+  http://client1.local/wp-content/uploads/kiki-logo.png | grep -i content-type
+```
+
+Two things to know:
+
+- **New uploads are not converted automatically.** nginx falls through to the
+  original, so nothing breaks — the image is just heavier. Re-run the tool; it
+  is idempotent and skips anything already current.
+- **`Vary: Accept` is required** and is set. Without it a shared cache could
+  hand a WebP to a client that cannot display it.
 
 ---
 
@@ -174,6 +208,8 @@ auto-loads top-level mu-plugin files only, so it globs the subdirectory).
 | `slider-assets.php` | Loads Slider Revolution only on pages that contain a slider |
 | `font-loading.php` | `display=optional` on Google Fonts so the header cannot reflow mid-render |
 | `script-loading.php` | Asks core to defer scripts; core refuses where ordering would break |
+| `block-assets.php` | Drops `wp-block-library` (17 KB, render-blocking) on pages with no block markup; cart, checkout and my-account are exempt unconditionally |
+| `product-image-priority.php` | Makes the single product page's main gallery image `eager` instead of `lazy` — it is the LCP element and WooCommerce lazy-loads it |
 
 **Nothing here modifies WooCommerce, the checkout template, or any payment
 gateway.** That constraint was set by the engagement brief and should be kept.
@@ -192,6 +228,14 @@ One-off scripts that change database content. The house style, worth keeping:
 `inline-footer.php`, `inline-header-megamenu.php` and `inline-mobile-header.php`
 are the cleanest examples. `check-patches.sh` verifies the vendor patches in
 `PATCHES.md` are still applied — **run it after updating any plugin or theme.**
+
+Three that are not one-off content changes and are worth knowing about:
+
+| Tool | Use |
+|---|---|
+| `make-webp.php` | Generates the WebP siblings. Idempotent; `--dry-run` and `--revert`. **Re-run after a bulk upload** — new images are simply served unconverted until you do |
+| `check-image-attrs.py` | Snapshots every image's `loading`/`fetchpriority`/`decoding` across three pages and diffs two snapshots. Run it before and after anything that touches image markup — it is what proves a change did not repeat the Phase 6.5 LCP regression |
+| `flush-theme-caches.php` | Clears the theme transients **and** the page cache. Never flush one without the other |
 
 Running a script needs Local's PHP *with Local's `php.ini`*, otherwise `mysqli`
 is missing and WordPress refuses to boot:
@@ -244,9 +288,52 @@ result.
 - **The theme disables responsive images site-wide.**
   `enovathemes-addons.php:1862` sets `wp_calculate_image_srcset` to
   `__return_empty_array`, which is why `srcset` is absent everywhere and why
-  images ship at full size.
+  images ship at full size. It is registered from a *named* function on `init`,
+  so it can be lifted with one `remove_action` and needs no vendor edit — but
+  read the next two entries before deciding you want to.
+- **Restoring responsive images makes this site heavier, not lighter.**
+  Lighthouse computes "larger than it needs to be" against CSS pixels, and its
+  mobile profile is 412 px at DPR 2.625. A correct `srcset` therefore asks for
+  ~2.6x more pixels than the theme's hardcoded sizes do, and the browser
+  *upgrades*: the main product image went 600x600 (16 KB) to 768x768 (22 KB) in
+  all three runs. Measured in Phase 6.7 and reverted. The theme's crude fixed
+  sizes are already below what proper responsive images would request.
+- **`sizes="auto"` cannot work on most images here.** The product grids are
+  carousels, and 12 of 13 images tested had a layout width of **zero** at the
+  moment the browser picks a candidate, so `auto` has nothing to measure and
+  falls back to the largest. Check `img.currentSrc` and
+  `getBoundingClientRect().width` in the live DOM before assuming a srcset is
+  being honoured.
+- **Lighthouse's "unused CSS" is viewport-specific and overstates the win.**
+  It is measured on a 412 px mobile run, so every desktop `@media
+  (min-width: ...)` rule counts as unused: 39% of `dynamic-styles-cached.css`
+  and 14% of the theme stylesheet by raw bytes. `js_composer.min.css` reads
+  "100% unused" on mobile while containing the entire `.vc_col-sm-*` grid that
+  desktop layout depends on. Dequeuing on that evidence would break the site at
+  desktop widths.
 - **`error_reporting` excludes `E_DEPRECATED`.** An empty `error.log` does not
   mean there are no deprecations. Toggle `WP_DEBUG` to actually check.
+- **An incomplete render can get promoted into the page cache, and then it is
+  everyone's page for 24 hours.** The theme rebuilds its header, footer and
+  megamenu transients lazily. A render that triggers that rebuild while the site
+  is busy can emit the page *without* its megamenus, and nginx will happily
+  store it and serve it as a `HIT` until the entry expires.
+
+  Observed during Phase 6.8: the homepage cached at 276 KB instead of 622 KB,
+  missing every megamenu and the mobile header, and four Lighthouse runs
+  measured that page before the document size gave it away. `tools/flush-theme-caches.php`
+  now empties the nginx cache itself for this reason, but the general rule is
+  broader:
+
+  ```bash
+  # after any theme-cache flush, or any measurement that looks too good
+  curl -s http://client1.local/ | wc -c      # expect ~622000, not ~276000
+  ```
+
+  **Check the document size before trusting a measurement.** In a Lighthouse
+  report it is `audits['network-requests'].details.items[] .resourceSize` for
+  the `Document` entry. A page that suddenly got faster and smaller by half did
+  not get optimised; it lost content.
 - **Browser-tool console output accumulates across navigations.** An error listed
   after visiting five pages may have come from any of them. Use a fresh tab
   before concluding a page is broken.
@@ -257,50 +344,41 @@ result.
 
 ## Outstanding work
 
-The performance engagement is paused, not finished. Five of eight phases are
-done, one is skipped for environmental reasons, and two remain. `REPORT.md` has
-a status table; this section is what you need to *resume*.
+The engagement is complete as far as this environment allows. Three of the
+brief's six targets are met; the three that are not are blocked by what the page
+is built from, not by anything left untuned.
 
-Three of the brief's targets are met — TTFB under 100 ms cached (~30 ms),
-JavaScript under 300 KB on the product page (254 KB), and CLS under 0.05
-(0–0.002). Three are not: LCP (~7.8 s against 2.5 s), Lighthouse mobile (~42
-against 90), and zero uncached PHP per anonymous view (currently 2, down from 8).
+`REPORT.md` has the per-phase status and the measurements. This is what someone
+picking it up next actually needs.
 
-### Phase 6 — payload (the real remaining work)
+### What would actually move the numbers now
 
-Both remaining items are blocked on the same root cause, and it is worth
-understanding before starting: **the theme renders images by hand at full size,
-and disables responsive images globally.**
+**Not images, and not CSS.** Both are finished and both turned out smaller than
+the brief assumed:
 
-```php
-// enovathemes-addons/shortcodes/shortcodes.php — always 'full'
-$image = wp_get_attachment_image_src( $image, 'full' );
-$output .= '<img src="'.$image_src.'" width="'.$w.'" height="'.$h.'" ... />';
+- Responsive images were tried twice and reverted twice. The second attempt
+  (6.7) touched only `srcset`/`sizes`, never a loading attribute, and still
+  failed: 12 of 13 images had a **layout width of zero** when the browser picks
+  a candidate, because they sit in carousels that are not laid out yet, and
+  restoring core's srcset made the main product image *bigger* on a DPR 2.625
+  mobile profile. Do not try a third time without reading that section first.
+- The "156 KB of unused CSS" is largely desktop media queries counted as unused
+  on a 412 px run. The 17 KB that was genuinely removable is gone.
 
-// enovathemes-addons.php:1862 — kills srcset site-wide, no setting for it
-add_filter( 'wp_calculate_image_srcset', '__return_empty_array', PHP_INT_MAX );
-```
+**What is left is the JavaScript**, ~417 KB of it, on a page running WPBakery and
+Elementor and Slider Revolution simultaneously. LCP is 6.6-8.9 s against a 2.5 s
+target and the remaining cost is execution, not transfer. Closing that gap means
+changing what the page is made of — a rebuild decision, not a tuning one.
 
-Measured consequence: 73 upload images on the homepage, none with `srcset`,
-twenty rendering at ~225 px and nine at ~100 px while all download the 1000×1000
-original. The resized files (100×100 through 768×768) already exist on disk.
+### Two loose ends that are small and real
 
-**Do not retry the output-buffer retrofit.** It was tried in 6.5 and reverted.
-Rewriting `<img>` tags after the fact and applying core's "first large image is
-the LCP" heuristic *saved* 124 KB but regressed homepage LCP from 9.0 s to 12.4 s
-and doubled product TBT — because the hero here is a Slider Revolution module
-built by JavaScript, so the first `<img>` in source order is not what paints.
-Restricting it to already-lazy images was safe but a no-op, because those use a
-`data-src` placeholder. The full implementation is in git history if wanted.
-
-The approach that should work is to fix it at the source rather than downstream:
-override the specific theme shortcodes in `propharm-child` so they request a
-sized variant (`propharm_425X425` and similar already exist) instead of `'full'`,
-and drop the blanket srcset filter for those contexts. That is a child-theme
-override, not a vendor edit, so it stays inside working rule 4.
-
-Also outstanding here: **156 KB of unused CSS** (`propharm/style.css` 78 KB,
-`js_composer.min.css` 46 KB), worth ~930 ms by Lighthouse's estimate.
+- **The WhatsApp widget shifts the page.** An intermittent CLS of 0.069, from a
+  container `wp-whatsapp-chat` injects with JavaScript. It is the only thing
+  between this site and the CLS target. A CSS fix was tried and was redundant —
+  see the note in `brand.css` before attempting another.
+- **Two uncached PHP requests per homepage view remain**: `megamenu_load` (the
+  sidebar category flyouts) and `update_mini_cart_contents`. Neither blocks
+  first paint. The other two were removed in Phase 8.
 
 ### Phase 8 — final verification
 

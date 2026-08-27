@@ -145,6 +145,39 @@ before changing it.
 These are real configuration, but `.gitignore` excludes the files they live in, so
 a fresh clone or a restore on another machine will not have them. Reapply by hand.
 
+### The database changes are in this category too, and that bit us
+
+Everything in `tools/` that edits post content or post meta lives **only in the
+database**. The repository cannot reproduce it, and a database restore silently
+undoes it while every file-based change survives in git — so the tree looks
+correct and the site behaves differently.
+
+That is not hypothetical. Phase 8 verification found the front page still
+loading four product grids and a post grid over `admin-ajax.php`, and
+`_safi_*` backup meta absent from every post, meaning **none of the
+tool-applied changes were present in the current database** even though
+`REPORT.md` described them as done. The branch is called
+`restore/local-environment`; a restore is exactly what happened.
+
+**After any database restore, re-run the content tools and verify.** They are
+all idempotent, so running one that is already applied is free:
+
+```bash
+PHP="/c/Users/Turtle/AppData/Roaming/Local/lightning-services/php-8.2.29+0/bin/win64/php.exe"
+INI="/c/Users/Turtle/AppData/Roaming/Local/run/cPNju-zlO/conf/php"
+for t in inline-header-megamenu inline-mobile-header inline-footer inline-grid-ajax; do
+    "$PHP" -c "$INI" "tools/$t.php"
+done
+"$PHP" -c "$INI" tools/flush-theme-caches.php
+```
+
+The cheap check that they are actually in effect — the front page should be
+~944 KB of HTML, not ~622 KB, because the grids are baked in:
+
+```bash
+curl -s http://client1.local/ | wc -c
+```
+
 ### `app/public/wp-config.php` (gitignored)
 
 ```php

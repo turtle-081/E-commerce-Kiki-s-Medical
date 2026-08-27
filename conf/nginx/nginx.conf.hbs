@@ -46,6 +46,17 @@ http {
 		default $args;
 	}
 
+	# Phase 6.8 - pick the WebP sibling only when the browser advertises it.
+	#
+	# tools/make-webp.php writes foo.png.webp beside foo.png, so appending this
+	# suffix to $uri is enough for try_files to find it and no rewriting is
+	# needed. A browser that does not send image/webp in Accept gets "" and so
+	# falls through to the original file.
+	map $http_accept $webp_suffix {
+		default        "";
+		"~*image/webp" ".webp";
+	}
+
 	map $http_x_forwarded_proto $resolved_scheme {
         default "http";
         "https" "https";

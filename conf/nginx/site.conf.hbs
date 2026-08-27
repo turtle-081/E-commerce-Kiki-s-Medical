@@ -86,6 +86,27 @@ server {
         add_header        Cache-Control "public, max-age=31536000, immutable";
     }
 
+    # Phase 6.8 -- content-negotiated WebP.
+    #
+    # This block must come before the general image rule below, because nginx
+    # takes the first matching regex location.
+    #
+    # The URL never changes: the page still asks for foo.png, and $webp_suffix
+    # (see nginx.conf) makes try_files look for foo.png.webp first when, and
+    # only when, the browser said it accepts image/webp. Anything without a
+    # converted sibling falls straight through to the original, so this is safe
+    # on files tools/make-webp.php skipped or rejected.
+    #
+    # Vary: Accept is required -- without it a shared cache could hand a WebP
+    # to a client that cannot display it.
+    location ~* \.(?:jpe?g|png)$ {
+        access_log        off;
+        log_not_found     off;
+        add_header        Cache-Control "public, max-age=31536000, immutable";
+        add_header        Vary Accept;
+        try_files         $uri$webp_suffix $uri =404;
+    }
+
     location ~* \.(?:jpg|jpeg|gif|png|webp|avif|ico|svg|xml)$ {
         access_log        off;
         log_not_found     off;
